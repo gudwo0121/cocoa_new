@@ -48,20 +48,21 @@
 			<hr class="sidebar-divider">
 
 			<!-- Heading -->
-			<div class="sidebar-heading">Interface</div>
+			<div class="sidebar-heading">Topic</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-cog"></i> <span>Components</span>
+				aria-expanded="true" aria-controls="collapseTwo"><i
+					class="fas fa-fw fa-cog"></i> <span>코드 코칭</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Components:</h6>
-						<a class="collapse-item" href="#">Buttons</a> <a
-							class="collapse-item" href="#">Cards</a>
+						<h3 class="collapse-header">분야:</h3>
+						<a class="collapse-item" href="#">Web</a>
+						<a class="collapse-item" href="#">Mobile</a>
+						<a class="collapse-item" href="#">Embedded</a>
 					</div>
 				</div></li>
 
@@ -69,16 +70,15 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseUtilities"
 				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>Utilities</span>
+					class="fas fa-fw fa-wrench"></i> <span>프로젝트 모집</span>
 			</a>
 				<div id="collapseUtilities" class="collapse"
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Utilities:</h6>
-						<a class="collapse-item" href="#">Colors</a> <a
-							class="collapse-item" href="#">Borders</a> <a
-							class="collapse-item" href="#">Animations</a>
-						<a class="collapse-item" href="#">Other</a>
+						<h3 class="collapse-header">분야:</h3>
+						<a class="collapse-item" href="#">Web</a>
+						<a class="collapse-item" href="#">Mobile</a>
+						<a class="collapse-item" href="#">Embedded</a>
 					</div>
 				</div></li>
 
@@ -339,7 +339,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+						<h1 class="h3 mb-0 text-gray-800">Today's Top Coach!</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
@@ -653,16 +653,16 @@
 								<div class="card-body">
 									<div class="text-center">
 										<img class="img-fluid px-3 px-sm-4 mt-3 mb-4"
-											style="width: 25rem;" src="img/undraw_posting_photo.svg"
+											style="width: 25rem;" src="..."
 											alt="...">
 									</div>
 									<p>
 										Add some quality, svg illustrations to your project courtesy
-										of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>,
+										of <a target="_blank" rel="nofollow" href="#">unDraw</a>,
 										a constantly updated collection of beautiful svg images that
 										you can use completely free and without attribution!
 									</p>
-									<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse
+									<a target="_blank" rel="nofollow" href="#">Browse
 										Illustrations on unDraw &rarr;</a>
 								</div>
 							</div>
@@ -731,28 +731,28 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
+					<a class="btn btn-primary" href="#">Logout</a>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="resources/vendor/jquery/jquery.min.js"></script>
+	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
-	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 	<!-- Custom scripts for all pages-->
-	<script src="js/sb-admin-2.min.js"></script>
+	<script src="resources/js/sb-admin-2.min.js"></script>
 
 	<!-- Page level plugins -->
-	<script src="vendor/chart.js/Chart.min.js"></script>
+	<script src="resources/vendor/chart.js/Chart.min.js"></script>
 
 	<!-- Page level custom scripts -->
-	<script src="js/demo/chart-area-demo.js"></script>
-	<script src="js/demo/chart-pie-demo.js"></script>
+	<script src="resources/js/demo/chart-area-demo.js"></script>
+	<script src="resources/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

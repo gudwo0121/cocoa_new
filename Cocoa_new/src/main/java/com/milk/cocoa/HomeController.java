@@ -1,5 +1,8 @@
 package com.milk.cocoa;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,7 +13,7 @@ public class HomeController {
 
 	// 홈 화면 이동
 	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView home() throws Exception {
+	public ModelAndView home(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String url = "/home";
 		mav.setViewName(url);

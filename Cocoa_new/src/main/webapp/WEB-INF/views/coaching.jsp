@@ -19,17 +19,36 @@
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+<script type="text/javascript">
+	// 비동기 페이지 이동
+	function movePage(url){
+	    var page = {
+	            url : url,
+	            async : true,
+	            type : "POST",
+	            dataType : "html",
+	            cache : false
+	    };
+	    
+	    $.ajax(page).done(function(data){
+	        // Contents 영역 삭제
+	        $('#main').children().remove();
+	        // Contents 영역 교체
+	        $('#main').html(data);
+	    });
+	}
+</script>
 </head>
-<body>
+<body id="main">
 
 	<div class="container-fluid">
 
 		<!-- Page Heading -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
 			<h1 class="h3 mb-0 text-gray-800">Coaching Page</h1>
-			<a href="#"
-				class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">코칭
-				등록</a>
+			<label
+				class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+				onclick="movePage('/cocoa/coachingWrite')">코칭 등록</label>
 		</div>
 
 		<!-- 개발툴 -->
@@ -41,7 +60,8 @@
 					<div class="card-body">
 						<div class="row no-gutters align-items-center">
 							<div class="col mr-2">
-								<div class="h5 mb-0 font-weight-bold text-gray-800">Spring Framework</div>
+								<div class="h5 mb-0 font-weight-bold text-gray-800">Spring
+									Framework</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -57,7 +77,8 @@
 					<div class="card-body">
 						<div class="row no-gutters align-items-center">
 							<div class="col mr-2">
-								<div class="h5 mb-0 font-weight-bold text-gray-800">Android Studio</div>
+								<div class="h5 mb-0 font-weight-bold text-gray-800">Android
+									Studio</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -73,7 +94,8 @@
 					<div class="card-body">
 						<div class="row no-gutters align-items-center">
 							<div class="col mr-2">
-								<div class="h5 mb-0 font-weight-bold text-gray-800">Raspberry Pi</div>
+								<div class="h5 mb-0 font-weight-bold text-gray-800">Raspberry
+									Pi</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -249,6 +271,6 @@
 		</div>
 		<!-- 위의 카탈로그 틀이 반복 생성 및 표시 -->
 	</section>
-	
+
 </body>
 </html>

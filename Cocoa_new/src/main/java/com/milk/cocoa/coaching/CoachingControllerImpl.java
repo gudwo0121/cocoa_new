@@ -13,9 +13,18 @@ public class CoachingControllerImpl {
 
 	// 코칭 리스트 이동
 	@RequestMapping(value = "/coachingList", method = RequestMethod.POST)
-	public ModelAndView view_coach(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView viewCoachingList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String url = "/coaching";
+		mav.setViewName(url);
+		return mav;
+	}
+	
+	// 코칭 등록 이동
+	@RequestMapping(value = "/coachingWrite", method = RequestMethod.POST)
+	public ModelAndView viewCoachingWrite(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String url = "/coachingWrite";
 		mav.setViewName(url);
 		return mav;
 	}

@@ -19,4 +19,13 @@ public class ProjectControllerImpl {
 		mav.setViewName(url);
 		return mav;
 	}
+
+	// 프로젝트 모집 이동
+	@RequestMapping(value = "/projectWrite", method = RequestMethod.POST)
+	public ModelAndView viewProjectWrite(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String url = "/projectWrite";
+		mav.setViewName(url);
+		return mav;
+	}
 }

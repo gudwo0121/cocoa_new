@@ -24,7 +24,7 @@
 
 	<div class="container-fluid">
 
-		<!-- Page Heading -->
+		<!-- 카테고리 표시 -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
 			<h1 class="h3 mb-0 text-gray-800">코칭 등록</h1>
 		</div>
@@ -46,9 +46,9 @@
 
 									<!-- 프로필 조회 이동 -->
 									<br> <br> <img name="proImg"
-										src="${contextPath}/downProfileImg?id=${member.id}"
+										src="..."
 										style="border: 1px solid;" width="50%" height="120px"
-										onerror="this.src='resources/image/onerror.png'"><br>
+										onerror="this.src='resources/img/onerror.png'"><br>
 									<br>
 
 									<!-- coach -->
@@ -65,7 +65,7 @@
 
 							<!-- cImg -->
 							<div align="center">
-								<br> <img id="preview" src="resources/image/onerror.png"
+								<br> <img id="preview" src="resources/img/onerror.png"
 									width=100% height=300 style="border: 1px solid;" /><br> <br>
 								<label class="btn btn-outline-dark" for="cImg"> 대표 이미지
 									변경 </label><input type="file" id="cImg" name="cImg"

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="mapper.project">
+	<resultMap id="projectList" type="projectVO">
+		<result property="projectNO" column="projectNO" />
+		<result property="leader" column="leader" />
+		<result property="pImg" column="pImg" />
+		<result property="pTitle" column="pTitle" />
+		<result property="memberCount" column="memberCount" />
+		<result property="pField" column="pField" />
+		<result property="level" column="level" />
+		<result property="pContents" column="pContents" />
+		<result property="map" column="map" />
+		<result property="kakao" column="kakao" />
+	</resultMap>
+
+	<!-- 프로젝트 리스트 조회 -->
+	<select id="selectProjectList" resultMap="projectList">
+    		<![CDATA[
+	      	SELECT * 
+	      	FROM projectTBL
+    		]]>
+	</select>
+
+</mapper>

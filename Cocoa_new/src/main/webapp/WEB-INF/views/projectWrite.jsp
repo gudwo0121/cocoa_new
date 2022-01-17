@@ -46,9 +46,9 @@
 
 									<!-- 프로필 조회 이동 -->
 									<br> <br> <img name="proImg"
-										src="${contextPath}/downProfileImg?id=${member.id}"
+										src="..."
 										style="border: 1px solid;" width="50%" height="120px"
-										onerror="this.src='resources/image/onerror.png'"><br>
+										onerror="this.src='resources/img/onerror.png'"><br>
 									<br>
 
 									<!-- leader -->
@@ -71,7 +71,7 @@
 
 							<!-- pImg -->
 							<div align="center">
-								<br> <img id="preview" src="resources/image/onerror.png"
+								<br> <img id="preview" src="resources/img/onerror.png"
 									width=100% height=300 style="border: 1px solid;" /><br> <br>
 								<label class="btn btn-outline-dark" for="pImg"> 대표 이미지
 									변경 </label><input type="file" id="pImg" name="pImg"

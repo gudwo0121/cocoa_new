@@ -112,54 +112,60 @@
 
 			<!-- 생성된 코칭 카탈로그 표시 -->
 			<div
-				class="row gx-5 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
 				<!-- 프로젝트 리스트 전체 조회 결과값 불러오기 -->
 				<c:forEach var="projectList" items="${projectList}">
 
-					<!-- 간판 이미지 -->
-					<img class="card-img-top" alt="" height=200
-						onerror=" this.src='resources/img/onerror.png'" src="..." />
+					<div class="col mb-5"
+						style="padding-left: 30px; padding-right: 30px;">
+						<div class="card h-100"
+							style="width: 110%; border: 1px solid black;">
 
-					<!-- 리스트 표시 정보 -->
-					<div class="card-body" style="background-color: #FFCCCC;">
-						<div class="text-center">
+							<!-- 간판 이미지 -->
+							<img class="card-img-top" alt="" height=200
+								onerror="this.src='resources/img/onerror.png'" src="..." />
 
-							<!-- 리더 -->
-							<b style="font-size: 15px; float: left; color: grey;">${proprojectListject.leader}</b>
+							<!-- 리스트 표시 정보 -->
+							<div class="card-body" style="background-color: #FFCCCC;">
+								<div class="text-center">
 
-							<!-- 후기 개수 (없을시 0개) -->
-							<a href="/cocoa/view_reviewInfo?target=${projectList.leader}">
-								<div style="font-size: 13px; float: right;">
-									<b>0개의 후기</b>
-								</div> <!-- 평점 평균 (없을시 0.0) -->
-								<div style="font-size: 13px; float: right;">
-									<b
-										style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
-										★&nbsp;</b> <b>0.0</b>&nbsp;|&nbsp;
+									<!-- 리더 -->
+									<b style="font-size: 15px; float: left; color: grey;">${projectListject.leader}</b>
+
+									<!-- 후기 개수 (없을시 0개) -->
+									<a href="/cocoa/view_reviewInfo?target=${projectList.leader}">
+										<div style="font-size: 13px; float: right;">
+											<b>0개의 후기</b>
+										</div> <!-- 평점 평균 (없을시 0.0) -->
+										<div style="font-size: 13px; float: right;">
+											<b
+												style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
+												★&nbsp;</b> <b>0.0</b>&nbsp;|&nbsp;
+										</div>
+									</a> <br> <br>
+
+									<!-- 제목 -->
+									<b style="font-size: 15px; color: black;">${projectList.pTitle}</b><br>
+									<br>
+
+									<!-- 인원수 -->
+									<b style="font-size: 15px; color: #333333; float: right;">${projectList.memberCount}명
+										모집중</b>
 								</div>
-							</a> <br> <br>
+							</div>
 
-							<!-- 제목 -->
-							<b style="font-size: 15px; color: black;">${projectList.pTitle}</b><br>
-							<br>
-
-							<!-- 인원수 -->
-							<b style="font-size: 15px; color: #333333; float: right;">${projectList.memberCount}명
-								모집중</b>
+							<!-- projectInfo 이동 -->
+							<div class="card-footer pt-2 border-top-0"
+								style="background-color: #FFCCCC;">
+								<div class="text-center">
+									<a class="btn btn-outline-dark mt-auto" href="#">Get in</a>
+								</div>
+							</div>
 						</div>
 					</div>
-
-					<!-- projectInfo 이동 -->
-					<div class="card-footer pt-2 border-top-0"
-						style="background-color: #FFCCCC;">
-						<div class="text-center">
-							<a class="btn btn-outline-dark mt-auto" href="#">Get in</a>
-						</div>
-					</div>
+				</c:forEach>
 			</div>
-		</div>
-		</c:forEach>
 		</div>
 	</section>
 

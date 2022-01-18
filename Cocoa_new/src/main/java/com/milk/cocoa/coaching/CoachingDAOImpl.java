@@ -14,7 +14,7 @@ public class CoachingDAOImpl {
 	private SqlSession sqlSession;
 
 	// 코칭 리스트 전체 조회
-	public List selectCoachingList() throws DataAccessException {
+	public List selectCoachingList() {
 		List<CoachingVO> coachingList = sqlSession.selectList("mapper.coach.selectCoachingList");
 		return coachingList;
 	}

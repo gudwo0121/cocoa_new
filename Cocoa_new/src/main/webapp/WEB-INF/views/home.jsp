@@ -263,7 +263,8 @@
 							aria-expanded="false"> <i class="fas fa-envelope fa-fw"></i>
 								<!-- Counter - Messages --> <span
 								class="badge badge-danger badge-counter">7</span>
-						</a> <!-- Dropdown - Messages -->
+						</a> 
+						<!-- Dropdown - Messages -->
 							<div
 								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="messagesDropdown">
@@ -320,16 +321,23 @@
 
 						<div class="topbar-divider d-none d-sm-block"></div>
 
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+						<!-- 비로그인 상태일 시 -->
+						<a href="/cocoa/login" class="d-none d-sm-inline-block btn btn btn-primary shadow-sm" 
+							style="height:30%;margin-top: 5%;">Login</a>
+						
+						<a href="/cocoa/signUp" class="d-none d-sm-inline-block btn btn btn-primary shadow-sm"
+							style="height:30%;margin-top: 5%;margin-left: 5px;">Sign up</a>
+						
+						<!-- 로그인 상태일 시 -->
+						<!-- <li class="nav-item dropdown no-arrow">
+						<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">User ID</span> <img class="img-profile rounded-circle"
-								src="...">
-						</a> <!-- Dropdown - User Information -->
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+							aria-expanded="false">
+							<span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+								<img class="img-profile rounded-circle" src="...">
+						</a>
+							
+							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
 								<a class="dropdown-item" href="#"> <i
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
@@ -346,8 +354,8 @@
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Logout
 								</a>
-							</div></li>
-
+							</div>
+						</li>-->
 					</ul>
 
 				</nav>

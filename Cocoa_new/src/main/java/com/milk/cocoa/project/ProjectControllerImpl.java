@@ -11,34 +11,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.milk.cocoa.coaching.CoachingServiceImpl;
-import com.milk.cocoa.coaching.CoachingVO;
-
 @Controller("projectController")
 public class ProjectControllerImpl {
-	
+
 	@Autowired
 	private ProjectVO projectVO;
 	@Autowired
 	private ProjectServiceImpl projectServiceImpl;
 
 	// 프로젝트 리스트 화면 이동
-	@RequestMapping(value = "/projectList", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView goProjectList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/projectList", method = RequestMethod.POST)
+	public ModelAndView goProjectList(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/project";
 		mav.setViewName(url);
-		
+
 		// 프로젝트 리스트 전체 조회
 		List<ProjectVO> projectList = projectServiceImpl.selectProjectListService();
 		mav.addObject("projectList", projectList);
-		
+
 		return mav;
 	}
 
 	// 프로젝트 모집 이동
 	@RequestMapping(value = "/projectWrite", method = RequestMethod.POST)
-	public ModelAndView goProjectWrite(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView goProjectWrite(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/projectWrite";
 		mav.setViewName(url);

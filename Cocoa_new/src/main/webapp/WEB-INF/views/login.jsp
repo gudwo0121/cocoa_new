@@ -34,18 +34,20 @@
 							<div class="col-lg-6">
 								<div class="p-5">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+										<input type="button" class="h2 text-gray-900 mb-4"
+											style="border: none; background-color: white;"
+											onclick="location.href='/cocoa/'" value="CoCoa">
 									</div>
-									
+
 									<form class="user">
 										<div class="form-group">
-											<input type="email" class="form-control form-control-user"
-												id="exampleInputEmail" aria-describedby="emailHelp"
-												placeholder="Enter Email Address...">
+											<input type="text" class="form-control form-control-user"
+												id="inputID" aria-describedby="emailHelp"
+												placeholder="ID">
 										</div>
 										<div class="form-group">
 											<input type="password" class="form-control form-control-user"
-												id="exampleInputPassword" placeholder="Password">
+												id="inputPassword" placeholder="Password">
 										</div>
 										<div class="form-group">
 											<div class="custom-control custom-checkbox small">
@@ -55,21 +57,19 @@
 													Me</label>
 											</div>
 										</div>
-										<a href="#"
-											class="btn btn-primary btn-user btn-block"> Login </a>
+										<a href="#" class="btn btn-primary btn-user btn-block">
+											Login </a>
 										<hr>
-										<a href="#" class="btn btn-google btn-user btn-block">
-											<i class="fab fa-google fa-fw"></i> Login with Google
-										</a> <a href="#"
-											class="btn btn-facebook btn-user btn-block"> <i
-											class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+										<a href="#" class="btn btn-google btn-user btn-block"> <i
+											class="fab fa-google fa-fw"></i> Login with Google
+										</a> <a href="#" class="btn btn-facebook btn-user btn-block">
+											<i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
 										</a>
 									</form>
-									
+
 									<hr>
 									<div class="text-center">
-										<a class="small" href="#">Forgot
-											Password?</a>
+										<a class="small" href="#">Forgot Password?</a>
 									</div>
 									<div class="text-center">
 										<a class="small" href="/cocoa/signUp">Create an Account!</a>

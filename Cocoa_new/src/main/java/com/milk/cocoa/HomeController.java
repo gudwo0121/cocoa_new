@@ -13,7 +13,7 @@ public class HomeController {
 
 	// 홈 화면 이동
 	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView goHome(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView goHome(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/home";
 		mav.setViewName(url);

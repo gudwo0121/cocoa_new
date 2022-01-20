@@ -14,7 +14,7 @@ public class ProjectDAOImpl {
 	private SqlSession sqlSession;
 
 	// 프로젝트 리스트 전체 조회
-	public List selectProjectList() throws DataAccessException {
+	public List selectProjectList() {
 		List<ProjectVO> projectList = sqlSession.selectList("mapper.project.selectProjectList");
 		return projectList;
 	}

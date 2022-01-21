@@ -20,6 +20,7 @@
 	rel="stylesheet">
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="resources/js/signUp.js"></script>
 <script type="text/javascript">
 	// 전화번호 하이픈 자동 생성
 	$(document).on("keyup", "#phone", function() {
@@ -52,36 +53,51 @@
 								<!-- 아이디 -->
 								<div class="form-group">
 									<input type="text" class="form-control form-control-user"
-										id="id" placeholder="ID">
+										id="id" name="id" placeholder="ID">
 								</div>
 
 								<!-- 비밀번호 확인 -->
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input type="password" class="form-control form-control-user"
-											id="password" placeholder="Password">
+											id="pwd1" name="pwd1" placeholder="Password">
 									</div>
 									<div class="col-sm-6">
 										<input type="password" class="form-control form-control-user"
-											id="repeatPassword" placeholder="Repeat Password">
+											id="pwd2" name="pwd2" placeholder="Repeat Password">
 									</div>
+								</div>
+
+								<!-- 비밀번호 확인 멘트 -->
+								<div class="form-group" style="padding-left: 15px;">
+									<span id="alert-success"
+										style="display: none; color: green; font-size: 13px;">
+										<i class="fas fa-check"></i> 비밀번호 일치
+									</span> <span id="alert-danger"
+										style="display: none; color: red; font-size: 13px;"> <i
+										class="fas fa-times"></i> 비밀번호 불일치
+									</span>
 								</div>
 
 								<!-- 이름 -->
 								<div class="form-group">
 									<input type="text" class="form-control form-control-user"
-										id="name" placeholder="Name">
+										id="name" name="name" placeholder="Name">
 								</div>
 
 								<!-- 전화번호 -->
 								<div class="form-group">
 									<input type="tel" class="form-control form-control-user"
-										id="phone" required pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
-										maxlength="13" placeholder="Phone (ex)010-1234-5678">
+										id="phone" name="phone" required
+										pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" maxlength="13"
+										placeholder="Phone (ex)010-1234-5678">
 								</div>
 
-								<a href="#" class="btn btn-primary btn-user btn-block">
-									Register Account </a>
+								<!-- 회원가입 버튼 -->
+								<input type="submit" id="register"
+									class="btn btn-primary btn-user btn-block"
+									value="Register Account">
+
 								<hr>
 								<a href="#" class="btn btn-google btn-user btn-block"> <i
 									class="fab fa-google fa-fw"></i> Register with Google

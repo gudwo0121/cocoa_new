@@ -15,4 +15,11 @@ public class MemberServiceImpl {
 		result = memberDAOImpl.insertMemberList(memberVO);
 		return result;
 	}
+	
+	// 아이디 중복확인
+	public int selectCountByIdService(MemberVO memberVO) {
+		int result = 0;
+		result = memberDAOImpl.selectCountById(memberVO);
+		return result;
+	}
 }

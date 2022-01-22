@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -47,6 +48,15 @@ public class MemberControllerImpl {
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
 		result = memberServiceImpl.insertMemberListService(memberVO);
+		return result;
+	}
+
+	// 아이디 중복확인 (java.lang.integer 에러 = ResponseBody 미스) 
+	@ResponseBody
+	@RequestMapping(value = "/idChk", method = RequestMethod.POST)
+	public int idCheck(MemberVO memberVO) {
+		int result = 0;
+		result = memberServiceImpl.selectCountByIdService(memberVO);
 		return result;
 	}
 

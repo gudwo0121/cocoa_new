@@ -51,9 +51,15 @@
 								id="signUp">
 
 								<!-- 아이디 -->
-								<div class="form-group">
-									<input type="text" class="form-control form-control-user"
-										id="id" name="id" placeholder="ID">
+								<div class="form-group row">
+									<div class="col-sm-9">
+										<input type="text" class="form-control form-control-user"
+											id="id" name="id" placeholder="ID">
+									</div>
+									<div class="col-sm-3">
+										<input type="button" class="btn btn-primary btn-user btn-block"
+											id="idCheck" name="idCheck" value="중복확인">
+									</div>
 								</div>
 
 								<!-- 비밀번호 확인 -->

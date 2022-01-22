@@ -41,7 +41,7 @@ $(document).ready(function() {
 					
 					error : function(data, textStatus){
 						alert('실패');
-						location.href='/cocoa/view_join';
+						location.href='/cocoa/signUp';
 					},
 					
 					complete : function(data,textStatus){
@@ -73,17 +73,20 @@ $(document).ready(function() {
 	        }
 	    });
 		
-		// ID 중복확인 (아직)
+		// ID 중복확인
 		$('#idCheck').click(function(){
 			var _id = $("#id").val();
+			
+			// ID 입력 유효성 검증
 			if (_id == "") {
 				alert("ID를 입력하세요");
 				return;
 			}
+			
 			$.ajax({
 				type : "post",
 				async : true,
-				url : "/cocoa/idChk",
+				url : "/cocoa/idCheck",
 				dataType : "json",
 				data : {"id" : _id},
 				
@@ -97,7 +100,7 @@ $(document).ready(function() {
 				},
 				
 				error : function(data) {
-					alert("에러가! 발생했습니다.");
+					alert("에러가 발생했습니다!");
 				},
 				
 				complete : function(data) {

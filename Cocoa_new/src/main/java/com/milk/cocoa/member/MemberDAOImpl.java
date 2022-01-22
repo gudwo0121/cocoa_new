@@ -16,4 +16,11 @@ public class MemberDAOImpl {
 		result = sqlSession.insert("mapper.member.insertMemberList", memberVO);
 		return result;
 	}
+
+	// 아이디 중복확인
+	public int selectCountById(MemberVO memberVO) {
+		int result = 0;
+		result = sqlSession.selectOne("mapper.member.selectCountById", memberVO);
+		return result;
+	}
 }

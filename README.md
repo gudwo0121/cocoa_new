@@ -95,3 +95,9 @@
 
 ***
 
+22.01.22 추가
+
+* 회원가입 ID 중복확인 구현 = java.lang.Integer 에러는 @ResponseBody를 안써줬기 때문
+
+***
+

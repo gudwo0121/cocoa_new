@@ -31,5 +31,14 @@
 			WHERE id = #{id}
 		]]>
 	</select>
+	
+	<!-- 로그인 검증 -->
+	<select id="selectMemberById" resultType="memberVO" parameterType="memberVO">
+		<![CDATA[
+			SELECT *
+			FROM memberTBL
+			WHERE id = #{id} AND pwd = #{pwd}
+		]]>
+	</select>
 
 </mapper>

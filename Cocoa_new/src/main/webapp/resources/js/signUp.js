@@ -27,7 +27,7 @@ $(document).ready(function() {
 					type : "post",
 					dataType: "json",
 					async: false,
-					url : '/cocoa/signingUp',
+					url : '/cocoa/signUp',
 					
 					success : function(data){
 						if (data == 1) {
@@ -35,13 +35,13 @@ $(document).ready(function() {
 							location.href='/cocoa/';
 						} else {
 							alert("회원가입에 실패했습니다. 다시 시도해주세요.");
-							location.href='/cocoa/signUp';
+							location.href='/cocoa/goSignUp';
 						}
 					},
 					
 					error : function(data, textStatus){
 						alert('실패');
-						location.href='/cocoa/signUp';
+						location.href='/cocoa/goSignUp';
 					},
 					
 					complete : function(data,textStatus){

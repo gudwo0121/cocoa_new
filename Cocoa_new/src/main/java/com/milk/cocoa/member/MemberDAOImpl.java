@@ -4,6 +4,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mysql.fabric.xmlrpc.base.Member;
+
 @Repository("memberDAO")
 public class MemberDAOImpl {
 
@@ -22,5 +24,11 @@ public class MemberDAOImpl {
 		int result = 0;
 		result = sqlSession.selectOne("mapper.member.selectCountById", memberVO);
 		return result;
+	}
+
+	// 로그인 검증
+	public MemberVO selectMemberById(MemberVO memberVO) {
+		MemberVO loginMember = sqlSession.selectOne("mapper.member.selectMemberById", memberVO);
+		return loginMember;
 	}
 }

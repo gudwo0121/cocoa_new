@@ -8,18 +8,24 @@ public class MemberServiceImpl {
 
 	@Autowired
 	private MemberDAOImpl memberDAOImpl;
-	
+
 	// 회원가입
 	public int insertMemberListService(MemberVO memberVO) {
 		int result = 0;
 		result = memberDAOImpl.insertMemberList(memberVO);
 		return result;
 	}
-	
+
 	// 아이디 중복확인
 	public int selectCountByIdService(MemberVO memberVO) {
 		int result = 0;
 		result = memberDAOImpl.selectCountById(memberVO);
 		return result;
+	}
+
+	// 로그인 검증
+	public MemberVO selectMemberByIdService(MemberVO memberVO) {
+		MemberVO loginMember = memberDAOImpl.selectMemberById(memberVO);
+		return loginMember;
 	}
 }

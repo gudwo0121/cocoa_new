@@ -322,10 +322,10 @@
 						<div class="topbar-divider d-none d-sm-block"></div>
 
 						<!-- 비로그인 상태일 시 -->
-						<a href="/cocoa/login" class="d-none d-sm-inline-block btn btn btn-primary shadow-sm" 
+						<a href="/cocoa/goLogin" class="d-none d-sm-inline-block btn btn btn-primary shadow-sm" 
 							style="height: 10%;margin-top: 5%;">Login</a>
 						
-						<a href="/cocoa/signUp" class="d-none d-sm-inline-block btn btn btn-primary shadow-sm"
+						<a href="/cocoa/goSignUp" class="d-none d-sm-inline-block btn btn btn-primary shadow-sm"
 							style="height: 10%;margin-top: 5%;margin-left: 5px;">Sign up</a>
 						
 						<!-- 로그인 상태일 시 -->

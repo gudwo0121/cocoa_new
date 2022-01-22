@@ -47,7 +47,7 @@
 							</div>
 
 							<!-- 회원가입 폼 -->
-							<form class="user" action="/cocoa/signingUp" method="post"
+							<form class="user" action="/cocoa/signUp" method="post"
 								id="signUp">
 
 								<!-- 아이디 -->
@@ -117,7 +117,7 @@
 								<a class="small" href="#">Forgot Password?</a>
 							</div>
 							<div class="text-center">
-								<a class="small" href="/cocoa/login">Already have an
+								<a class="small" href="/cocoa/goLogin">Already have an
 									account? Login!</a>
 							</div>
 						</div>

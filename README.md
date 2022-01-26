@@ -103,8 +103,23 @@
 
 22.01.23 추가
 
-* 개명제대로 맞추기
-* 로그인 Ajax로 짜기
+* 메소드명 및 RequestMapping value 통일시키기 - goLogin, goSignUp 수정
+
+***
+
+22.01.25 추가
+
+* 메소드명 및 RequestMapping value 통일
+
+  = goCoachingList, goProjectList, goCoachingWrite, goProjectWrite 수정
+
+***
+
+22.01.26 추가
+
+* 홈 화면 contents 파트 이동 수정 필요 = 비동기라서 뒤로가기 및 새로고침이 불편
+
+  = Ajax + GET 방식을 혼합하여 구현 예정
 
 ***
 

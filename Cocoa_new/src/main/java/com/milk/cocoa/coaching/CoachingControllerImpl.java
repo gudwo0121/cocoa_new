@@ -21,7 +21,7 @@ public class CoachingControllerImpl {
 	private CoachingServiceImpl coachingServiceImpl;
 
 	// 코칭 리스트 이동
-	@RequestMapping(value = "/coachingList", method = RequestMethod.POST)
+	@RequestMapping(value = "/goCoachingList", method = RequestMethod.POST)
 	public ModelAndView goCoachingList(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/coaching";
@@ -35,7 +35,7 @@ public class CoachingControllerImpl {
 	}
 
 	// 코칭 등록 이동
-	@RequestMapping(value = "/coachingWrite", method = RequestMethod.POST)
+	@RequestMapping(value = "/goCoachingWrite", method = RequestMethod.POST)
 	public ModelAndView goCoachingWrite(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/coachingWrite";

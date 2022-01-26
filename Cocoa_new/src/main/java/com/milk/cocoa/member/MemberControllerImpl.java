@@ -52,7 +52,7 @@ public class MemberControllerImpl {
 
 	// 아이디 중복확인 (java.lang.integer 에러 = ResponseBody 미스)
 	@ResponseBody
-	@RequestMapping(value = "/idChk", method = RequestMethod.POST)
+	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
 	public int idCheck(MemberVO memberVO) {
 		int result = 0;
 		result = memberServiceImpl.selectCountByIdService(memberVO);

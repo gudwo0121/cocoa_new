@@ -80,9 +80,9 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h3 class="collapse-header">분야:</h3>
-						<label class="collapse-item" onclick="movePage('/cocoa/coachingList')">Web</label>
-						<label class="collapse-item" onclick="movePage('/cocoa/coachingList')">Mobile</label>
-						<label class="collapse-item" onclick="movePage('/cocoa/coachingList')">Emebedded</label>
+						<label class="collapse-item" onclick="movePage('/cocoa/goCoachingList')">Web</label>
+						<label class="collapse-item" onclick="movePage('/cocoa/goCoachingList')">Mobile</label>
+						<label class="collapse-item" onclick="movePage('/cocoa/goCoachingList')">Emebedded</label>
 					</div>
 				</div></li>
 
@@ -96,9 +96,9 @@
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h3 class="collapse-header">분야:</h3>
-						<label class="collapse-item" onclick="movePage('/cocoa/projectList')">Web</label>
-						<label class="collapse-item" onclick="movePage('/cocoa/projectList')">Mobile</label>
-						<label class="collapse-item" onclick="movePage('/cocoa/projectList')">Embedded</label>
+						<label class="collapse-item" onclick="movePage('/cocoa/goProjectList')">Web</label>
+						<label class="collapse-item" onclick="movePage('/cocoa/goProjectList')">Mobile</label>
+						<label class="collapse-item" onclick="movePage('/cocoa/goProjectList')">Embedded</label>
 					</div>
 				</div></li>
 

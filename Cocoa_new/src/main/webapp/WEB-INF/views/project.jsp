@@ -49,7 +49,7 @@
 			<h1 class="h3 mb-0 text-gray-800">Project Page</h1>
 			<label
 				class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-				onclick="movePage('/cocoa/projectWrite')">프로젝트 모집</label>
+				onclick="movePage('/cocoa/goProjectWrite')">프로젝트 모집</label>
 		</div>
 
 		<!-- 난이도 -->

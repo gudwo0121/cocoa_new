@@ -49,7 +49,7 @@
 			<h1 class="h3 mb-0 text-gray-800">Coaching Page</h1>
 			<label
 				class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-				onclick="movePage('/cocoa/coachingWrite')">코칭 등록</label>
+				onclick="movePage('/cocoa/goCoachingWrite')">코칭 등록</label>
 		</div>
 
 		<!-- 개발툴 -->

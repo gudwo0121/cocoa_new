@@ -125,6 +125,15 @@
 
 22.01.27 추가
 
-* Ajax + GET 방식을 혼합하여 구현 예정
+* 홈 화면 = sideBar + header + contents + footer
+
+  = 총 4파트로 jsp:include
 
 ***
+
+22.01.28 추가
+
+* contents만 교체하는 방식으로 goCoachingList, goProjectList 이동
+
+***
+

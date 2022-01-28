@@ -133,7 +133,9 @@
 
 22.01.28 추가
 
-* contents만 교체하는 방식으로 goCoachingList, goProjectList 이동
+* GET 방식으로 쿼리스트링 날려서 contents 파트 구분하여 이동
+
+  = Ajax + GET 방식은 아직 구현 x
 
 ***
 

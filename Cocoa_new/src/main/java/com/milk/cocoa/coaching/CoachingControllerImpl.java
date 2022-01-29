@@ -21,16 +21,16 @@ public class CoachingControllerImpl {
 	private CoachingServiceImpl coachingServiceImpl;
 
 	// 코칭 리스트 이동
-	@RequestMapping(value = "/goCoachingList", method = RequestMethod.POST)
+	@RequestMapping(value = "/goCoachingList", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView goCoachingList(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/coaching";
 		mav.setViewName(url);
-		
+
 		// 코칭 리스트 전체 조회
 		List<CoachingVO> coachingList = coachingServiceImpl.selectCoachingListService();
 		mav.addObject("coachingList", coachingList);
-		
+
 		return mav;
 	}
 

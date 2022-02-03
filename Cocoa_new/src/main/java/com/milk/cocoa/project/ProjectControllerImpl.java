@@ -20,7 +20,7 @@ public class ProjectControllerImpl {
 	private ProjectServiceImpl projectServiceImpl;
 
 	// 프로젝트 리스트 화면 이동
-	@RequestMapping(value = "/goProjectList", method = RequestMethod.POST)
+	@RequestMapping(value = "/goProjectList", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView goProjectList(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/project";
@@ -34,7 +34,7 @@ public class ProjectControllerImpl {
 	}
 
 	// 프로젝트 모집 이동
-	@RequestMapping(value = "/goProjectWrite", method = RequestMethod.POST)
+	@RequestMapping(value = "/goProjectWrite", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView goProjectWrite(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/projectWrite";

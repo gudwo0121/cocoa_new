@@ -54,10 +54,10 @@
 				<div class="bg-white py-2 collapse-inner rounded">
 					<h3 class="collapse-header">분야:</h3>
 					<label class="collapse-item"
-						onclick="movePage('/cocoa/goCoachingList')">Web</label> <label
-						class="collapse-item" onclick="">Mobile</label>
+						onclick="location.href='/cocoa/goCoachingList'">Web</label> <label
+						class="collapse-item" onclick="location.href='/cocoa/goCoachingList'">Mobile</label>
 					<label class="collapse-item"
-						onclick="">Embedded</label>
+						onclick="location.href='/cocoa/goCoachingList'">Embedded</label>
 				</div>
 			</div></li>
 
@@ -72,10 +72,10 @@
 				<div class="bg-white py-2 collapse-inner rounded">
 					<h3 class="collapse-header">분야:</h3>
 					<label class="collapse-item"
-						onclick="">Web</label> <label
-						class="collapse-item" onclick="">Mobile</label>
+						onclick="location.href='/cocoa/goProjectList'">Web</label> <label
+						class="collapse-item" onclick="location.href='/cocoa/goProjectList'">Mobile</label>
 					<label class="collapse-item"
-						onclick="">Embedded</label>
+						onclick="location.href='/cocoa/goProjectList'">Embedded</label>
 				</div>
 			</div></li>
 

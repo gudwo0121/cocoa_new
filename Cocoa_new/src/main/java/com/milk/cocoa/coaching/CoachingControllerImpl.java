@@ -35,7 +35,7 @@ public class CoachingControllerImpl {
 	}
 
 	// 코칭 등록 이동
-	@RequestMapping(value = "/goCoachingWrite", method = RequestMethod.POST)
+	@RequestMapping(value = "/goCoachingWrite", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView goCoachingWrite(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/coachingWrite";

@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +12,14 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>CoCoa</title>
-<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="resources/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+<script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="resources/js/login.js"></script>
 </head>
 <body class="bg-gradient-primary">
 
@@ -28,7 +32,6 @@
 
 				<div class="card o-hidden border-0 shadow-lg my-5">
 					<div class="card-body p-0">
-						<!-- Nested Row within Card Body -->
 						<div class="row">
 							<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
 							<div class="col-lg-6">
@@ -39,33 +42,31 @@
 											onclick="location.href='/cocoa/'" value="CoCoa">
 									</div>
 
-									<form class="user">
-										<div class="form-group">
-											<input type="text" class="form-control form-control-user"
-												id="inputID" aria-describedby="emailHelp"
-												placeholder="ID">
+									<div class="form-group">
+										<input type="text" class="form-control form-control-user"
+											id="inputID" name="id" aria-describedby="emailHelp"
+											placeholder="ID">
+									</div>
+									<div class="form-group">
+										<input type="password" class="form-control form-control-user"
+											id="inputPassword" name="pwd" placeholder="Password">
+									</div>
+									<div class="form-group">
+										<div class="custom-control custom-checkbox small">
+											<input type="checkbox" class="custom-control-input"
+												id="rememberMe" name="rememberMe"> <label
+												class="custom-control-label" for="customCheck">Remember
+												Me</label>
 										</div>
-										<div class="form-group">
-											<input type="password" class="form-control form-control-user"
-												id="inputPassword" placeholder="Password">
-										</div>
-										<div class="form-group">
-											<div class="custom-control custom-checkbox small">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck"> <label
-													class="custom-control-label" for="customCheck">Remember
-													Me</label>
-											</div>
-										</div>
-										<a href="#" class="btn btn-primary btn-user btn-block">
-											Login </a>
-										<hr>
-										<a href="#" class="btn btn-google btn-user btn-block"> <i
-											class="fab fa-google fa-fw"></i> Login with Google
-										</a> <a href="#" class="btn btn-facebook btn-user btn-block">
-											<i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-										</a>
-									</form>
+									</div>
+									<input type="button" value="Login" id="login"
+										class="btn btn-primary btn-user btn-block">
+									<hr>
+									<a href="#" class="btn btn-google btn-user btn-block"> <i
+										class="fab fa-google fa-fw"></i> Login with Google
+									</a> <a href="#" class="btn btn-facebook btn-user btn-block"> <i
+										class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+									</a>
 
 									<hr>
 									<div class="text-center">

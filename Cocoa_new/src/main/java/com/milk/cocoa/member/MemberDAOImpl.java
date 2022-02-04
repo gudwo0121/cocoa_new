@@ -21,14 +21,15 @@ public class MemberDAOImpl {
 
 	// 아이디 중복확인
 	public int selectCountById(MemberVO memberVO) {
-		int result = 0;
-		result = sqlSession.selectOne("mapper.member.selectCountById", memberVO);
-		return result;
+		int isExist = 0;
+		isExist = sqlSession.selectOne("mapper.member.selectCountById", memberVO);
+		return isExist;
 	}
 
 	// 로그인 검증
 	public MemberVO selectMemberById(MemberVO memberVO) {
-		MemberVO loginMember = sqlSession.selectOne("mapper.member.selectMemberById", memberVO);
+		MemberVO loginMember = null;
+		loginMember = sqlSession.selectOne("mapper.member.selectMemberById", memberVO);
 		return loginMember;
 	}
 }

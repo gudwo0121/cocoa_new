@@ -59,22 +59,34 @@ public class MemberControllerImpl {
 		return result;
 	}
 
-	// 로그인 검증
+	// 로그인 검증 = Ajax
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView login(@ModelAttribute("member") MemberVO memberVO, RedirectAttributes rAttr,
-			HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-		MemberVO loginMember = memberServiceImpl.selectMemberByIdService(memberVO);
-		String view = request.getParameter("view");
-		if (memberVO != null) {
+	public MemberVO login(MemberVO memberVO, RedirectAttributes rAttr, HttpServletRequest request,
+			HttpServletResponse response) {
+		MemberVO isMember = memberServiceImpl.selectMemberByIdService(memberVO);
+
+		// 로그인시 세션에 로그인 정보 저장 = 나중에 쓰여서 일부러 MemberVO로 받음
+		if (isMember != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("member", memberVO);
+			session.setAttribute("member", isMember);
 			session.setAttribute("isLogOn", true);
 		} else {
+			// rAttr은 세션에 일회성으로 저장 후 소멸한다.
 			rAttr.addAttribute("result", "loginFailed");
 		}
-		return mav;
+		return isMember;
 	}
 
+	// 로그아웃 = 세션삭제
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/home";
+		HttpSession session = request.getSession();
+		session.removeAttribute("member");
+		session.removeAttribute("isLogOn");
+		mav.setViewName(url);
+		return mav;
+	}
 }

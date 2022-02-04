@@ -18,14 +18,15 @@ public class MemberServiceImpl {
 
 	// 아이디 중복확인
 	public int selectCountByIdService(MemberVO memberVO) {
-		int result = 0;
-		result = memberDAOImpl.selectCountById(memberVO);
-		return result;
+		int isExist = 0;
+		isExist = memberDAOImpl.selectCountById(memberVO);
+		return isExist;
 	}
 
 	// 로그인 검증
 	public MemberVO selectMemberByIdService(MemberVO memberVO) {
-		MemberVO loginMember = memberDAOImpl.selectMemberById(memberVO);
+		MemberVO loginMember = null;
+		loginMember = memberDAOImpl.selectMemberById(memberVO);
 		return loginMember;
 	}
 }

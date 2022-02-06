@@ -89,4 +89,13 @@ public class MemberControllerImpl {
 		mav.setViewName(url);
 		return mav;
 	}
+	
+	// 내 프로필 화면 이동
+	@RequestMapping(value = "/goMyProfile", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView goMyProfile(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/myProfile";
+		mav.setViewName(url);
+		return mav;
+	}
 }

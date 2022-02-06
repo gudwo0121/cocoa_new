@@ -185,5 +185,12 @@
 
 ***
 
+22.02.06 추가
 
+* sideBar 색상 다르게 myProfile.jsp 생성 = 내정보 클릭시 이동 체킹해봐야함
+
+  = sideBar -> profileSideBar로 새로 만듬
+
+
+***
 

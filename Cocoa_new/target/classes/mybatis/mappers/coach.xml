@@ -23,4 +23,22 @@
 		]]>
 	</select>
 
+	<!-- 코칭 등록 -->
+	<insert id="insertCoachingList" parameterType="java.util.Map">
+		<![CDATA[
+			INSERT INTO coachingTBL
+			(coachNO, coach, cField, tool, cImg, cTitle, basicPrice, cContents)
+			VALUES
+			(#{coachNO}, #{coach}, #{cField}, #{tool}, #{cImg}, #{cTitle}, #{basicPrice}, #{cContents})
+		]]>
+	</insert>
+
+	<!-- 코치 글 넘버링 -->
+	<select id="coachingListNumbering" resultType="int">
+		<![CDATA[
+			SELECT ifnull(max(coachNO), 0) + 1
+			FROM coachingTBL
+		]]>
+	</select>
+
 </mapper>

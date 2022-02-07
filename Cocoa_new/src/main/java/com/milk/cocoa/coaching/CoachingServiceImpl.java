@@ -1,6 +1,7 @@
 package com.milk.cocoa.coaching;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,4 +17,10 @@ public class CoachingServiceImpl {
 		List<CoachingVO> coachingList = coachingDAOImpl.selectCoachingList();
 		return coachingList;
 	}
+
+	// 코칭 등록
+	public int insertCoachingListService(Map coachMap) {
+		return coachingDAOImpl.insertCoachingList(coachMap);
+	}
+
 }

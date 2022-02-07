@@ -7,14 +7,81 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cocoa</title>
-<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="resources/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	// 이미지 미리보기
+	function readURL(input) {
+
+		if (input.files && input.files[0]) {
+
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#preview').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	// 영역 변경시 개발툴 초기화 셋팅
+	function categoryChange(e) {
+		var tool_cField1_value = [ "tool", "tool1", "tool2" ];
+		var tool_cField2_value = [ "tool", "tool3", "tool4" ];
+		var tool_cField3_value = [ "tool", "tool5", "tool6" ];
+
+		var tool_cField1_out = [ "-- 선택 --", "Spring", "Django" ];
+		var tool_cField2_out = [ "-- 선택 --", "Android Studio", "Xcode" ];
+		var tool_cField3_out = [ "-- 선택 --", "Arduino", "Rasberry Pi" ];
+		var target = document.getElementById("tool");
+
+		if (e.value == "cField1") {
+			var v = tool_cField1_value;
+			var o = tool_cField1_out;
+		} else if (e.value == "cField2") {
+			var v = tool_cField2_value;
+			var o = tool_cField2_out;
+		} else if (e.value == "cField3") {
+			var v = tool_cField3_value;
+			var o = tool_cField3_out;
+		}
+
+		target.options.length = 0;
+
+		for (x in v, o) {
+			var opt = document.createElement("option");
+			opt.value = v[x];
+			opt.innerHTML = o[x];
+			target.appendChild(opt);
+		}
+	}
+
+	// 유효성 검증
+	function nullCheck() {
+		var _cTitle = $("#cTitle").val();
+		var _basicPrice = $("#basicPrice").val();
+		var _cField = $("#cField").val();
+		var _tool = $("#tool").val();
+		var _cContents = $("#cContents").val();
+
+		if (_cTitle == "" || _basicPrice == "" || _cField == "empty"
+				|| _tool == "tool" || _cContents == "") {
+			alert("빈칸없이 입력하세요");
+			$('#coachingWrite').attr('onSubmit', "return false;");
+		} else {
+			$('#coachingWrite').removeAttr('onSubmit');
+		}
+	}
+</script>
 </head>
 <body id="page-top">
 
@@ -33,13 +100,14 @@
 				<div class="container-fluid">
 
 					<!-- 헤드라인 -->
-					<div class="d-sm-flex align-items-center justify-content-between mb-4">
+					<div
+						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">코칭 등록</h1>
 					</div>
 
-					<!-- 코칭 글 작성 -->
-					<form name="coachWriteForm" method="post" id="coachWrite"
-						action="${contextPath}/coachWrite" enctype="multipart/form-data">
+					<!-- 코칭 등록 -->
+					<form name="coachingWrite" method="post" id="coachingWrite"
+						action="/cocoa/coachingWrite" enctype="multipart/form-data">
 						<section class="py-5">
 							<div class="container main-secction">
 								<div class="row" style="flex-wrap: unset;">
@@ -134,9 +202,9 @@
 
 										<!-- 작성(submit) + 취소(버튼) -->
 										<div class="card-body" style="text-align: center">
-											<input type="submit" class="btn btn-outline-dark"
-												onClick="" value="등록" /> &nbsp; <a
-												href="/cocoa/view_coachCate" class="btn btn-outline-dark">취소</a>
+											<input type="submit" class="btn btn-outline-dark" value="등록"
+												onclick="nullCheck()"> &nbsp; <a
+												href="/cocoa/goCoachingList" class="btn btn-outline-dark">취소</a>
 										</div>
 									</div>
 
@@ -154,8 +222,8 @@
 	</div>
 
 	<!-- 맨위로 -->
-	<a class="scroll-to-top rounded" href="#page-top">
-		<i class="fas fa-angle-up"></i>
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
 	</a>
 
 	<!-- 로그아웃 확인 멘트

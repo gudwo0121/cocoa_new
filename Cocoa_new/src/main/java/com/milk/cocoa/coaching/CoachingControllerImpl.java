@@ -1,9 +1,11 @@
 package com.milk.cocoa.coaching;
 
-import java.io.Console;
 import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -19,14 +21,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.milk.cocoa.member.MemberVO;
 
+import net.coobird.thumbnailator.Thumbnails;
+
 @Controller("coachingController")
 public class CoachingControllerImpl {
+
+	// cImg 다운로드 경로 (FTP시 "/opt/cocoa/image/coach_img") = 기본이 로컬 C드라이브고 그 뒤 경로 입력
+	private static final String COACH_IMAGE_REPO = "/cocoaRepo/coachImg";
 
 	@Autowired
 	private CoachingVO coachingVO;
@@ -79,14 +88,12 @@ public class CoachingControllerImpl {
 		// memberVO로 세션에 저장된 로그인한 회원의 정보를 저장
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 
-		// coachWriteForm에 존재하지 않는 id 직접 입력
+		// id 직접 입력
 		String id = memberVO.getId();
 		coachingMap.put("coach", id);
 
-//		// coachWriteForm에 불러온 파일(이미지) 직접 입력
-//		String cImg = this.upload(multipartRequest);
-		// 하드코딩
-		String cImg = "test";
+		// cImg 직접 입력
+		String cImg = this.cImgUpload(multipartRequest);
 		coachingMap.put("cImg", cImg);
 
 		// 성공, 실패 시 알림
@@ -96,14 +103,15 @@ public class CoachingControllerImpl {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
-			// 다운로드 파일을 작성하는 회원의 id(coach)로 폴더 생성
-			// 삭제가 되어도 그 후에 해당 회원이 업로드를 하면 같은 폴더에 생성이 됌
+			// coachNO 따라 해당 회원의 경로로 업로드
 			int coachNO = coachingServiceImpl.insertCoachingListService(coachingMap);
-//			if (cImg != null && cImg.length() != 0) {
-//				File srcFile = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg);
-//				File destDir = new File(COACH_IMAGE_REPO + "/" + id + "/" + coachNO);
-//				FileUtils.moveFileToDirectory(srcFile, destDir, true);
-//			}
+
+			// 파일(이미지)가 유효하면 경로에도 저장
+			if (cImg != null && cImg.length() != 0) {
+				File srcFile = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg);
+				File destDir = new File(COACH_IMAGE_REPO + "/" + id + "/" + coachNO);
+				FileUtils.moveFileToDirectory(srcFile, destDir, true);
+			}
 
 			message = "<script>";
 			message += " alert('등록이 완료되었습니다.');";
@@ -113,15 +121,60 @@ public class CoachingControllerImpl {
 
 		} catch (Exception e) {
 
-//			File srcFile = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg);
-//			srcFile.delete();
+			// 기존 파일 존재시 덮어씌우기
+			File srcFile = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg);
+			srcFile.delete();
 
 			message = " <script>";
-			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
+			message += " alert('등록에 실패했습니다. 다시 시도해주세요.');');";
 			message += " location.href='" + multipartRequest.getContextPath() + "/goCoachingList'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
 		return resEnt;
+	}
+
+	// 파일 업로드 = 경로에 이미지 저장하기
+	private String cImgUpload(MultipartHttpServletRequest multipartRequest) throws IOException {
+
+		String cImg = null;
+		Iterator<String> fileNames = multipartRequest.getFileNames();
+
+		while (fileNames.hasNext()) {
+
+			String fileName = fileNames.next();
+			MultipartFile mFile = multipartRequest.getFile(fileName);
+			cImg = mFile.getOriginalFilename();
+			File file = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + fileName);
+
+			// 이미지가 유효하면 경로 생성 및 저장
+			if (mFile.getSize() != 0) {
+				if (!file.exists()) {
+					if (file.getParentFile().mkdirs()) {
+						file.createNewFile();
+					}
+				}
+				mFile.transferTo(new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg));
+			}
+		}
+		return cImg;
+	}
+
+	// 파일 다운로드 = 경로에 저장된 이미지를 썸네일로 가져오기
+	@RequestMapping("/cImgDownload")
+	public void cImgDownload(@RequestParam("cImg") String cImg, @RequestParam("coach") String coach,
+			@RequestParam("coachNO") int coachNO, HttpServletResponse response) throws Exception {
+		OutputStream out = response.getOutputStream();
+		String downFile = COACH_IMAGE_REPO + "/" + coach + "/" + coachNO + "/" + cImg;
+		File file = new File(downFile);
+
+		if (file.exists()) {
+			// 원본 이미지에 대한 썸네일 이미지를 생성한 후 OutputStream 객체에 할당
+			Thumbnails.of(file).size(1024, 1024).outputFormat("png").toOutputStream(out);
+		}
+		// 썸네일 이미지를 OutputStream 객체를 이용해 브라우저로 전송
+		byte[] buffer = new byte[1024 * 8];
+		out.write(buffer);
+		out.close();
 	}
 }

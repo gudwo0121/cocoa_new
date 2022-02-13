@@ -21,10 +21,11 @@ public class ProjectDAOImpl {
 
 	// 프로젝트 모집
 	public int insertProjectList(Map projectMap) {
+		// 프로젝트 넘버링으로 생성된 번호를 projectNO으로 삽입
 		int projectNO = this.projectListNumbering();
 		projectMap.put("projectNO", projectNO);
-		// 프로젝트 넘버링으로 생성된 번호를 projectNO으로 삽입
-		sqlSession.insert("mapper.project.insertprojectList", projectMap);
+		// 받아온 입력과 함께 쿼리문 실행
+		sqlSession.insert("mapper.project.insertProjectList", projectMap);
 		return projectNO;
 	}
 

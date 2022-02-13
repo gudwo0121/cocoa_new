@@ -21,9 +21,10 @@ public class CoachingDAOImpl {
 
 	// 코칭 등록
 	public int insertCoachingList(Map coachingMap) {
+		// 코칭 넘버링으로 생성된 번호를 coachNO으로 삽입
 		int coachNO = this.coachingListNumbering();
 		coachingMap.put("coachNO", coachNO);
-		// 코칭 넘버링으로 생성된 번호를 coachNO으로 삽입
+		// 받아온 입력과 함께 쿼리문 실행
 		sqlSession.insert("mapper.coach.insertCoachingList", coachingMap);
 		return coachNO;
 	}

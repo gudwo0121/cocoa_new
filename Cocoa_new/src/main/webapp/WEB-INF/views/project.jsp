@@ -7,12 +7,16 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cocoa</title>
-<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="resources/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 </head>
@@ -33,7 +37,8 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<div class="d-sm-flex align-items-center justify-content-between mb-4">
+					<div
+						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">Project Page</h1>
 						<label
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
@@ -112,7 +117,8 @@
 
 										<!-- 간판 이미지 -->
 										<img class="card-img-top" alt="" height=200
-											onerror="this.src='resources/img/onerror.png'" src="..." />
+											onerror="this.src='resources/img/onerror.png'"
+											src="${contextPath}/pImgLoad?leader=${projectList.leader}&projectNO=${projectList.projectNO}&pImg=${projectList.pImg}" />
 
 										<!-- 리스트 표시 정보 -->
 										<div class="card-body" style="background-color: #FFCCCC;">
@@ -167,8 +173,8 @@
 	</div>
 
 	<!-- 맨위로 -->
-	<a class="scroll-to-top rounded" href="#page-top">
-		<i class="fas fa-angle-up"></i>
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
 	</a>
 
 	<!-- 로그아웃 확인 멘트

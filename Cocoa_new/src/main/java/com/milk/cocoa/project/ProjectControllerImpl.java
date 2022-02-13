@@ -99,8 +99,6 @@ public class ProjectControllerImpl {
 		// map은 아직 구현 전 = 하드코딩 "default"로 대체 @@@@@@@@@@@
 		projectMap.put("map", "default");
 
-		System.out.println(projectMap);
-
 		// 성공, 실패 시 알림
 		String message;
 		ResponseEntity resEnt = null;
@@ -139,7 +137,7 @@ public class ProjectControllerImpl {
 		return resEnt;
 	}
 
-	// 파일 업로드 = 경로에 이미지 저장하기
+	// 파일 저장하기 = 경로에 이미지 다운로드
 	private String pImgUpload(MultipartHttpServletRequest multipartRequest) throws IOException {
 
 		String pImg = null;

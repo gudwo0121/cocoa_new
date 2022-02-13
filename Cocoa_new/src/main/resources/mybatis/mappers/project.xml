@@ -29,6 +29,7 @@
 	<insert id="insertProjectList" parameterType="java.util.Map">
 		<![CDATA[
 			INSERT INTO projectTBL
+			(projectNO, leader, pImg, pTitle, memberCount, pField, level, pContents, map, kakao)
 			VALUES
 			(#{projectNO}, #{leader}, #{pImg}, #{pTitle}, #{memberCount}, #{pField}, #{level}, #{pContents}, #{map}, #{kakao})
 		]]>

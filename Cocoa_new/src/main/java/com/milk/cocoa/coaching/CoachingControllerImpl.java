@@ -134,7 +134,7 @@ public class CoachingControllerImpl {
 		return resEnt;
 	}
 
-	// 파일 업로드 = 경로에 이미지 저장하기
+	// 파일 저장하기 = 경로에 이미지 다운로드
 	private String cImgUpload(MultipartHttpServletRequest multipartRequest) throws IOException {
 
 		String cImg = null;

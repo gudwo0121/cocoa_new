@@ -18,6 +18,8 @@
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+<script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="resources/js/projectWrite.js"></script>
 </head>
 <body id="page-top">
 
@@ -36,13 +38,14 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<div class="d-sm-flex align-items-center justify-content-between mb-4">
+					<div
+						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">프로젝트 모집</h1>
 					</div>
 
 					<!-- 프로젝트 모집 작성 -->
-					<form action="${contextPath}/projectWrite" method="post"
-						id="projectWrite" enctype="multipart/form-data">
+					<form name="projectWrite" action="/cocoa/projectWrite"
+						method="post" id="projectWrite" enctype="multipart/form-data">
 						<section class="py-5">
 							<div class="container main-secction">
 								<div class="row" style="flex-wrap: unset;">
@@ -132,21 +135,20 @@
 												style="border: 1; width: 100%; resize: none;"></textarea>
 											<hr>
 
-											&nbsp;모임 장소 : <input type="text" name="map" id="addr"
+											<!-- &nbsp;모임 장소 : <input type="text" name="map" id="addr"
 												size="35" placeholder='장소를 입력해주세요.'> <input
 												type="button" name="send" id="sendMark" value="검색"><br>
 											<br>
 											<div id="map" style="width: 100%; height: 400px;"></div>
-											<hr>
+											<hr> -->
 
 										</div>
 
 										<!-- 작성(submit) + 취소(버튼) -->
 										<div class="card-body" style="text-align: center">
-											<button type="submit" class="btn btn-outline-dark"
-												onclick="nullCheck()">작성</button>
-											&nbsp; <a href="/cocoa/view_projectCate"
-												class="btn btn-outline-dark">취소</a>
+											<input type="submit" class="btn btn-outline-dark" value="등록"
+												onclick="nullCheck()"> &nbsp; <a
+												href="/cocoa/goProjectList" class="btn btn-outline-dark">취소</a>
 										</div>
 									</div>
 								</div>
@@ -165,8 +167,8 @@
 	</div>
 
 	<!-- 맨위로 -->
-	<a class="scroll-to-top rounded" href="#page-top">
-		<i class="fas fa-angle-up"></i>
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
 	</a>
 
 	<!-- 로그아웃 확인 멘트
@@ -200,6 +202,6 @@
 	<script src="resources/vendor/chart.js/Chart.min.js"></script>
 	<script src="resources/js/demo/chart-area-demo.js"></script>
 	<script src="resources/js/demo/chart-pie-demo.js"></script>
-	
+
 </body>
 </html>

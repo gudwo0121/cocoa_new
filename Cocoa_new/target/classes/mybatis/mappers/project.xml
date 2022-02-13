@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-   
+
 <mapper namespace="mapper.project">
 	<resultMap id="projectList" type="projectVO">
 		<result property="projectNO" column="projectNO" />
@@ -23,6 +23,23 @@
 	      	SELECT * 
 	      	FROM projectTBL
     		]]>
+	</select>
+
+	<!-- 프로젝트 모집 -->
+	<insert id="insertProjectList" parameterType="java.util.Map">
+		<![CDATA[
+			INSERT INTO projectTBL
+			VALUES
+			(#{projectNO}, #{leader}, #{pImg}, #{pTitle}, #{memberCount}, #{pField}, #{level}, #{pContents}, #{map}, #{kakao})
+		]]>
+	</insert>
+
+	<!-- 프로젝트 글 넘버링 -->
+	<select id="projectListNumbering" resultType="int">
+		<![CDATA[
+			SELECT ifnull(max(projectNO), 0) + 1
+			FROM projectTBL
+		]]>
 	</select>
 
 </mapper>

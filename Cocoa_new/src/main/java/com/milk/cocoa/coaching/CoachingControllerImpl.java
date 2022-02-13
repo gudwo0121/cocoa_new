@@ -34,7 +34,7 @@ import net.coobird.thumbnailator.Thumbnails;
 @Controller("coachingController")
 public class CoachingControllerImpl {
 
-	// cImg 다운로드 경로 (FTP시 "/opt/cocoa/image/coach_img") = 기본이 로컬 C드라이브고 그 뒤 경로 입력
+	// cImg 다운로드 경로 (FTP시 "/opt/cocoa/image/coaching") = 기본이 로컬 C드라이브고 그 뒤 경로 입력
 	private static final String COACH_IMAGE_REPO = "/cocoaRepo/coachImg";
 
 	@Autowired
@@ -160,11 +160,12 @@ public class CoachingControllerImpl {
 		return cImg;
 	}
 
-	// 파일 다운로드 = 경로에 저장된 이미지를 썸네일로 가져오기
-	@RequestMapping("/cImgDownload")
-	public void cImgDownload(@RequestParam("cImg") String cImg, @RequestParam("coach") String coach,
-			@RequestParam("coachNO") int coachNO, HttpServletResponse response) throws Exception {
+	// 파일 불러오기 = 경로에 저장된 이미지를 썸네일로 가져오기
+	@RequestMapping("/cImgLoad")
+	public void cImgLoad(@RequestParam("coach") String coach, @RequestParam("coachNO") int coachNO,
+			@RequestParam("cImg") String cImg, HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
+		// 경로 = "코치-글번호-이미지명" 3단계로 찾아서 불러오기
 		String downFile = COACH_IMAGE_REPO + "/" + coach + "/" + coachNO + "/" + cImg;
 		File file = new File(downFile);
 
@@ -172,7 +173,7 @@ public class CoachingControllerImpl {
 			// 원본 이미지에 대한 썸네일 이미지를 생성한 후 OutputStream 객체에 할당
 			Thumbnails.of(file).size(1024, 1024).outputFormat("png").toOutputStream(out);
 		}
-		// 썸네일 이미지를 OutputStream 객체를 이용해 브라우저로 전송
+		// 썸네일 이미지를 OutputStream 객체를 이용해 뷰로 전송
 		byte[] buffer = new byte[1024 * 8];
 		out.write(buffer);
 		out.close();

@@ -40,9 +40,20 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">Coaching Page</h1>
-						<label
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-							onclick="location.href='/cocoa/goCoachingWrite'">코칭 등록</label>
+
+						<!-- 비로그인시 로그인창 이동 -->
+						<c:choose>
+							<c:when test="${isLogOn == true && member != null}">
+								<label
+									class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+									onclick="location.href='/cocoa/goCoachingWrite'">코칭 등록</label>
+							</c:when>
+							<c:otherwise>
+								<label
+									class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+									onclick="location.href='/cocoa/goLogin'">코칭 등록</label>
+							</c:otherwise>
+						</c:choose>
 					</div>
 
 					<!-- 개발툴 -->

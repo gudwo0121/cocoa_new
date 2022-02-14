@@ -36,13 +36,24 @@
 				<!-- 메인 콘텐츠 -->
 				<div class="container-fluid">
 
-					<!-- Page Heading -->
+					<!-- 헤드라인 -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">Project Page</h1>
-						<label
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-							onclick="location.href='/cocoa/goProjectWrite'">프로젝트 모집</label>
+
+						<!-- 비로그인시 로그인창 이동 -->
+						<c:choose>
+							<c:when test="${isLogOn == true && member != null}">
+								<label
+									class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+									onclick="location.href='/cocoa/goProjectWrite'">프로젝트 모집</label>
+							</c:when>
+							<c:otherwise>
+								<label
+									class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+									onclick="location.href='/cocoa/goLogin'">프로젝트 모집</label>
+							</c:otherwise>
+						</c:choose>
 					</div>
 
 					<!-- 난이도 -->

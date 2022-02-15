@@ -136,7 +136,7 @@
 											<div class="text-center">
 
 												<!-- 리더 -->
-												<b style="font-size: 15px; float: left; color: grey;">${projectListject.leader}</b>
+												<b style="font-size: 15px; float: left; color: grey;">${projectList.leader}</b>
 
 												<!-- 후기 개수 (없을시 0개) -->
 												<a

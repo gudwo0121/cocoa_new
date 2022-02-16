@@ -18,11 +18,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,7 +33,7 @@ import com.milk.cocoa.member.MemberVO;
 
 import net.coobird.thumbnailator.Thumbnails;
 
-@Controller("coachingController")
+@RestController("coachingController")
 public class CoachingControllerImpl {
 
 	// cImg 다운로드 경로 (FTP시 "/opt/cocoa/image/coaching") = 기본이 로컬 C드라이브고 그 뒤 경로 입력
@@ -43,8 +45,9 @@ public class CoachingControllerImpl {
 	private CoachingServiceImpl coachingServiceImpl;
 
 	// 코칭 리스트 이동
-	@RequestMapping(value = "/goCoachingList", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView goCoachingList(HttpServletRequest request, HttpServletResponse response) {
+	@GetMapping("/coaching/{field}")
+	public ModelAndView goCoachingList(@PathVariable(value = "field") String field, HttpServletRequest request,
+			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/coaching";
 		mav.setViewName(url);

@@ -243,3 +243,32 @@
 * 메인 sideBar 하단 파트 주석처리
 
 ***
+
+22.02.16 추가
+
+* REST 공부
+
+  1. /cocoa/coaching/{field} << 설계 시 적절한 URI 가이드라인이 필요
+
+  2. @PathVariable(value = "field") String field <<< 이런식으로 @RequestParam이랑 비슷한 느낌
+
+  3. 페이지 이동은 ModelAndView 사용하는 편이 용이
+
+  4. @ResponseBody = POST 방식 + JSON 형태로 입력 받는 거
+
+  5. @RequestParam = GET 방식 + 쿼리스트링으로 입력 받는 거
+
+  6. ResponseEntity = 상태코드를 담는 클래스
+
+  7. JSON으로 값을 받아 VO의 toString()을 거쳐 문자열로 사용하는 방식
+
+  8. @RestController = @ResponseBody + @Controller
+
+  9. @RequestMapping(value = "/", method = RequestMethod.GET)
+
+     => @GetMapping("/") <<< REST
+  
+* 일단은 URL 주소를 구분해서 goCoachingList -> coaching/{field} 변경
+
+***
+

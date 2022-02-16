@@ -7,12 +7,16 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cocoa</title>
-<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="resources/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 </head>
@@ -23,7 +27,9 @@
 		id="accordionSidebar">
 
 		<!-- Sidebar - Brand -->
-		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/cocoa/">
+		<a
+			class="sidebar-brand d-flex align-items-center justify-content-center"
+			href="/cocoa/">
 			<div class="sidebar-brand-icon rotate-n-15">
 				<i class="fas fa-laugh-wink"></i>
 			</div>
@@ -34,8 +40,9 @@
 		<hr class="sidebar-divider my-0">
 
 		<!-- Nav Item - Dashboard -->
-		<li class="nav-item active"><a class="nav-link" href="#"> <i
-				class="fas fa-fw fa-tachometer-alt"></i> <span>Main Page</span></a></li>
+		<li class="nav-item active"><a class="nav-link" href="/cocoa/">
+				<i class="fas fa-fw fa-tachometer-alt"></i> <span>Main Page</span>
+		</a></li>
 
 		<!-- Divider -->
 		<hr class="sidebar-divider">
@@ -53,10 +60,11 @@
 				<div class="bg-white py-2 collapse-inner rounded">
 					<h3 class="collapse-header">분야:</h3>
 					<label class="collapse-item"
-						onclick="location.href='/cocoa/goCoachingList'">Web</label> <label
-						class="collapse-item" onclick="location.href='/cocoa/goCoachingList'">Mobile</label>
+						onclick="location.href='/cocoa/coaching/web'">Web</label>
 					<label class="collapse-item"
-						onclick="location.href='/cocoa/goCoachingList'">Embedded</label>
+						onclick="location.href='/cocoa/coaching/mobile'">Mobile</label>
+					<label class="collapse-item"
+						onclick="location.href='/cocoa/coaching/embedded'">Embedded</label>
 				</div>
 			</div></li>
 
@@ -72,8 +80,9 @@
 					<h3 class="collapse-header">분야:</h3>
 					<label class="collapse-item"
 						onclick="location.href='/cocoa/goProjectList'">Web</label> <label
-						class="collapse-item" onclick="location.href='/cocoa/goProjectList'">Mobile</label>
-					<label class="collapse-item"
+						class="collapse-item"
+						onclick="location.href='/cocoa/goProjectList'">Mobile</label> <label
+						class="collapse-item"
 						onclick="location.href='/cocoa/goProjectList'">Embedded</label>
 				</div>
 			</div></li>
@@ -121,8 +130,8 @@
 		<div class="text-center d-none d-md-inline">
 			<button class="rounded-circle border-0" id="sidebarToggle"></button>
 		</div>-->
-	
+
 	</ul>
-	
+
 </body>
 </html>

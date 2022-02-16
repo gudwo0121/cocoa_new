@@ -270,5 +270,7 @@
   
 * 일단은 URL 주소를 구분해서 goCoachingList -> coaching/{field} 변경
 
+  = 다른 URI 마다 3가지 field 조건 조회 + tool 표시 다르게 구현 해야함
+
 ***
 

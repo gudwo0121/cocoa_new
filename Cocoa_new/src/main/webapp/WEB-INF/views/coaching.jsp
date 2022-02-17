@@ -107,7 +107,7 @@
 							class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
 							<!-- 코칭 리스트 전체 조회 결과값 불러오기 -->
-							<c:forEach var="coachingList" items="${coachingList}">
+							<c:forEach var="coachingPost" items="${coachingPost}">
 
 								<div class="col mb-5"
 									style="padding-left: 30px; padding-right: 30px;">
@@ -117,14 +117,14 @@
 										<!-- 간판 이미지 -->
 										<img class="card-img-top" alt="" height=200
 											onerror="this.src='${contextPath}/resources/img/onerror.png'"
-											src="${contextPath}/cImgLoad?coach=${coachingList.coach}&coachNO=${coachingList.coachNO}&cImg=${coachingList.cImg}" />
+											src="${contextPath}/cImgLoad?coach=${coachingPost.coach}&coachNO=${coachingPost.coachNO}&cImg=${coachingPost.cImg}" />
 
 										<!-- 리스트 표시 정보 -->
 										<div class="card-body" style="background-color: #FFCCCC;">
 											<div class="text-center">
 
 												<!-- 리더 -->
-												<b style="font-size: 15px; float: left; color: grey;">${coachingList.coach}</b>
+												<b style="font-size: 15px; float: left; color: grey;">${coachingPost.coach}</b>
 
 												<!-- 후기 개수 (없을시 0개) -->
 												<a href="#">
@@ -139,11 +139,11 @@
 												</a> <br> <br>
 
 												<!-- 제목 -->
-												<b style="font-size: 15px; color: black;">${coachingList.cTitle}</b><br>
+												<b style="font-size: 15px; color: black;">${coachingPost.cTitle}</b><br>
 												<br>
 
 												<!-- 기본 요금 -->
-												<b style="font-size: 15px; color: #333333; float: right;">${coachingList.basicPrice}
+												<b style="font-size: 15px; color: #333333; float: right;">${coachingPost.basicPrice}
 													원</b>
 											</div>
 										</div>

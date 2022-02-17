@@ -12,15 +12,15 @@ public class CoachingServiceImpl {
 	@Autowired
 	private CoachingDAOImpl coachingDAOImpl;
 
-	// 코칭 리스트 전체 조회
-	public List selectCoachingListService() {
-		List<CoachingVO> coachingList = coachingDAOImpl.selectCoachingList();
-		return coachingList;
+	// 코칭 글 조건 조회
+	public List selectCoachingPostByFieldService(String cField) {
+		List<CoachingVO> coachingPost = coachingDAOImpl.selectCoachingPostByField(cField);
+		return coachingPost;
 	}
 
-	// 코칭 등록
-	public int insertCoachingListService(Map coachMap) {
-		return coachingDAOImpl.insertCoachingList(coachMap);
+	// 코칭 글 작성
+	public int insertCoachingPostService(Map coachMap) {
+		return coachingDAOImpl.insertCoachingPost(coachMap);
 	}
 
 }

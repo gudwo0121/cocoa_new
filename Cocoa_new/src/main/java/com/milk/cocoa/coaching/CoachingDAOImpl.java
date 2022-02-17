@@ -13,24 +13,24 @@ public class CoachingDAOImpl {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// 코칭 리스트 전체 조회
-	public List selectCoachingList() {
-		List<CoachingVO> coachingList = sqlSession.selectList("mapper.coach.selectCoachingList");
-		return coachingList;
+	// 코칭 글 조건 조회
+	public List selectCoachingPostByField(String cField) {
+		List<CoachingVO> coachingPost = sqlSession.selectList("mapper.coach.selectCoachingPostByField", cField);
+		return coachingPost;
 	}
 
-	// 코칭 등록
-	public int insertCoachingList(Map coachingMap) {
+	// 코칭 글 작성
+	public int insertCoachingPost(Map coachingMap) {
 		// 코칭 넘버링으로 생성된 번호를 coachNO으로 삽입
-		int coachNO = this.coachingListNumbering();
+		int coachNO = this.coachingPostNumbering();
 		coachingMap.put("coachNO", coachNO);
 		// 받아온 입력과 함께 쿼리문 실행
-		sqlSession.insert("mapper.coach.insertCoachingList", coachingMap);
+		sqlSession.insert("mapper.coach.insertCoachingPost", coachingMap);
 		return coachNO;
 	}
 
 	// 코칭 넘버링 = coachNO을 순차적으로 증가시키기 위함
-	private int coachingListNumbering() {
-		return sqlSession.selectOne("mapper.coach.coachingListNumbering");
+	private int coachingPostNumbering() {
+		return sqlSession.selectOne("mapper.coach.coachingPostNumbering");
 	}
 }

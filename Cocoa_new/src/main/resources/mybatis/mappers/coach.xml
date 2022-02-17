@@ -4,7 +4,7 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.coach">
-	<resultMap id="coachingList" type="coachingVO">
+	<resultMap id="coachingPost" type="coachingVO">
 		<result property="coachNO" column="coachNO" />
 		<result property="coach" column="coach" />
 		<result property="cField" column="cField" />
@@ -15,16 +15,17 @@
 		<result property="cContents" column="cContents" />
 	</resultMap>
 
-	<!-- 코칭 리스트 조회 -->
-	<select id="selectCoachingList" resultMap="coachingList">
+	<!-- 코칭 글 조건 조회 -->
+	<select id="selectCoachingPostByField" resultMap="coachingPost" parameterType="String">
 		<![CDATA[
 			SELECT *
 			FROM coachingTBL
+			WHERE cField = #{cField}
 		]]>
 	</select>
 
-	<!-- 코칭 등록 -->
-	<insert id="insertCoachingList" parameterType="java.util.Map">
+	<!-- 코칭 글 작성 -->
+	<insert id="insertCoachingPost" parameterType="java.util.Map">
 		<![CDATA[
 			INSERT INTO coachingTBL
 			(coachNO, coach, cField, tool, cImg, cTitle, basicPrice, cContents)
@@ -34,7 +35,7 @@
 	</insert>
 
 	<!-- 코치 글 넘버링 -->
-	<select id="coachingListNumbering" resultType="int">
+	<select id="coachingPostNumbering" resultType="int">
 		<![CDATA[
 			SELECT ifnull(max(coachNO), 0) + 1
 			FROM coachingTBL

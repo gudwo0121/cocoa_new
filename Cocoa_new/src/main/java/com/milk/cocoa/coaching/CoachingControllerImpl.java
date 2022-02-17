@@ -46,15 +46,24 @@ public class CoachingControllerImpl {
 
 	// 코칭 리스트 이동
 	@GetMapping("/coaching/{field}")
-	public ModelAndView goCoachingList(@PathVariable(value = "field") String field, HttpServletRequest request,
+	public ModelAndView viewCoachingPostByField(@PathVariable(value = "field") String field, HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/coaching";
 		mav.setViewName(url);
 
+		// cField 수치화
+		if (field.equals("web")) {
+			field = "cField1";
+		} else if (field.equals("mobile")) {
+			field = "cField2";
+		} else if (field.equals("embedded")) {
+			field = "cField3";
+		}
+
 		// 코칭 리스트 전체 조회
-		List<CoachingVO> coachingList = coachingServiceImpl.selectCoachingListService();
-		mav.addObject("coachingList", coachingList);
+		List<CoachingVO> coachingPost = coachingServiceImpl.selectCoachingPostByFieldService(field);
+		mav.addObject("coachingPost", coachingPost);
 
 		return mav;
 	}
@@ -107,7 +116,7 @@ public class CoachingControllerImpl {
 
 		try {
 			// coachNO 따라 해당 회원의 경로로 업로드
-			int coachNO = coachingServiceImpl.insertCoachingListService(coachingMap);
+			int coachNO = coachingServiceImpl.insertCoachingPostService(coachingMap);
 
 			// 파일(이미지)가 유효하면 경로에도 저장
 			if (cImg != null && cImg.length() != 0) {
@@ -118,7 +127,7 @@ public class CoachingControllerImpl {
 
 			message = "<script>";
 			message += " alert('등록이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/goCoachingList'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/web'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -130,7 +139,7 @@ public class CoachingControllerImpl {
 
 			message = " <script>";
 			message += " alert('등록에 실패했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/goCoachingList'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/web'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}

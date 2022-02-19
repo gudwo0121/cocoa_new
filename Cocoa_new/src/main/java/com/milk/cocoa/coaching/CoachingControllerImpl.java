@@ -38,6 +38,8 @@ public class CoachingControllerImpl {
 
 	// cImg 다운로드 경로 (FTP시 "/opt/cocoa/image/coaching") = 기본이 로컬 C드라이브고 그 뒤 경로 입력
 	private static final String COACH_IMAGE_REPO = "/cocoaRepo/coachImg";
+	// 처리 후 이동 경로 설정시 cField 필요하므로 전역 변수로 cFieldHistory 선언
+	String cFieldHistory;
 
 	@Autowired
 	private CoachingVO coachingVO;
@@ -45,24 +47,28 @@ public class CoachingControllerImpl {
 	private CoachingServiceImpl coachingServiceImpl;
 
 	// 코칭 글 분야별 조회 (REST)
-	@GetMapping("/coaching/{field}")
-	public ModelAndView viewCoachingPostByField(@PathVariable(value = "field") String field, HttpServletRequest request,
-			HttpServletResponse response) {
+	@GetMapping("/coaching/{cField}")
+	public ModelAndView viewCoachingPostByField(@PathVariable(value = "cField") String cField,
+			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/coaching";
 		mav.setViewName(url);
 
+		// 수치화 전 기록 남기기
+		cFieldHistory = cField;
+		System.out.println(cFieldHistory);
+
 		// cField 수치화
-		if (field.equals("web")) {
-			field = "cField1";
-		} else if (field.equals("mobile")) {
-			field = "cField2";
-		} else if (field.equals("embedded")) {
-			field = "cField3";
+		if (cField.equals("web")) {
+			cField = "cField1";
+		} else if (cField.equals("mobile")) {
+			cField = "cField2";
+		} else if (cField.equals("embedded")) {
+			cField = "cField3";
 		}
 
-		// 코칭 리스트 전체 조회
-		List<CoachingVO> coachingPost = coachingServiceImpl.selectCoachingPostByFieldService(field);
+		// 조회된 코칭 글 정보 전송
+		List<CoachingVO> coachingPost = coachingServiceImpl.selectCoachingPostByFieldService(cField);
 		mav.addObject("coachingPost", coachingPost);
 
 		return mav;
@@ -124,10 +130,10 @@ public class CoachingControllerImpl {
 				File destDir = new File(COACH_IMAGE_REPO + "/" + id + "/" + coachNO);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
-
+			
 			message = "<script>";
 			message += " alert('등록이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/web'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/" + cFieldHistory + "'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -139,7 +145,7 @@ public class CoachingControllerImpl {
 
 			message = " <script>";
 			message += " alert('등록에 실패했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/web'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/goCoachingWrite'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}

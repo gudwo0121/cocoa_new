@@ -18,11 +18,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,27 +33,42 @@ import com.milk.cocoa.member.MemberVO;
 
 import net.coobird.thumbnailator.Thumbnails;
 
-@Controller("projectController")
+@RestController("projectController")
 public class ProjectControllerImpl {
 
 	// pImg 다운로드 경로 (FTP시 "/opt/cocoa/image/project") = 기본이 로컬 C드라이브고 그 뒤 경로 입력
 	private static final String PROJECT_IMAGE_REPO = "/cocoaRepo/projectImg";
+	// 처리 후 이동 경로 설정시 pField 필요하므로 전역 변수로 pFieldHistory 선언
+	String pFieldHistory;
 
 	@Autowired
 	private ProjectVO projectVO;
 	@Autowired
 	private ProjectServiceImpl projectServiceImpl;
 
-	// 프로젝트 리스트 화면 이동
-	@RequestMapping(value = "/goProjectList", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView goProjectList(HttpServletRequest request, HttpServletResponse response) {
+	// 프로젝트 글 분야별 조회 (REST)
+	@GetMapping("/project/{pField}")
+	public ModelAndView viewProjectPostByField(@PathVariable(value = "pField") String pField,
+			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/project";
 		mav.setViewName(url);
 
-		// 프로젝트 리스트 전체 조회
-		List<ProjectVO> projectList = projectServiceImpl.selectProjectListService();
-		mav.addObject("projectList", projectList);
+		// 수치화 전 기록 남기기
+		pFieldHistory = pField;
+
+		// pField 수치화
+		if (pField.equals("web")) {
+			pField = "pField1";
+		} else if (pField.equals("mobile")) {
+			pField = "pField2";
+		} else if (pField.equals("embedded")) {
+			pField = "pField3";
+		}
+
+		// 조회된 프로젝트 글 정보 전송
+		List<ProjectVO> projectPost = projectServiceImpl.selectProjectPostByFieldService(pField);
+		mav.addObject("projectPost", projectPost);
 
 		return mav;
 	}
@@ -107,7 +124,7 @@ public class ProjectControllerImpl {
 
 		try {
 			// projectNO 따라 해당 회원의 경로로 업로드
-			int projectNO = projectServiceImpl.insertProjectListService(projectMap);
+			int projectNO = projectServiceImpl.insertProjectPostService(projectMap);
 
 			// 파일(이미지)가 유효하면 경로에도 저장
 			if (pImg != null && pImg.length() != 0) {
@@ -118,7 +135,7 @@ public class ProjectControllerImpl {
 
 			message = "<script>";
 			message += " alert('등록이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/goProjectList'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/" + pFieldHistory + "'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -130,7 +147,7 @@ public class ProjectControllerImpl {
 
 			message = " <script>";
 			message += " alert('등록에 실패했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/goProjectList'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/goProjectWrite'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}

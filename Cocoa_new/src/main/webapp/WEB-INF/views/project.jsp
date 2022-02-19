@@ -12,13 +12,13 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cocoa</title>
-<link href="resources/vendor/fontawesome-free/css/all.min.css"
+<link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-<script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
+<script type="text/javascript" src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 </head>
 <body id="page-top">
 
@@ -119,7 +119,7 @@
 							class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
 							<!-- 프로젝트 리스트 전체 조회 결과값 불러오기 -->
-							<c:forEach var="projectList" items="${projectList}">
+							<c:forEach var="projectPost" items="${projectPost}">
 
 								<div class="col mb-5"
 									style="padding-left: 30px; padding-right: 30px;">
@@ -129,18 +129,18 @@
 										<!-- 간판 이미지 -->
 										<img class="card-img-top" alt="" height=200
 											onerror="this.src='resources/img/onerror.png'"
-											src="${contextPath}/pImgLoad?leader=${projectList.leader}&projectNO=${projectList.projectNO}&pImg=${projectList.pImg}" />
+											src="${contextPath}/pImgLoad?leader=${projectPost.leader}&projectNO=${projectPost.projectNO}&pImg=${projectPost.pImg}" />
 
 										<!-- 리스트 표시 정보 -->
 										<div class="card-body" style="background-color: #FFCCCC;">
 											<div class="text-center">
 
 												<!-- 리더 -->
-												<b style="font-size: 15px; float: left; color: grey;">${projectList.leader}</b>
+												<b style="font-size: 15px; float: left; color: grey;">${projectPost.leader}</b>
 
 												<!-- 후기 개수 (없을시 0개) -->
 												<a
-													href="/cocoa/view_reviewInfo?target=${projectList.leader}">
+													href="#">
 													<div style="font-size: 13px; float: right;">
 														<b>0개의 후기</b>
 													</div> <!-- 평점 평균 (없을시 0.0) -->
@@ -152,11 +152,11 @@
 												</a> <br> <br>
 
 												<!-- 제목 -->
-												<b style="font-size: 15px; color: black;">${projectList.pTitle}</b><br>
+												<b style="font-size: 15px; color: black;">${projectPost.pTitle}</b><br>
 												<br>
 
 												<!-- 인원수 -->
-												<b style="font-size: 15px; color: #333333; float: right;">${projectList.memberCount}명
+												<b style="font-size: 15px; color: #333333; float: right;">${projectPost.memberCount}명
 													모집중</b>
 											</div>
 										</div>
@@ -212,13 +212,13 @@
 	</div> -->
 
 	<!-- JS 참조 -->
-	<script src="resources/vendor/jquery/jquery.min.js"></script>
-	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-	<script src="resources/js/sb-admin-2.min.js"></script>
-	<script src="resources/vendor/chart.js/Chart.min.js"></script>
-	<script src="resources/js/demo/chart-area-demo.js"></script>
-	<script src="resources/js/demo/chart-pie-demo.js"></script>
+	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="${contextPath}/resources/js/sb-admin-2.min.js"></script>
+	<script src="${contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
+	<script src="${contextPath}/resources/js/demo/chart-area-demo.js"></script>
+	<script src="${contextPath}/resources/js/demo/chart-pie-demo.js"></script>
 
 </body>
 </html>

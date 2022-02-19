@@ -57,12 +57,9 @@
 				data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
 					<h3 class="collapse-header">분야:</h3>
-					<label id="webClicked" class="collapse-item"
-						onclick="location.href='/cocoa/coaching/web'">Web</label>
-					<label class="collapse-item"
-						onclick="location.href='/cocoa/coaching/mobile'">Mobile</label>
-					<label class="collapse-item"
-						onclick="location.href='/cocoa/coaching/embedded'">Embedded</label>
+					<label class="collapse-item" onclick="location.href='/cocoa/coaching/web'">Web</label>
+					<label class="collapse-item" onclick="location.href='/cocoa/coaching/mobile'">Mobile</label>
+					<label class="collapse-item" onclick="location.href='/cocoa/coaching/embedded'">Embedded</label>
 				</div>
 			</div></li>
 
@@ -76,12 +73,9 @@
 				aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
 					<h3 class="collapse-header">분야:</h3>
-					<label class="collapse-item"
-						onclick="location.href='/cocoa/goProjectList'">Web</label> <label
-						class="collapse-item"
-						onclick="location.href='/cocoa/goProjectList'">Mobile</label> <label
-						class="collapse-item"
-						onclick="location.href='/cocoa/goProjectList'">Embedded</label>
+					<label class="collapse-item" onclick="location.href='/cocoa/project/web'">Web</label>
+					<label class="collapse-item" onclick="location.href='/cocoa/project/mobile'">Mobile</label>
+					<label class="collapse-item" onclick="location.href='/cocoa/project/embedded'">Embedded</label>
 				</div>
 			</div></li>
 

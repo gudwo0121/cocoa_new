@@ -12,15 +12,15 @@ public class ProjectServiceImpl {
 	@Autowired
 	private ProjectDAOImpl projectDAOImpl;
 
-	// 프로젝트 리스트 전체 조회
-	public List selectProjectListService() {
-		List<ProjectVO> projectList = projectDAOImpl.selectProjectList();
-		return projectList;
+	// 프로젝트 글 분야별 조건 조회
+	public List selectProjectPostByFieldService(String pField) {
+		List<ProjectVO> projectPost = projectDAOImpl.selectProjectPostByField(pField);
+		return projectPost;
 	}
 
-	// 프로젝트 모집
-	public int insertProjectListService(Map coachMap) {
-		return projectDAOImpl.insertProjectList(coachMap);
+	// 프로젝트 글 작성
+	public int insertProjectPostService(Map projectMap) {
+		return projectDAOImpl.insertProjectPost(projectMap);
 
 	}
 }

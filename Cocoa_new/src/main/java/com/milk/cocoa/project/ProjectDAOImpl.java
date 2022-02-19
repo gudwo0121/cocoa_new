@@ -13,24 +13,24 @@ public class ProjectDAOImpl {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// 프로젝트 리스트 전체 조회
-	public List selectProjectList() {
-		List<ProjectVO> projectList = sqlSession.selectList("mapper.project.selectProjectList");
-		return projectList;
+	// 프로젝트 글 분야별 조건 조회
+	public List selectProjectPostByField(String pField) {
+		List<ProjectVO> projectPost = sqlSession.selectList("mapper.project.selectProjectPostByField", pField);
+		return projectPost;
 	}
 
-	// 프로젝트 모집
-	public int insertProjectList(Map projectMap) {
+	// 프로젝트 글 작성
+	public int insertProjectPost(Map projectMap) {
 		// 프로젝트 넘버링으로 생성된 번호를 projectNO으로 삽입
-		int projectNO = this.projectListNumbering();
+		int projectNO = this.projectPostNumbering();
 		projectMap.put("projectNO", projectNO);
 		// 받아온 입력과 함께 쿼리문 실행
-		sqlSession.insert("mapper.project.insertProjectList", projectMap);
+		sqlSession.insert("mapper.project.insertProjectPost", projectMap);
 		return projectNO;
 	}
 
 	// 프로젝트 넘버링 = projectNO을 순차적으로 증가시키기 위함
-	private int projectListNumbering() {
-		return sqlSession.selectOne("mapper.project.projectListNumbering");
+	private int projectPostNumbering() {
+		return sqlSession.selectOne("mapper.project.projectPostNumbering");
 	}
 }

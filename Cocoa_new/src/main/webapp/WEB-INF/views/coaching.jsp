@@ -19,6 +19,7 @@
 	rel="stylesheet">
 <link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script type="text/javascript" src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${contextPath}/resources/js/showTools.js"></script>
 </head>
 <body id="page-top">
 
@@ -66,8 +67,7 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div id="tool1"
-												class="h5 mb-0 font-weight-bold text-gray-800">Spring
-												Framework</div>
+												class="h5 mb-0 font-weight-bold text-gray-800"></div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -84,8 +84,7 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div id="tool2"
-												class="h5 mb-0 font-weight-bold text-gray-800">Android
-												Studio</div>
+												class="h5 mb-0 font-weight-bold text-gray-800"></div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

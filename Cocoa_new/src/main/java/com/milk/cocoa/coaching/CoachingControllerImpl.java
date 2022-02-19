@@ -44,7 +44,7 @@ public class CoachingControllerImpl {
 	@Autowired
 	private CoachingServiceImpl coachingServiceImpl;
 
-	// 코칭 리스트 이동
+	// 코칭 글 분야별 조회 (REST)
 	@GetMapping("/coaching/{field}")
 	public ModelAndView viewCoachingPostByField(@PathVariable(value = "field") String field, HttpServletRequest request,
 			HttpServletResponse response) {

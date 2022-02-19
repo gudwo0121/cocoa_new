@@ -13,7 +13,7 @@ public class CoachingDAOImpl {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// 코칭 글 조건 조회
+	// 코칭 글 분야별 조건 조회
 	public List selectCoachingPostByField(String cField) {
 		List<CoachingVO> coachingPost = sqlSession.selectList("mapper.coach.selectCoachingPostByField", cField);
 		return coachingPost;

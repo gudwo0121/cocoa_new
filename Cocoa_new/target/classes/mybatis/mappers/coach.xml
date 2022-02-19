@@ -15,7 +15,7 @@
 		<result property="cContents" column="cContents" />
 	</resultMap>
 
-	<!-- 코칭 글 조건 조회 -->
+	<!-- 코칭 글 분야별 조건 조회 -->
 	<select id="selectCoachingPostByField" resultMap="coachingPost" parameterType="String">
 		<![CDATA[
 			SELECT *

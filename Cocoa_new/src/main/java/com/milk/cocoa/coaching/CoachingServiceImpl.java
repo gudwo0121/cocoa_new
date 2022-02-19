@@ -12,7 +12,7 @@ public class CoachingServiceImpl {
 	@Autowired
 	private CoachingDAOImpl coachingDAOImpl;
 
-	// 코칭 글 조건 조회
+	// 코칭 글 분야별 조건 조회
 	public List selectCoachingPostByFieldService(String cField) {
 		List<CoachingVO> coachingPost = coachingDAOImpl.selectCoachingPostByField(cField);
 		return coachingPost;

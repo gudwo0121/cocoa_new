@@ -12,14 +12,14 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cocoa</title>
-<link href="resources/vendor/fontawesome-free/css/all.min.css"
+<link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-<script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="resources/js/projectWrite.js"></script>
+<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
+<script type="text/javascript" src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${contextPath}/resources/js/projectWrite.js"></script>
 </head>
 <body id="page-top">
 
@@ -85,7 +85,7 @@
 
 										<!-- pImg -->
 										<div align="center">
-											<br> <img id="preview" src="resources/img/onerror.png"
+											<br> <img id="preview" src="${contextPath}/resources/img/onerror.png"
 												width=100% height=300 style="border: 1px solid;" /><br>
 											<br> <label class="btn btn-outline-dark" for="pImg">
 												대표 이미지 변경 </label><input type="file" id="pImg" name="pImg"
@@ -195,13 +195,13 @@
 	</div> -->
 
 	<!-- JS 참조 -->
-	<script src="resources/vendor/jquery/jquery.min.js"></script>
-	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-	<script src="resources/js/sb-admin-2.min.js"></script>
-	<script src="resources/vendor/chart.js/Chart.min.js"></script>
-	<script src="resources/js/demo/chart-area-demo.js"></script>
-	<script src="resources/js/demo/chart-pie-demo.js"></script>
+	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="${contextPath}/resources/js/sb-admin-2.min.js"></script>
+	<script src="${contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
+	<script src="${contextPath}/resources/js/demo/chart-area-demo.js"></script>
+	<script src="${contextPath}/resources/js/demo/chart-pie-demo.js"></script>
 
 </body>
 </html>

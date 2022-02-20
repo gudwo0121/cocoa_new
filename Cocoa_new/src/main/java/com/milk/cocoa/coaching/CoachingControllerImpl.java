@@ -38,8 +38,6 @@ public class CoachingControllerImpl {
 
 	// cImg 다운로드 경로 (FTP시 "/opt/cocoa/image/coaching") = 기본이 로컬 C드라이브고 그 뒤 경로 입력
 	private static final String COACH_IMAGE_REPO = "/cocoaRepo/coachImg";
-	// 처리 후 이동 경로 설정시 cField 필요하므로 전역 변수로 cFieldHistory 선언
-	String cFieldHistory;
 
 	@Autowired
 	private CoachingVO coachingVO;
@@ -53,10 +51,6 @@ public class CoachingControllerImpl {
 		ModelAndView mav = new ModelAndView();
 		String url = "/coaching";
 		mav.setViewName(url);
-
-		// 수치화 전 기록 남기기
-		cFieldHistory = cField;
-		System.out.println(cFieldHistory);
 
 		// cField 수치화
 		if (cField.equals("web")) {
@@ -113,6 +107,18 @@ public class CoachingControllerImpl {
 		// cImg 직접 입력
 		String cImg = this.cImgUpload(multipartRequest);
 		coachingMap.put("cImg", cImg);
+		
+		// 수치화된 cField 값 기록 = 코칭 글 작성 후 이동 페이지를 위함
+		String cFieldHistory = (String) coachingMap.get("cField");
+		
+		// cField 값 문자열화
+		if(cFieldHistory.equals("cField1")) {
+			cFieldHistory = "web";
+		} else if (cFieldHistory.equals("cField2")) {
+			cFieldHistory = "mobile";
+		} else if (cFieldHistory.equals("cField3")) {
+			cFieldHistory = "embedded";
+		}
 
 		// 성공, 실패 시 알림
 		String message;
@@ -133,7 +139,7 @@ public class CoachingControllerImpl {
 			
 			message = "<script>";
 			message += " alert('등록이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/" + cFieldHistory + "'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/" + cFieldHistory + "';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -145,7 +151,7 @@ public class CoachingControllerImpl {
 
 			message = " <script>";
 			message += " alert('등록에 실패했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/goCoachingWrite'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/goCoachingWrite';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}

@@ -38,8 +38,6 @@ public class ProjectControllerImpl {
 
 	// pImg 다운로드 경로 (FTP시 "/opt/cocoa/image/project") = 기본이 로컬 C드라이브고 그 뒤 경로 입력
 	private static final String PROJECT_IMAGE_REPO = "/cocoaRepo/projectImg";
-	// 처리 후 이동 경로 설정시 pField 필요하므로 전역 변수로 pFieldHistory 선언
-	String pFieldHistory;
 
 	@Autowired
 	private ProjectVO projectVO;
@@ -53,9 +51,6 @@ public class ProjectControllerImpl {
 		ModelAndView mav = new ModelAndView();
 		String url = "/project";
 		mav.setViewName(url);
-
-		// 수치화 전 기록 남기기
-		pFieldHistory = pField;
 
 		// pField 수치화
 		if (pField.equals("web")) {
@@ -113,6 +108,18 @@ public class ProjectControllerImpl {
 		String pImg = this.pImgUpload(multipartRequest);
 		projectMap.put("pImg", pImg);
 
+		// 수치화된 pField 값 기록 = 코칭 글 작성 후 이동 페이지를 위함
+		String pFieldHistory = (String) projectMap.get("pField");
+
+		// pField 값 문자열화
+		if (pFieldHistory.equals("pField1")) {
+			pFieldHistory = "web";
+		} else if (pFieldHistory.equals("pField2")) {
+			pFieldHistory = "mobile";
+		} else if (pFieldHistory.equals("pField3")) {
+			pFieldHistory = "embedded";
+		}
+
 		// map은 아직 구현 전 = 하드코딩 "default"로 대체 @@@@@@@@@@@
 		projectMap.put("map", "default");
 
@@ -135,7 +142,7 @@ public class ProjectControllerImpl {
 
 			message = "<script>";
 			message += " alert('등록이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/" + pFieldHistory + "'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/project/" + pFieldHistory + "';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -147,7 +154,7 @@ public class ProjectControllerImpl {
 
 			message = " <script>";
 			message += " alert('등록에 실패했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/goProjectWrite'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/project/goProjectWrite';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}

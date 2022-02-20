@@ -128,7 +128,7 @@
 
 										<!-- 간판 이미지 -->
 										<img class="card-img-top" alt="" height=200
-											onerror="this.src='resources/img/onerror.png'"
+											onerror="this.src='${contextPath}/resources/img/onerror.png'"
 											src="${contextPath}/pImgLoad?leader=${projectPost.leader}&projectNO=${projectPost.projectNO}&pImg=${projectPost.pImg}" />
 
 										<!-- 리스트 표시 정보 -->

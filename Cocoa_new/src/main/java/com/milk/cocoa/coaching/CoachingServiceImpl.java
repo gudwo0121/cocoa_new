@@ -18,6 +18,12 @@ public class CoachingServiceImpl {
 		return coachingPost;
 	}
 
+	// 코칭 글 개발툴별 조건 조회
+	public List selectCoachingPostByToolService(String tool) {
+		List<CoachingVO> coachingPost = coachingDAOImpl.selectCoachingPostByTool(tool);
+		return coachingPost;
+	}
+
 	// 코칭 글 작성
 	public int insertCoachingPostService(Map coachMap) {
 		return coachingDAOImpl.insertCoachingPost(coachMap);

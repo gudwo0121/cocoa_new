@@ -26,7 +26,17 @@
 	      	WHERE pField = #{pField}
     		]]>
 	</select>
-
+	
+	<!-- 프로젝트 글 분야+레벨별 조건 조회 -->
+	<select id="selectProjectPostByLevel" resultMap="projectPost"
+		parameterType="ProjectVO">
+    		<![CDATA[
+	      	SELECT * 
+	      	FROM projectTBL
+	      	WHERE pField = #{pField} AND level = #{level}
+    		]]>
+	</select>
+	
 	<!-- 프로젝트 글 작성 -->
 	<insert id="insertProjectPost" parameterType="java.util.Map">
 		<![CDATA[

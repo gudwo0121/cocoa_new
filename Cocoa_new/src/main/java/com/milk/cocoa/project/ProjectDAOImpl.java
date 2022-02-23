@@ -19,6 +19,12 @@ public class ProjectDAOImpl {
 		return projectPost;
 	}
 
+	// 프로젝트 글 분야+레벨별 조건 조회
+	public List selectProjectPostByLevel(ProjectVO projectVO) {
+		List<ProjectVO> projectPost = sqlSession.selectList("mapper.project.selectProjectPostByLevel", projectVO);
+		return projectPost;
+	}
+
 	// 프로젝트 글 작성
 	public int insertProjectPost(Map projectMap) {
 		// 프로젝트 넘버링으로 생성된 번호를 projectNO으로 삽입

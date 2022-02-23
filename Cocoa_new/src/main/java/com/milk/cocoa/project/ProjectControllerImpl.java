@@ -68,6 +68,48 @@ public class ProjectControllerImpl {
 		return mav;
 	}
 
+	// 프로젝트 글 분야+레벨별 조회 (REST)
+	@GetMapping("/project/{pField}/{level}")
+	public ModelAndView viewProjectPostByLevel(@PathVariable(value = "pField") String pField,
+			@PathVariable(value = "level") String level, HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/project";
+		mav.setViewName(url);
+		
+		// pField 값 전송
+		mav.addObject("pField", pField);
+		// level 값 전송
+		mav.addObject("level", level);
+
+		// pField 수치화
+		if (pField.equals("web")) {
+			pField = "pField1";
+		} else if (pField.equals("mobile")) {
+			pField = "pField2";
+		} else if (pField.equals("embedded")) {
+			pField = "pField3";
+		}
+		
+		// level 수치화
+		if (level.equals("Beginner")) {
+			level = "level1";
+		} else if (level.equals("Intermediate")) {
+			level = "level2";
+		} else if (level.equals("Advanced")) {
+			level = "level3";
+		}
+		
+		// vo에 분야와 레벨 값 담기
+		projectVO.setpField(pField);
+		projectVO.setLevel(level);
+
+		// 조회된 프로젝트 글 정보 전송
+		List<ProjectVO> projectPost = projectServiceImpl.selectProjectPostByLevelService(projectVO);
+		mav.addObject("projectPost", projectPost);
+
+		return mav;
+	}
+
 	// 프로젝트 모집 이동
 	@RequestMapping(value = "/goProjectWrite", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView goProjectWrite(HttpServletRequest request, HttpServletResponse response) {

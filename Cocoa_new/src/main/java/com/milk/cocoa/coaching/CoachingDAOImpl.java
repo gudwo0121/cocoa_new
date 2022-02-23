@@ -19,6 +19,12 @@ public class CoachingDAOImpl {
 		return coachingPost;
 	}
 
+	// 코칭 글 개발툴별 조건 조회
+	public List selectCoachingPostByTool(String tool) {
+		List<CoachingVO> coachingPost = sqlSession.selectList("mapper.coach.selectCoachingPostByTool", tool);
+		return coachingPost;
+	}
+
 	// 코칭 글 작성
 	public int insertCoachingPost(Map coachingMap) {
 		// 코칭 넘버링으로 생성된 번호를 coachNO으로 삽입

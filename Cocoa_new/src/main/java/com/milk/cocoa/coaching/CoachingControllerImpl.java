@@ -52,6 +52,9 @@ public class CoachingControllerImpl {
 		String url = "/coaching";
 		mav.setViewName(url);
 
+		// cField 값 전송
+		mav.addObject("cField", cField);
+
 		// cField 수치화
 		if (cField.equals("web")) {
 			cField = "cField1";
@@ -63,6 +66,41 @@ public class CoachingControllerImpl {
 
 		// 조회된 코칭 글 정보 전송
 		List<CoachingVO> coachingPost = coachingServiceImpl.selectCoachingPostByFieldService(cField);
+		mav.addObject("coachingPost", coachingPost);
+
+		return mav;
+	}
+
+	// 코칭 글 개발툴별 조회 (REST)
+	@GetMapping("/coaching/{cField}/{tool}")
+	public ModelAndView viewCoachingPostByTool(@PathVariable(value = "cField") String cField,
+			@PathVariable(value = "tool") String tool, HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/coaching";
+		mav.setViewName(url);
+
+		// cField 값 전송
+		mav.addObject("cField", cField);
+		// tool 값 전송
+		mav.addObject("tool", tool);
+
+		// tool 수치화
+		if (tool.equals("SpringFramework")) {
+			tool = "tool1";
+		} else if (tool.equals("Django")) {
+			tool = "tool2";
+		} else if (tool.equals("AndroidStudio")) {
+			tool = "tool3";
+		} else if (tool.equals("Xcode")) {
+			tool = "tool4";
+		} else if (tool.equals("Arduino")) {
+			tool = "tool5";
+		} else if (tool.equals("RaspberryPi")) {
+			tool = "tool6";
+		}
+
+		// 조회된 코칭 글 정보 전송
+		List<CoachingVO> coachingPost = coachingServiceImpl.selectCoachingPostByToolService(tool);
 		mav.addObject("coachingPost", coachingPost);
 
 		return mav;
@@ -107,12 +145,12 @@ public class CoachingControllerImpl {
 		// cImg 직접 입력
 		String cImg = this.cImgUpload(multipartRequest);
 		coachingMap.put("cImg", cImg);
-		
+
 		// 수치화된 cField 값 기록 = 코칭 글 작성 후 이동 페이지를 위함
 		String cFieldHistory = (String) coachingMap.get("cField");
-		
+
 		// cField 값 문자열화
-		if(cFieldHistory.equals("cField1")) {
+		if (cFieldHistory.equals("cField1")) {
 			cFieldHistory = "web";
 		} else if (cFieldHistory.equals("cField2")) {
 			cFieldHistory = "mobile";
@@ -136,7 +174,7 @@ public class CoachingControllerImpl {
 				File destDir = new File(COACH_IMAGE_REPO + "/" + id + "/" + coachNO);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
-			
+
 			message = "<script>";
 			message += " alert('등록이 완료되었습니다.');";
 			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/" + cFieldHistory + "';";

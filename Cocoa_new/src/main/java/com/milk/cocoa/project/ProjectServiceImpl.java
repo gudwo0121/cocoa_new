@@ -18,6 +18,12 @@ public class ProjectServiceImpl {
 		return projectPost;
 	}
 
+	// 프로젝트 글 분야+레벨별 조건 조회
+	public List selectProjectPostByLevelService(ProjectVO projectVO) {
+		List<ProjectVO> projectPost = projectDAOImpl.selectProjectPostByLevel(projectVO);
+		return projectPost;
+	}
+
 	// 프로젝트 글 작성
 	public int insertProjectPostService(Map projectMap) {
 		return projectDAOImpl.insertProjectPost(projectMap);

@@ -12,13 +12,18 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cocoa</title>
-<link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
-<script type="text/javascript" src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<link href="${contextPath}/resources/css/sb-admin-2.min.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/conditionRead.js"></script>
 </head>
 <body id="page-top">
 
@@ -59,13 +64,20 @@
 					<!-- 난이도 -->
 					<div class="row">
 
+						<!-- 프로젝트 분야 정보 = viewPostByTools에서 쓰기 위함 -->
+						<div id="field" hidden="">${pField}</div>
+						<!-- 프로젝트 레벨 정보 = hover 안될시 경로 표시를 하기 위함 -->
+						<div id="level" hidden="">${level}</div>
+
 						<!-- (난이도) 초급 -->
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-left-primary shadow h-100 py-2">
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
-											<div class="h5 mb-0 font-weight-bold text-gray-800">초급</div>
+											<div id="level1" onclick="conditionRead(this)"
+												style="cursor: pointer;"
+												class="h5 mb-0 font-weight-bold text-gray-800">Beginner</div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -81,7 +93,9 @@
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
-											<div class="h5 mb-0 font-weight-bold text-gray-800">중급</div>
+											<div id="level2" onclick="conditionRead(this)"
+												style="cursor: pointer;"
+												class="h5 mb-0 font-weight-bold text-gray-800">Intermediate</div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -97,7 +111,9 @@
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
-											<div class="h5 mb-0 font-weight-bold text-gray-800">고급</div>
+											<div id="level3" onclick="conditionRead(this)"
+												style="cursor: pointer;"
+												class="h5 mb-0 font-weight-bold text-gray-800">Advanced</div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -139,8 +155,7 @@
 												<b style="font-size: 15px; float: left; color: grey;">${projectPost.leader}</b>
 
 												<!-- 후기 개수 (없을시 0개) -->
-												<a
-													href="#">
+												<a href="#">
 													<div style="font-size: 13px; float: right;">
 														<b>0개의 후기</b>
 													</div> <!-- 평점 평균 (없을시 0.0) -->
@@ -213,8 +228,10 @@
 
 	<!-- JS 참조 -->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-	<script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script
+		src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 	<script src="${contextPath}/resources/js/sb-admin-2.min.js"></script>
 	<script src="${contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
 	<script src="${contextPath}/resources/js/demo/chart-area-demo.js"></script>

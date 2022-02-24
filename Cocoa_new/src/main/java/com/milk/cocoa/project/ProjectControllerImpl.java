@@ -52,6 +52,14 @@ public class ProjectControllerImpl {
 		String url = "/project";
 		mav.setViewName(url);
 
+		// 분야의 첫 문자를 대문자로 변경 = 경로표시에 쓰기 위함
+		String showField = pField.substring(0, 1).toUpperCase() + pField.substring(1, pField.length());
+
+		// capitalized pField 값 전송
+		mav.addObject("showField", showField);
+		// pField 값 전송
+		mav.addObject("pField", pField);
+
 		// pField 수치화
 		if (pField.equals("web")) {
 			pField = "pField1";
@@ -75,7 +83,12 @@ public class ProjectControllerImpl {
 		ModelAndView mav = new ModelAndView();
 		String url = "/project";
 		mav.setViewName(url);
-		
+
+		// 분야의 첫 문자를 대문자로 변경 = 경로표시에 쓰기 위함
+		String showField = pField.substring(0, 1).toUpperCase() + pField.substring(1, pField.length());
+
+		// capitalized pField 값 전송
+		mav.addObject("showField", showField);
 		// pField 값 전송
 		mav.addObject("pField", pField);
 		// level 값 전송
@@ -89,7 +102,7 @@ public class ProjectControllerImpl {
 		} else if (pField.equals("embedded")) {
 			pField = "pField3";
 		}
-		
+
 		// level 수치화
 		if (level.equals("Beginner")) {
 			level = "level1";
@@ -98,7 +111,7 @@ public class ProjectControllerImpl {
 		} else if (level.equals("Advanced")) {
 			level = "level3";
 		}
-		
+
 		// vo에 분야와 레벨 값 담기
 		projectVO.setpField(pField);
 		projectVO.setLevel(level);

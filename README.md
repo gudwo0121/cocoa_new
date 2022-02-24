@@ -323,3 +323,10 @@
 
 ***
 
+22.02.24 추가
+
+* Capitalized cField + pField 경로 표시 추가
+
+  = conditionRead.js 에서 소문자를 쓰기 때문에 ${showField}로 전송
+
+***

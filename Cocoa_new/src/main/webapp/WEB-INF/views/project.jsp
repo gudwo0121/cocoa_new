@@ -44,7 +44,7 @@
 					<!-- 헤드라인 -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Project Page</h1>
+						<h1 class="h3 mb-0 text-gray-800">Project Page > ${showField}</h1>
 
 						<!-- 비로그인시 로그인창 이동 -->
 						<c:choose>

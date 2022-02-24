@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +48,7 @@
 					<!-- 헤드라인 -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Coaching Page</h1>
+						<h1 class="h3 mb-0 text-gray-800">Coaching Page > ${showField}</h1>
 
 						<!-- 비로그인시 로그인창 이동 -->
 						<c:choose>

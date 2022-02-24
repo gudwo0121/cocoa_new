@@ -52,6 +52,11 @@ public class CoachingControllerImpl {
 		String url = "/coaching";
 		mav.setViewName(url);
 
+		// 분야의 첫 문자를 대문자로 변경 = 경로표시에 쓰기 위함
+		String showField = cField.substring(0, 1).toUpperCase() + cField.substring(1, cField.length());
+
+		// capitalized cField 값 전송
+		mav.addObject("showField", showField);
 		// cField 값 전송
 		mav.addObject("cField", cField);
 
@@ -79,6 +84,11 @@ public class CoachingControllerImpl {
 		String url = "/coaching";
 		mav.setViewName(url);
 
+		// 분야의 첫 문자를 대문자로 변경 = 경로표시에 쓰기 위함
+		String showField = cField.substring(0, 1).toUpperCase() + cField.substring(1, cField.length());
+
+		// capitalized cField 값 전송
+		mav.addObject("showField", showField);
 		// cField 값 전송
 		mav.addObject("cField", cField);
 		// tool 값 전송

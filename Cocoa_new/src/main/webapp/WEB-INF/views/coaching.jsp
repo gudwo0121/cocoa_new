@@ -28,6 +28,8 @@
 	src="${contextPath}/resources/js/showTools.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/resources/js/conditionRead.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/showToolsSelected.js"></script>
 </head>
 <body id="page-top">
 
@@ -48,7 +50,8 @@
 					<!-- 헤드라인 -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Coaching Page > ${showField}</h1>
+						<h1 class="h3 mb-0 text-gray-800">Coaching Page >
+							${showField}</h1>
 
 						<!-- 비로그인시 로그인창 이동 -->
 						<c:choose>
@@ -75,7 +78,8 @@
 
 						<!-- 개발툴 1 -->
 						<div class="col-xl-3 col-md-6 mb-4">
-							<div class="card border-left-primary shadow h-100 py-2">
+							<div id="toolSelected1"
+								class="card border-left-primary shadow h-100 py-2">
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
@@ -93,7 +97,8 @@
 
 						<!-- 개발툴 2 -->
 						<div class="col-xl-3 col-md-6 mb-4">
-							<div class="card border-left-success shadow h-100 py-2">
+							<div id="toolSelected2"
+								class="card border-left-success shadow h-100 py-2">
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">

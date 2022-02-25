@@ -24,6 +24,8 @@
 	src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/resources/js/conditionRead.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/showLevelsSelected.js"></script>
 </head>
 <body id="page-top">
 
@@ -71,7 +73,8 @@
 
 						<!-- (난이도) 초급 -->
 						<div class="col-xl-3 col-md-6 mb-4">
-							<div class="card border-left-primary shadow h-100 py-2">
+							<div id="levelsSelected1"
+								class="card border-left-primary shadow h-100 py-2">
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
@@ -89,7 +92,8 @@
 
 						<!-- (난이도) 중급 -->
 						<div class="col-xl-3 col-md-6 mb-4">
-							<div class="card border-left-success shadow h-100 py-2">
+							<div id="levelsSelected2"
+								class="card border-left-success shadow h-100 py-2">
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
@@ -107,7 +111,8 @@
 
 						<!-- (난이도) 고급 -->
 						<div class="col-xl-3 col-md-6 mb-4">
-							<div class="card border-left-success shadow h-100 py-2">
+							<div id="levelsSelected3"
+								class="card border-left-warning shadow h-100 py-2">
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">

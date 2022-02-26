@@ -143,7 +143,7 @@
 							<c:forEach var="projectPost" items="${projectPost}">
 
 								<div class="col mb-5"
-									style="padding-left: 30px; padding-right: 30px;">
+									style="padding-left: 30px; padding-right: 30px; color: black;">
 									<div class="card h-100"
 										style="width: 110%; border: 1px solid black;">
 
@@ -153,14 +153,14 @@
 											src="${contextPath}/pImgLoad?leader=${projectPost.leader}&projectNO=${projectPost.projectNO}&pImg=${projectPost.pImg}" />
 
 										<!-- 리스트 표시 정보 -->
-										<div class="card-body" style="background-color: #FFCCCC;">
+										<div class="card-body" style="background-color: #CE93D8;">
 											<div class="text-center">
 
 												<!-- 리더 -->
-												<b style="font-size: 15px; float: left; color: grey;">${projectPost.leader}</b>
+												<b style="font-size: 15px; float: left;">${projectPost.leader}</b>
 
 												<!-- 후기 개수 (없을시 0개) -->
-												<a href="#">
+												<a href="#" style="color: black;">
 													<div style="font-size: 13px; float: right;">
 														<b>0개의 후기</b>
 													</div> <!-- 평점 평균 (없을시 0.0) -->
@@ -183,9 +183,10 @@
 
 										<!-- projectInfo 이동 -->
 										<div class="card-footer pt-2 border-top-0"
-											style="background-color: #FFCCCC;">
+											style="background-color: #CE93D8;">
 											<div class="text-center">
-												<a class="btn btn-outline-dark mt-auto" href="#">Get in</a>
+												<a class="btn btn-outline-dark mt-auto" href="#"><b>Get
+														in</b></a>
 											</div>
 										</div>
 									</div>

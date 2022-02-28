@@ -139,7 +139,8 @@
 											src="${contextPath}/cImgLoad?coach=${coachingPost.coach}&coachNO=${coachingPost.coachNO}&cImg=${coachingPost.cImg}" />
 
 										<!-- 리스트 표시 정보 -->
-										<div class="card-body" style="background-color: #CE93D8;">
+										<div id="postBgColor1" class="card-body"
+											style="background-color: #FFCCCC;">
 											<div class="text-center">
 
 												<!-- 리더 -->
@@ -168,8 +169,8 @@
 										</div>
 
 										<!-- coachInfo 이동 -->
-										<div class="card-footer border-top-0"
-											style="background-color: #CE93D8;">
+										<div id="postBgColor2" class="card-footer border-top-0"
+											style="background-color: #FFCCCC;">
 											<div class="text-center">
 												<a class="btn btn-outline-dark mt-auto" href="#"><b>Get
 														in</b></a>

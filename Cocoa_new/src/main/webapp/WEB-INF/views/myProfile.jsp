@@ -19,6 +19,7 @@
 	rel="stylesheet">
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="resources/js/profileWrite.js"></script>
 </head>
 <body id="page-top">
 
@@ -36,79 +37,62 @@
 				<!-- 메인 콘텐츠 -->
 				<div class="container-fluid">
 
-					<!-- Page Heading -->
+					<!-- 헤드라인 -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">My Info</h1>
+						<h1 class="h3 mb-0 text-gray-800">Profile</h1>
 					</div>
 
 					<!-- 본인 프로필 조회 및 수정 -->
-					<form name="proFileInfo" method="post"
-						action="${contextPath}/modProfile" enctype="multipart/form-data">
+					<form name="profile" method="post"
+						action="${contextPath}/profileWrite" enctype="multipart/form-data">
 						<section class="py-5" style="margin: 0 auto;">
 							<div class="row" style="flex-wrap: unset;">
 
-
-								<div class="col-sm-3 px-3">
+								<div class="card shadow mb-4">
 
 									<!-- 좌측 프로필 : proImg / name -->
 									<div style="flex-wrap: unset;">
-										<div
-											style="text-align: center; width: 100%; height: 60%; border: 2px solid; background-color: #FFCCCC;">
 
-											<!-- 프로필 이미지 -->
-											<br> <br> <input type="hidden"
-												name="originalFileName" value="${profileId.proImg }" /> <img
-												id="preview"
-												src="..."
-												style="border: 1px solid;" width="70%" height="120px"
-												onerror="this.src='resources/img/onerror.png'" /> <br>
-											<br> <label class="btn btn-outline-dark" for="proImg"
-												id="proImgMod">대표 이미지 변경 </label> <input type="file"
-												id="proImg" name="proImg" onchange="readURL(this);"
-												style="display: none;" /><br>
+										<!-- 프로필 이미지 -->
+										<input type="hidden"
+											name="originalFileName" value="${profileId.proImg}">
+										<label class="btn btn-outline-dark" for="proImg"
+											id="proImgMod">
+											<img id="preview" src="..." onerror="this.src='resources/img/onerror.png'">
+										</label>
+										<input type="file" id="proImg" name="proImg" onchange="readURL(this);" style="display: none;">
 
-											<!-- 후기 조회 이동 -->
-											<br> <span style="text-align: center;"><a
-												href="/cocoa/view_reviewInfo?target=${profileId.id}"> <input
-													type="button" name="view_reviewInfo" value="후기보기"
-													class="btn btn-third-dark"
-													style="font-size: 15px; border-radius: 12px; width: 50%;">
-											</a> </span><br> <br>
+										<!-- name -->
+										이름춘
 
-											<!-- name -->
-											<input type="hidden" name="id" value="${profileId.id}" /> <input
-												type="text" name="nickName" value="${profileId.name}"
-												disabled
-												style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; color: black; width: 50%;"><br>
-											<br>
-										</div>
 									</div>
 								</div>
 
 								<!-- 우측 내용 : pContents -->
-								<div
-									style="border: 1px solid; background-color: #FFCC99; color: black; border-radius: 5px; padding: 15px;"
-									class="col-sm-9 px-5">
-									<div class="proFile">
+								<div class="col-sm-9 px-5">
+									<div class="card shadow mb-4">
 
-										<!-- pContents 입력 -->
-										<!-- textarea 닫아주는거 붙여써야함 -->
-										<br> <b>소개 및 경력 :</b> <br> <br>
-										<textarea name="proContents" rows="20" cols="20"
-											id="proContents" disabled placeholder="공백 포함 2000자 이내로 입력"
-											style="border: 1px solid; background-color: #FFCC99; width: 100%; color: black; resize: none;">${profileId.proContents}</textarea>
-										<hr>
+										<div class="card-header py-3">
+											<h6 class="m-0 font-weight-bold text-primary">소개 및 경력</h6>
+										</div>
+
+										<div class="card-body">
+											<textarea name="proContents" id="proContents"
+												placeholder="자신을 어필해주세요!"
+												style="border: none; resize: none;">${profileId.proContents}</textarea>
+										</div>
+
+										<!-- 작성(submit) + 취소(버튼) -->
+										<div class="card-body" style="text-align: center">
+											<input type="submit" id="mod_profile"
+												class="btn btn-outline-dark" value="확 인" /> &nbsp; <a
+												href="/cocoa/" id="mod_start" class="btn btn-outline-dark">프로필
+												수정</a> &nbsp; <input type="button" id="cancel" value="취 소"
+												onclick="history.go(0)" class="btn btn-outline-dark">
+										</div>
 									</div>
 
-									<!-- 작성(submit) + 취소(버튼) -->
-									<div class="card-body" style="text-align: center">
-										<input type="submit" id="mod_profile"
-											class="btn btn-outline-dark" value="확 인" /> <a
-											href="/cocoa/" id="mod_start" class="btn btn-outline-dark">프로필
-											수정</a> &nbsp; <input type="button" id="cancel" value="취 소"
-											onclick="history.go(0)" class="btn btn-outline-dark">
-									</div>
 								</div>
 							</div>
 						</section>

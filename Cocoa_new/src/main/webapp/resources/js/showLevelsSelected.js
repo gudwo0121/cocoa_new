@@ -12,10 +12,16 @@
 		// url의 4번째, 즉 해당 레벨을 눌렀을 시 배경색 전환
 		if (url[4] == level1) {
 			$('#levelsSelected1').css('background-color', '#4e73df');
+			$('#postBgColor1').css('background-color', '#4e73df');
+			$('#postBgColor2').css('background-color', '#4e73df');
 		} else if (url[4] == level2) {
 			$('#levelsSelected2').css('background-color', '#1cc88a');
+			$('#postBgColor1').css('background-color', '#1cc88a');
+			$('#postBgColor2').css('background-color', '#1cc88a');
 		} else if (url[4] == level3) {
 			$('#levelsSelected3').css('background-color', '#f6c23e');
+			$('#postBgColor1').css('background-color', '#f6c23e');
+			$('#postBgColor2').css('background-color', '#f6c23e');
 		}
 
 	});

@@ -52,7 +52,7 @@
 								<div class="card shadow mb-4">
 
 									<!-- 좌측 프로필 : proImg / name -->
-									<div style="flex-wrap: unset;">
+									<div class="row">
 
 										<!-- 프로필 이미지 -->
 										<input type="hidden"
@@ -64,7 +64,7 @@
 										<input type="file" id="proImg" name="proImg" onchange="readURL(this);" style="display: none;">
 
 										<!-- name -->
-										이름춘
+										<div style="text-align: center;">이름</div>
 
 									</div>
 								</div>

@@ -40,5 +40,33 @@
 			WHERE id = #{id} AND pwd = #{pwd}
 		]]>
 	</select>
+	
+	<!-- 프로필 작성 (수정 포함) -->
+	<update id="updateProfileById" parameterType="MemberVO">
+		<![CDATA[
+			UPDATE memberTBL
+			SET proContents = #{proContents}, proImg = #{proImg}
+			WHERE id = #{id}
+		]]>
+	</update>
+	
+	<!-- 
+		]]>
+		<if test="proImg != '' AND proImg != null">
+			<![CDATA[
+				proImg = #{proImg}
+			]]>
+		</if>
+		<![CDATA[
+	-->
+	
+	<!-- 회원정보 조회
+	<select id="selectProfileById" resultType="memberVO" parameterType="String">
+		<![CDATA[
+			SELECT *
+			FROM memberTBL
+			WHERE id = #{id}
+		]]>
+	</select> -->
 
 </mapper>

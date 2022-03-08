@@ -29,4 +29,11 @@ public class MemberServiceImpl {
 		loginMember = memberDAOImpl.selectMemberById(memberVO);
 		return loginMember;
 	}
+
+	// 프로필 작성 (수정 포함)
+	public int updateProfileService(MemberVO memberVO) {
+		int isUpdated = 0;
+		isUpdated = memberDAOImpl.updateProfile(memberVO);
+		return isUpdated;
+	}
 }

@@ -23,9 +23,8 @@
 <body>
 
 	<ul
-		class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-		style="background-color: #990066; background-image: none;"
-		id="accordionSidebar">
+		class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion"
+		style="background-image: none;" id="accordionSidebar">
 
 		<!-- Sidebar - Brand -->
 		<a

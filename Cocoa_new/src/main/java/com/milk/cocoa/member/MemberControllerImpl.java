@@ -42,7 +42,7 @@ public class MemberControllerImpl {
 	// 회원가입
 	@ResponseBody
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public int SignUp(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request,
+	public int signUp(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request,
 			HttpServletResponse response) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
@@ -89,7 +89,7 @@ public class MemberControllerImpl {
 		mav.setViewName(url);
 		return mav;
 	}
-	
+
 	// 내 프로필 화면 이동
 	@RequestMapping(value = "/goMyProfile", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView goMyProfile(HttpServletRequest request, HttpServletResponse response) {
@@ -97,5 +97,16 @@ public class MemberControllerImpl {
 		String url = "/myProfile";
 		mav.setViewName(url);
 		return mav;
+	}
+
+	// 프로필 작성 (수정 포함)
+	@ResponseBody
+	@RequestMapping(value = "/modProfile", method = RequestMethod.POST)
+	public int modProfile(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = memberServiceImpl.updateProfileService(memberVO);
+		return result;
 	}
 }

@@ -20,18 +20,9 @@
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="resources/js/signUp.js"></script>
-<script type="text/javascript">
-	// 전화번호 하이픈 자동 생성
-	$(document).on("keyup", "#phone", function() {
-		$(this).val(
-				$(this).val().replace(
-						/[^0-9]/g, "").replace(
-								/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/, "$1-$2-$3").replace(
-										"--", "-"));
-	});
-</script>
+<script type="text/javascript" src="resources/js/autoHyphen.js"></script>
 </head>
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary" style="min-width: 1000px; max-width: 1920px;">
 	<div class="container">
 		<div class="card o-hidden border-0 shadow-lg my-5">
 			<div class="card-body p-0">
@@ -56,8 +47,9 @@
 											id="id" name="id" placeholder="ID">
 									</div>
 									<div class="col-sm-3">
-										<input type="button" class="btn btn-primary btn-user btn-block"
-											id="idCheck" name="idCheck" value="중복확인">
+										<input type="button"
+											class="btn btn-primary btn-user btn-block" id="idCheck"
+											name="idCheck" value="중복확인">
 									</div>
 								</div>
 

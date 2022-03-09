@@ -16,7 +16,7 @@
 <link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script type="text/javascript" src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 </head>
-<body id="page-top">
+<body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
 	<div id="wrapper">
 

@@ -21,7 +21,7 @@
 <script type="text/javascript" src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${contextPath}/resources/js/projectWrite.js"></script>
 </head>
-<body id="page-top">
+<body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
 	<div id="wrapper">
 

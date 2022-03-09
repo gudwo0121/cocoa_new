@@ -31,7 +31,7 @@
 <script type="text/javascript"
 	src="${contextPath}/resources/js/showToolsSelected.js"></script>
 </head>
-<body id="page-top">
+<body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
 	<div id="wrapper">
 

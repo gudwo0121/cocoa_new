@@ -443,3 +443,8 @@
 
 ***
 
+22.03.09 추가
+
+* 모든 body 태그에 min-width / max- width 적용 = include 된 jsp 제외
+
+***

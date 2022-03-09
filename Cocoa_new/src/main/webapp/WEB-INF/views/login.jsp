@@ -21,7 +21,7 @@
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="resources/js/login.js"></script>
 </head>
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary" style="min-width: 1000px; max-width: 1920px;">
 
 	<div class="container">
 

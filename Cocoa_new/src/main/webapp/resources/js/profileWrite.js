@@ -16,24 +16,17 @@
 	$(document).ready(function() {
 		
 			// 유효성 검증
-			$('#register').click(function() {
+			$('#modProfile').click(function() {
 			
 				var flag = false;
 				var user_id = $('#id').val();
 				var user_pwd = $('#pwd1').val();
-				var user_pwd2 = $('#pwd2').val();
-				var user_name = $('#name').val();
-				var user_phone = $('#phone').val();
-				
+								
 				if(user_id == '' || user_pwd =='' || user_name =='' || user_phone ==''){
 		
 					alert("빈칸을 채워주세요.");
 			
-				} else if( user_pwd != user_pwd2){
-				
-					alert("비밀번호가 일치하지 않습니다");
-					
-				} else if(user_pwd == user_pwd2){
+				} else {
 				
 					// 회원가입 비동기
 					$.ajax({
@@ -42,9 +35,10 @@
 						type : "post",
 						dataType: "json",
 						async: false,
-						url : '/cocoa/signUp',
+						url : '/cocoa/modProfile',
 						
 						success : function(data){
+						
 							if (data == 1) {
 								alert("회원가입에 성공했습니다. 로그인 해주세요.");
 								location.href='/cocoa/';

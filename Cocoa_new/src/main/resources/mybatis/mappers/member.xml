@@ -60,13 +60,13 @@
 		<![CDATA[
 	-->
 	
-	<!-- 회원정보 조회
-	<select id="selectProfileById" resultType="memberVO" parameterType="String">
+	<!-- 회원정보 조회 -->
+	<select id="selectMemberInfoById" resultType="memberVO" parameterType="String">
 		<![CDATA[
 			SELECT *
 			FROM memberTBL
 			WHERE id = #{id}
 		]]>
-	</select> -->
+	</select>
 
 </mapper>

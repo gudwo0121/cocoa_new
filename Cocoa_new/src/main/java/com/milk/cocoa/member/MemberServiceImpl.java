@@ -36,4 +36,10 @@ public class MemberServiceImpl {
 		isUpdated = memberDAOImpl.updateProfile(memberVO);
 		return isUpdated;
 	}
+
+	// 회원정보 조회
+	public MemberVO selectMemberInfoById(MemberVO memberVO) {
+		MemberVO memberInfo = memberDAOImpl.selectmemberInfoById(memberVO);
+		return memberInfo;
+	}
 }

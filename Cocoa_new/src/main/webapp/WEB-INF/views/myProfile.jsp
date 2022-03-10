@@ -7,7 +7,8 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cocoa</title>
@@ -43,8 +44,8 @@
 					</div>
 
 					<!-- 본인 프로필 조회 및 수정 -->
-					<form name="profile" method="post"
-						action="${contextPath}/profileWrite" enctype="multipart/form-data">
+					<form name="profile" method="post" action="/cocoa/profileWrite"
+						enctype="multipart/form-data">
 						<div class="row">
 
 							<!-- 좌측 프로필 : proImg / name -->
@@ -54,10 +55,11 @@
 
 										<!-- 프로필 이미지 -->
 										<input type="hidden" name="originalFileName"
-											value="${member.proImg}"> <img id="preview" src="..."
-											onerror="this.src='resources/img/onerror.png'" width="70%"
-											height="70%" style="border: 1px solid;">
-										<input type="file" id="proImg" name="proImg"
+											value="${member.proImg}"><label for="proImg"
+											style="cursor: pointer;"><img id="preview" src="..."
+											style="border: 1px solid;" width="100%" height="160vh"
+											onerror="this.src='resources/img/onerror.png'"></label><input
+											type="file" id="proImg" name="proImg"
 											onchange="readURL(this);" style="display: none;">
 
 										<!-- name -->
@@ -80,12 +82,12 @@
 
 									<div class="card-body">
 										<textarea name="proContents" id="proContents"
-											placeholder="자신을 어필해주세요!" style="border: none; resize: none; ">${member.proContents}</textarea>
+											placeholder="자신을 어필해주세요!" style="border: none; resize: none;">${member.proContents}</textarea>
 									</div>
 
 									<!-- 작성(submit) + 취소(버튼) -->
 									<div class="card-body" style="text-align: center">
-										<input type="submit" id="mod_profile"
+										<input type="submit" id="modProfile"
 											class="btn btn-outline-dark" value="작 성"> <input
 											type="button" id="cancel" class="btn btn-outline-dark"
 											value="취 소" onclick="history.go(0)">

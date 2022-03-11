@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-   
+
 <mapper namespace="mapper.member">
 	<resultMap id="memberList" type="memberVO">
 		<result property="id" column="id" />
@@ -22,35 +22,32 @@
 			(#{id}, #{pwd}, #{name}, #{phone})
 		]]>
 	</insert>
-	
+
 	<!-- 아이디 중복확인 -->
-	<select id="selectCountById" resultType="int" parameterType="memberVO">
+	<select id="selectCountById" resultType="int"
+		parameterType="memberVO">
 		<![CDATA[
 			SELECT COUNT(*)
 			FROM memberTBL
 			WHERE id = #{id}
 		]]>
 	</select>
-	
+
 	<!-- 로그인 검증 -->
-	<select id="selectMemberById" resultType="memberVO" parameterType="memberVO">
+	<select id="selectMemberById" resultType="memberVO"
+		parameterType="memberVO">
 		<![CDATA[
 			SELECT *
 			FROM memberTBL
 			WHERE id = #{id} AND pwd = #{pwd}
 		]]>
 	</select>
-	
+
 	<!-- 프로필 작성 (수정 포함) -->
-	<update id="updateProfileById" parameterType="MemberVO">
+	<update id="updateProfileById" parameterType="java.util.Map">
 		<![CDATA[
 			UPDATE memberTBL
-			SET proContents = #{proContents}, proImg = #{proImg}
-			WHERE id = #{id}
-		]]>
-	</update>
-	
-	<!-- 
+			SET proContents = #{proContents},
 		]]>
 		<if test="proImg != '' AND proImg != null">
 			<![CDATA[
@@ -58,10 +55,16 @@
 			]]>
 		</if>
 		<![CDATA[
-	-->
-	
+			WHERE id = #{id}
+		]]>
+	</update>
+
+
+
+
 	<!-- 회원정보 조회 -->
-	<select id="selectMemberInfoById" resultType="memberVO" parameterType="String">
+	<select id="selectMemberInfoById" resultType="memberVO"
+		parameterType="String">
 		<![CDATA[
 			SELECT *
 			FROM memberTBL

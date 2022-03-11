@@ -1,5 +1,7 @@
 package com.milk.cocoa.member;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,17 +32,17 @@ public class MemberDAOImpl {
 		loginMember = sqlSession.selectOne("mapper.member.selectMemberById", memberVO);
 		return loginMember;
 	}
-	
+
 	// 프로필 작성 (수정 포함)
-	public int updateProfile(MemberVO memberVO) {
+	public int updateProfile(Map profileInfo) {
 		int isUpdated = 0;
-		isUpdated = sqlSession.update("mapper.member.updateProfileById", memberVO);
+		isUpdated = sqlSession.update("mapper.member.updateProfileById", profileInfo);
 		return isUpdated;
 	}
-	
+
 	// 회원정보 조회
-	public MemberVO selectmemberInfoById(MemberVO memberVO) {
-		MemberVO memberInfo = sqlSession.selectOne("mapper.member.selectmemberInfoById", memberVO);
+	public MemberVO selectMemberInfoById(String id) {
+		MemberVO memberInfo = sqlSession.selectOne("mapper.member.selectMemberInfoById", id);
 		return memberInfo;
 	}
 }

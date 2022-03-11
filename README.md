@@ -451,6 +451,28 @@
 
 22.03.10 추가
 
-* 
+* proImg hover 효과 추가
+
+  = 이미지 자체 클릭으로 preview 업로드 = label과 img 사이즈 일체화
+
+***
+
+22.03.11 추가
+
+* proImg 업로드 / 다운로드 구현
+
+  = 조건문 있어야함 (널값이 공백으로 삽입되는 현상)
+
+  = Ajax는 사용 실패 = textarea와 proImg 값들이 안읽힌다? = 원인 찾는중
+
+  = member.id 값이 jsp에서는 사용가능하나, controller에서는 사용 불가? = 원인 찾는중
+
+  = ~~코드가 살짝 꼬임~~
+
+  = sol1. goMyProfile REST로 바꾸기
+
+  = sol2. URI에 id값 전달 -> PathVariable로 받아서 활용하기
+
+  = sol3. 수정이 안될 시, 삽입으로 변경 -> 조회도 다른 화면으로 받아와야 할지도...?
 
 ***

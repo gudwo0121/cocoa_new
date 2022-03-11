@@ -1,5 +1,7 @@
 package com.milk.cocoa.member;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,15 +33,15 @@ public class MemberServiceImpl {
 	}
 
 	// 프로필 작성 (수정 포함)
-	public int updateProfileService(MemberVO memberVO) {
+	public int updateProfileService(Map profileInfo) {
 		int isUpdated = 0;
-		isUpdated = memberDAOImpl.updateProfile(memberVO);
+		isUpdated = memberDAOImpl.updateProfile(profileInfo);
 		return isUpdated;
 	}
 
 	// 회원정보 조회
-	public MemberVO selectMemberInfoById(MemberVO memberVO) {
-		MemberVO memberInfo = memberDAOImpl.selectmemberInfoById(memberVO);
+	public MemberVO selectMemberInfoByIdService(String id) {
+		MemberVO memberInfo = memberDAOImpl.selectMemberInfoById(id);
 		return memberInfo;
 	}
 }

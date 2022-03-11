@@ -44,7 +44,7 @@
 					</div>
 
 					<!-- 본인 프로필 조회 및 수정 -->
-					<form name="profile" method="post" action="/cocoa/profileWrite"
+					<form name="profile" method="post" action="/cocoa/modMyProfile"
 						enctype="multipart/form-data">
 						<div class="row">
 
@@ -54,8 +54,8 @@
 									<div class="col" style="text-align: center; padding: 20px;">
 
 										<!-- 프로필 이미지 -->
-										<input type="hidden" name="originalFileName"
-											value="${member.proImg}"><label for="proImg"
+										<input type="hidden" id="profileImg" name="profileImg"
+											value="${profile.proImg}"><label for="proImg"
 											style="cursor: pointer;"><img id="preview" src="..."
 											style="border: 1px solid;" width="100%" height="160vh"
 											onerror="this.src='resources/img/onerror.png'"></label><input
@@ -65,6 +65,11 @@
 										<!-- name -->
 										<div class="text-dark" style="padding: 20px;">
 											<h6 class="m-0 font-weight-bold text-primary">${member.name}</h6>
+										</div>
+
+										<!-- id (hidden) -->
+										<div>
+											<input type="hidden" id="id" name="id" value="${member.id}">
 										</div>
 
 									</div>
@@ -82,7 +87,7 @@
 
 									<div class="card-body">
 										<textarea name="proContents" id="proContents"
-											placeholder="자신을 어필해주세요!" style="border: none; resize: none;">${member.proContents}</textarea>
+											placeholder="자신을 어필해주세요!" style="border: none; resize: none;">${profile.proContents}</textarea>
 									</div>
 
 									<!-- 작성(submit) + 취소(버튼) -->

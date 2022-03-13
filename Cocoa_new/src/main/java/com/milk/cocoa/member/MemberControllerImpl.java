@@ -19,7 +19,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -109,15 +111,13 @@ public class MemberControllerImpl {
 	}
 
 	// 내 프로필 화면 이동
-	@RequestMapping(value = "/goMyProfile", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView goMyProfile(HttpServletRequest request, HttpServletResponse response) {
+	@GetMapping("/profile/{id}")
+	public ModelAndView viewProfileById(@PathVariable(value = "id") String id, HttpServletRequest request,
+			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/myProfile";
-
-		MemberVO memberInfo = memberServiceImpl.selectMemberInfoByIdService(memberVO.getId());
+		MemberVO memberInfo = memberServiceImpl.selectMemberInfoByIdService(id);
 		mav.addObject("profile", memberInfo);
-		System.out.println();
-
 		mav.setViewName(url);
 		return mav;
 	}
@@ -150,15 +150,16 @@ public class MemberControllerImpl {
 
 	// 파일 불러오기 = 경로에 저장된 이미지를 썸네일로 가져오기
 	@RequestMapping("/proImgLoad")
-	protected void proImgLoad(@RequestParam("id") String id, HttpServletResponse response) throws Exception {
+	protected void proImgLoad(@RequestParam("id") String id, @RequestParam("proImg") String proImg,
+			HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
 		MemberVO memberInfo = memberServiceImpl.selectMemberInfoByIdService(id);
-		String proImg = memberInfo.getproImg();
-		String filePath = PROFILE_IMAGE_REPO + "/" + id + "/" + proImg;
+		String profileImg = memberInfo.getproImg();
+		String filePath = PROFILE_IMAGE_REPO + "/" + id + "/" + profileImg;
 		File image = new File(filePath);
 
 		response.setHeader("Cache-Control", "no-cache");
-		response.addHeader("Content-disposition", "attachment; fileName=" + proImg);
+		response.addHeader("Content-disposition", "attachment; fileName=" + profileImg);
 		FileInputStream in = new FileInputStream(image);
 		byte[] buffer = new byte[1024 * 8];
 		while (true) {
@@ -179,7 +180,7 @@ public class MemberControllerImpl {
 		multipartRequest.setCharacterEncoding("utf-8");
 		Map<String, Object> profileInfo = new HashMap<String, Object>();
 		Enumeration enu = multipartRequest.getParameterNames();
-		
+
 		while (enu.hasMoreElements()) {
 			String name = (String) enu.nextElement();
 			String value = multipartRequest.getParameter(name);
@@ -195,11 +196,10 @@ public class MemberControllerImpl {
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-		
+
 		try {
 			memberServiceImpl.updateProfileService(profileInfo);
-			
-			
+
 			if (proImg != null && proImg.length() != 0) {
 				String profileImg = (String) profileInfo.get("profileImg");
 				File oldFile = new File(PROFILE_IMAGE_REPO + "/" + id + "/" + profileImg);

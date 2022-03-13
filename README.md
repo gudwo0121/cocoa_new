@@ -479,6 +479,16 @@
 
 22.03.12 추가
 
-* 
+* goMyProfile -> /profile/{id} 변경
+
+  = memberTBL을 따로 넘버링해서 {memberNum} 이런식으로 하면 보안에 더 좋을 것 같다
+
+  = proImg, proContents, name 값 받아와서 출력
+
+***
+
+22.03.13 추가
+
+* 작성(수정) 해야함
 
 ***

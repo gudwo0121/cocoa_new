@@ -12,14 +12,18 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cocoa</title>
-<link href="resources/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-<script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="resources/js/profileWrite.js"></script>
+<link href="${contextPath}/resources/css/sb-admin-2.min.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/profileWrite.js"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
@@ -56,9 +60,10 @@
 										<!-- 프로필 이미지 -->
 										<input type="hidden" id="profileImg" name="profileImg"
 											value="${profile.proImg}"><label for="proImg"
-											style="cursor: pointer;"><img id="preview" src="..."
+											style="cursor: pointer;"><img id="preview"
+											src="${contextPath}/proImgLoad?id=${member.id}&proImg=${member.proImg}"
 											style="border: 1px solid;" width="100%" height="160vh"
-											onerror="this.src='resources/img/onerror.png'"></label><input
+											onerror="this.src='${contextPath}/resources/img/onerror.png'"></label><input
 											type="file" id="proImg" name="proImg"
 											onchange="readURL(this);" style="display: none;">
 
@@ -142,13 +147,15 @@
 	</div> -->
 
 	<!-- JS 참조 -->
-	<script src="resources/vendor/jquery/jquery.min.js"></script>
-	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-	<script src="resources/js/sb-admin-2.min.js"></script>
-	<script src="resources/vendor/chart.js/Chart.min.js"></script>
-	<script src="resources/js/demo/chart-area-demo.js"></script>
-	<script src="resources/js/demo/chart-pie-demo.js"></script>
+	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+	<script
+		src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="${contextPath}/resources/js/sb-admin-2.min.js"></script>
+	<script src="${contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
+	<script src="${contextPath}/resources/js/demo/chart-area-demo.js"></script>
+	<script src="${contextPath}/resources/js/demo/chart-pie-demo.js"></script>
 
 </body>
 </html>

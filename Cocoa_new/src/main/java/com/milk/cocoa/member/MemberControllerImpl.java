@@ -21,7 +21,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,8 +37,6 @@ public class MemberControllerImpl {
 	private static final String PROFILE_IMAGE_REPO = "/cocoaRepo/profileImg";
 	@Autowired
 	private MemberServiceImpl memberServiceImpl;
-	@Autowired
-	private MemberVO memberVO;
 
 	// 로그인 화면 이동
 	@RequestMapping(value = "/goLogin", method = { RequestMethod.GET, RequestMethod.POST })
@@ -111,11 +108,16 @@ public class MemberControllerImpl {
 	}
 
 	// 내 프로필 화면 이동
-	@GetMapping("/profile/{id}")
-	public ModelAndView viewProfileById(@PathVariable(value = "id") String id, HttpServletRequest request,
-			HttpServletResponse response) {
+	// 차후 memberNo으로 설정하면 보안성 높일 수 있을듯
+	@GetMapping("/profile")
+	public ModelAndView viewProfileById(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/myProfile";
+
+		// Session을 통해 MemberVO-toString으로 id만 뽑아오기
+		HttpSession session = request.getSession();
+		String id = session.getAttribute("member").toString();
+
 		MemberVO memberInfo = memberServiceImpl.selectMemberInfoByIdService(id);
 		mav.addObject("profile", memberInfo);
 		mav.setViewName(url);
@@ -199,10 +201,10 @@ public class MemberControllerImpl {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
-			int result = memberServiceImpl.updateProfileService(profileInfo);
+			int result = memberServiceImpl.updateProfileByIdService(profileInfo);
 
 			if (proImg != null && proImg.length() != 0 && result != 0) {
-				String defaultImg = (String) profileInfo.get("default");
+				String defaultImg = (String) profileInfo.get("defaultImg");
 				File oldFile = new File(PROFILE_IMAGE_REPO + "/" + id + "/" + defaultImg);
 				oldFile.delete();
 
@@ -212,8 +214,7 @@ public class MemberControllerImpl {
 			}
 			message = "<script>";
 			message += " alert('작성 내용이 반영되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/profile/" + profileInfo.get("id")
-					+ "';";
+			message += " location.href='" + multipartRequest.getContextPath() + "/profile';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -223,8 +224,7 @@ public class MemberControllerImpl {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/profile/" + profileInfo.get("id")
-					+ "';";
+			message += " location.href='" + multipartRequest.getContextPath() + "/profile';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
 		}

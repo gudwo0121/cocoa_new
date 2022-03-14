@@ -33,9 +33,9 @@ public class MemberServiceImpl {
 	}
 
 	// 프로필 작성 (수정 포함)
-	public int updateProfileService(Map profileInfo) {
+	public int updateProfileByIdService(Map profileInfo) {
 		int isUpdated = 0;
-		isUpdated = memberDAOImpl.updateProfile(profileInfo);
+		isUpdated = memberDAOImpl.updateProfileById(profileInfo);
 		return isUpdated;
 	}
 

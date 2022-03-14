@@ -521,6 +521,20 @@
 
 22.03.15 추가
 
-* 
+* header의 우측 미니사이즈 프로필 이미지 표시 구현
+
+  = id 표시 추가 구현
+
+* UI 개선 = proContents textarea 태그 사이즈 조정
+
+  = `cols / rows` 말고 `style="width:100%; height:100%;"`로 조정
+
+  = div 안 버튼 2개 `margin-right:5px;`(좌우 상관 x) 간격 벌리기
+
+* 22.03.12 개선 = `/profile` 로 URI 변경
+
+  = 세션값으로 member.id를 받아와 컨트롤러에서 로직 처리
+  
+  = `modMyProfile` 파일경로에 id가 쓰이므로 myProfile.jsp에 히든으로 id 두어야함
 
 ***

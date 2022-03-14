@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,9 +58,9 @@
 									<div class="col" style="text-align: center; padding: 20px;">
 
 										<!-- 프로필 이미지 -->
-										<input type="hidden" name="default" value="${profile.proImg}" />
-										<label for="proImg" style="cursor: pointer;"><img
-											id="preview"
+										<input type="hidden" name="defaultImg"
+											value="${profile.proImg}" /> <label for="proImg"
+											style="cursor: pointer;"><img id="preview"
 											src="${contextPath}/proImgLoad?id=${profile.id}&proImg=${profile.proImg}"
 											style="border: 1px solid;" width="100%" height="160vh"
 											onerror="this.src='${contextPath}/resources/img/onerror.png'">
@@ -70,11 +70,8 @@
 										<!-- name -->
 										<div class="text-dark" style="padding: 20px;">
 											<h6 class="m-0 font-weight-bold text-primary">${profile.name}</h6>
-										</div>
-
-										<!-- id (hidden) -->
-										<div>
-											<input type="hidden" id="id" name="id" value="${profile.id}">
+											<!-- 이미지 다운로드시 파일명 변수로 쓰임 -->
+											<input type="hidden" name="id" value="${profile.id}">
 										</div>
 
 									</div>
@@ -90,26 +87,26 @@
 										<h6 class="m-0 font-weight-bold text-primary">소개 및 경력</h6>
 									</div>
 
-									<div class="card-body">
+									<div class="card-body" style="height: 100vh;">
 										<textarea name="proContents" id="proContents"
-											placeholder="자신을 어필해주세요!" style="border: none; resize: none;">${profile.proContents}</textarea>
+											placeholder="자신을 어필해주세요!">${profile.proContents}</textarea>
 									</div>
 
 									<!-- 작성(submit) + 취소(버튼) -->
 									<div class="card-body" style="text-align: center;">
 										<input type="submit" id="modProfile"
-											class="btn btn-outline-dark" value="작 성"> <input
-											type="button" id="cancel" class="btn btn-outline-dark"
+											style="margin-right: 5px;" class="btn btn-outline-dark"
+											value="작 성"><input type="button" id="cancel"
+											class="btn btn-outline-dark" style="margin-left: 5px;"
 											value="취 소" onclick="history.go(0)">
 									</div>
 								</div>
-
 							</div>
+
 						</div>
 					</form>
 
 				</div>
-
 			</div>
 
 			<!-- 하단바 -->

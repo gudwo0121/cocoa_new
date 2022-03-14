@@ -34,7 +34,7 @@ public class MemberDAOImpl {
 	}
 
 	// 프로필 작성 (수정 포함)
-	public int updateProfile(Map profileInfo) {
+	public int updateProfileById(Map profileInfo) {
 		int isUpdated = 0;
 		isUpdated = sqlSession.update("mapper.member.updateProfileById", profileInfo);
 		return isUpdated;

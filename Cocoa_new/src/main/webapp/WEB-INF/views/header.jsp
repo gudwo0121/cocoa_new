@@ -12,13 +12,16 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cocoa</title>
-<link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
-<script type="text/javascript" src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<link href="${contextPath}/resources/css/sb-admin-2.min.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -180,21 +183,21 @@
 								href="#">Read More Messages</a>
 						</div></li>
 
-					<div class="topbar-divider d-none d-sm-block"></div>
 
 					<!-- 로그인 상태일 시 -->
 					<li class="nav-item dropdown no-arrow"><a
 						class="nav-link dropdown-toggle" href="#" id="userDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> <span
-							class="mr-2 d-none d-lg-inline text-gray-600 small"></span> <img
-							class="img-profile rounded-circle" src="...">
+							class="mr-2 d-none d-lg-inline text-gray-600 small">${member.id}
+						</span> <img class="img-profile rounded-circle"
+							src="${contextPath}/proImgLoad?id=${member.id}&proImg=${member.proImg}">
 					</a>
 
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="/cocoa/profile/${member.id}"> <i
+							<a class="dropdown-item" href="/cocoa/profile"> <i
 								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
 							</a> <a class="dropdown-item" href="#"> <i
 								class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings
@@ -202,7 +205,7 @@
 								class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Activity
 								Log
 							</a>
- 
+
 							<div class="dropdown-divider"></div>
 
 							<label class="dropdown-item"
@@ -215,15 +218,15 @@
 
 			<c:otherwise>
 				<!-- 비로그인 상태일 시 -->
-				<ul class="navbar-nav ml-auto">
-					<a href="/cocoa/goLogin"
+				<div class="navbar-nav ml-auto">
+					<input type="button" onclick="location.href='/cocoa/goLogin'"
+						value="Login"
 						class="d-none d-sm-inline-block btn btn btn-primary shadow-sm"
-						style="height: 10%; margin-top: 5%;">Login</a>
-
-					<a href="/cocoa/goSignUp"
+						style="margin-right: 5px;"> <input type="button"
+						onclick="location.href='/cocoa/goSignUp'" value="SignUp"
 						class="d-none d-sm-inline-block btn btn btn-primary shadow-sm"
-						style="height: 10%; margin-top: 5%; margin-left: 5px;">Sign up</a>
-				</ul>
+						style="margin-left: 5px;">
+				</div>
 			</c:otherwise>
 		</c:choose>
 	</nav>

@@ -71,4 +71,11 @@ public class MemberVO {
 	public void setproContents(String proContents) {
 		this.proContents = proContents;
 	}
+
+	// id만 뽑아내기
+	@Override
+	public String toString() {
+		return id;
+	}
+
 }

@@ -47,20 +47,19 @@
 	<update id="updateProfileById" parameterType="java.util.Map">
 		<![CDATA[
 			UPDATE memberTBL
-			SET proContents = #{proContents},
+			SET proContents = #{proContents}
 		]]>
-		<if test="proImg != '' AND proImg != null">
-			<![CDATA[
-				proImg = #{proImg}
-			]]>
+		<!-- 이미지 미변경시 업데이트에서 제외 -->
+		<!-- test 내부의 "and"는 대문자로 쓰면 인식불가 -->
+		<if test="proImg != '' and proImg != null">
+				<![CDATA[
+					, proImg = #{proImg}
+				]]>
 		</if>
 		<![CDATA[
 			WHERE id = #{id}
 		]]>
 	</update>
-
-
-
 
 	<!-- 회원정보 조회 -->
 	<select id="selectMemberInfoById" resultType="memberVO"

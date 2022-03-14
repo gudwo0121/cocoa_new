@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +48,7 @@
 					</div>
 
 					<!-- 본인 프로필 조회 및 수정 -->
-					<form name="profile" method="post" action="/cocoa/modMyProfile"
+					<form method="post" action="/cocoa/modMyProfile"
 						enctype="multipart/form-data">
 						<div class="row">
 
@@ -58,23 +58,23 @@
 									<div class="col" style="text-align: center; padding: 20px;">
 
 										<!-- 프로필 이미지 -->
-										<input type="hidden" id="profileImg" name="profileImg"
-											value="${profile.proImg}"><label for="proImg"
-											style="cursor: pointer;"><img id="preview"
-											src="${contextPath}/proImgLoad?id=${member.id}&proImg=${member.proImg}"
+										<input type="hidden" name="default" value="${profile.proImg}" />
+										<label for="proImg" style="cursor: pointer;"><img
+											id="preview"
+											src="${contextPath}/proImgLoad?id=${profile.id}&proImg=${profile.proImg}"
 											style="border: 1px solid;" width="100%" height="160vh"
-											onerror="this.src='${contextPath}/resources/img/onerror.png'"></label><input
-											type="file" id="proImg" name="proImg"
+											onerror="this.src='${contextPath}/resources/img/onerror.png'">
+										</label> <input type="file" id="proImg" name="proImg"
 											onchange="readURL(this);" style="display: none;">
 
 										<!-- name -->
 										<div class="text-dark" style="padding: 20px;">
-											<h6 class="m-0 font-weight-bold text-primary">${member.name}</h6>
+											<h6 class="m-0 font-weight-bold text-primary">${profile.name}</h6>
 										</div>
 
 										<!-- id (hidden) -->
 										<div>
-											<input type="hidden" id="id" name="id" value="${member.id}">
+											<input type="hidden" id="id" name="id" value="${profile.id}">
 										</div>
 
 									</div>
@@ -96,7 +96,7 @@
 									</div>
 
 									<!-- 작성(submit) + 취소(버튼) -->
-									<div class="card-body" style="text-align: center">
+									<div class="card-body" style="text-align: center;">
 										<input type="submit" id="modProfile"
 											class="btn btn-outline-dark" value="작 성"> <input
 											type="button" id="cancel" class="btn btn-outline-dark"

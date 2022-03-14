@@ -192,17 +192,18 @@ public class MemberControllerImpl {
 		profileInfo.put("proImg", proImg);
 
 		String id = (String) profileInfo.get("id");
+
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
-			memberServiceImpl.updateProfileService(profileInfo);
+			int result = memberServiceImpl.updateProfileService(profileInfo);
 
-			if (proImg != null && proImg.length() != 0) {
-				String profileImg = (String) profileInfo.get("profileImg");
-				File oldFile = new File(PROFILE_IMAGE_REPO + "/" + id + "/" + profileImg);
+			if (proImg != null && proImg.length() != 0 && result != 0) {
+				String defaultImg = (String) profileInfo.get("default");
+				File oldFile = new File(PROFILE_IMAGE_REPO + "/" + id + "/" + defaultImg);
 				oldFile.delete();
 
 				File srcFile = new File(PROFILE_IMAGE_REPO + "/" + "temp" + "/" + proImg);
@@ -210,19 +211,22 @@ public class MemberControllerImpl {
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
 			message = "<script>";
-			message += " alert('수정이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/goMyProfile'; ";
+			message += " alert('작성 내용이 반영되었습니다.');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/profile/" + profileInfo.get("id")
+					+ "';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
+
 			File srcFile = new File(PROFILE_IMAGE_REPO + "/" + "temp" + "/" + proImg);
 			srcFile.delete();
 
 			message = " <script>";
-			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/profile/" + profileInfo.get("id")
+					+ "';";
 			message += " </script>";
-			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
 		}
 		return resEnt;
 	}

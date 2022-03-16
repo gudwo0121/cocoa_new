@@ -52,7 +52,7 @@
 						enctype="multipart/form-data">
 						<div class="row">
 
-							<!-- 좌측 프로필 : proImg / name -->
+							<!-- 프로필 이미지 + 이름 -->
 							<div class="col-sm-3 px-5">
 								<div class="card shadow mb-4">
 									<div class="col" style="text-align: center; padding: 20px;">
@@ -67,8 +67,8 @@
 										</label> <input type="file" id="proImg" name="proImg"
 											onchange="readURL(this);" style="display: none;">
 
-										<!-- name -->
-										<div class="text-dark" style="padding: 20px;">
+										<!-- 이름 -->
+										<div class="text-dark" style="padding-top: 20px;">
 											<h6 class="m-0 font-weight-bold text-primary">${profile.name}</h6>
 											<!-- 이미지 다운로드시 파일명 변수로 쓰임 -->
 											<input type="hidden" name="id" value="${profile.id}">
@@ -78,27 +78,25 @@
 								</div>
 							</div>
 
-							<!-- 우측 내용 : pContents -->
+							<!-- 프로필 내용 -->
 							<div class="col-sm-9 px-5">
 								<div class="card shadow mb-4">
 
-									<!-- 소개 및 경력 -->
+									<!-- 소제목 -->
 									<div class="card-header">
 										<h6 class="m-0 font-weight-bold text-primary">소개 및 경력</h6>
 									</div>
 
 									<div class="card-body" style="height: 100vh;">
 										<textarea name="proContents" id="proContents"
-											placeholder="자신을 어필해주세요!">${profile.proContents}</textarea>
+											placeholder="Tip. 전직장 혹은 현직장&#13;&#10;Tip. 진행했던 프로젝트&#13;&#10;Tip. 코칭 분야&#13;&#10;Tip. 그 외 어필할 수 있는 경력사항">${profile.proContents}</textarea>
 									</div>
 
-									<!-- 작성(submit) + 취소(버튼) -->
+									<!-- 작성 + 취소 -->
 									<div class="card-body" style="text-align: center;">
-										<input type="submit" id="modProfile"
-											style="margin-right: 5px;" class="btn btn-outline-dark"
-											value="작 성"><input type="button" id="cancel"
-											class="btn btn-outline-dark" style="margin-left: 5px;"
-											value="취 소" onclick="history.go(0)">
+										<input type="submit" class="btn btn-outline-dark" value="작 성">&nbsp;&nbsp;<input
+											type="button" class="btn btn-outline-dark" value="취 소"
+											onclick="history.go(0)">
 									</div>
 								</div>
 							</div>

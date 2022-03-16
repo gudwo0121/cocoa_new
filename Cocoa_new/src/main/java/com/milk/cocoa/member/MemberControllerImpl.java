@@ -108,7 +108,6 @@ public class MemberControllerImpl {
 	}
 
 	// 내 프로필 화면 이동
-	// 차후 memberNo으로 설정하면 보안성 높일 수 있을듯
 	@GetMapping("/profile")
 	public ModelAndView viewProfileById(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();

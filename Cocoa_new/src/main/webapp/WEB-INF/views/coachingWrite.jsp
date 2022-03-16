@@ -12,14 +12,18 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cocoa</title>
-<link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
-<script type="text/javascript" src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="${contextPath}/resources/js/coachingWrite.js"></script>
+<link href="${contextPath}/resources/css/sb-admin-2.min.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/coachingWrite.js"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
@@ -40,115 +44,90 @@
 					<!-- 헤드라인 -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">코칭 등록</h1>
+						<h1 class="h3 mb-0 text-gray-800">Coaching Post</h1>
 					</div>
 
 					<!-- 코칭 등록 -->
-					<form name="coachingWrite" method="post" id="coachingWrite"
-						action="/cocoa/coachingWrite" enctype="multipart/form-data">
-						<section class="py-5">
-							<div class="container main-secction">
-								<div class="row" style="flex-wrap: unset;">
+					<form method="post" action="/cocoa/coachingWrite"
+						enctype="multipart/form-data">
 
-									<!-- 좌측 프로필 : coach~proImg / coach~name -->
-									<div
-										class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
-										<div class="row">
-											<div
-												class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center"
-												style="width: 80%; height: 100%; border: 2px solid; background-color: #FFCCCC;">
+						<!-- 정보 입력란 -->
+						<div class="card shadow mb-4"
+							style="margin: 0 auto; width: 700px;">
 
-												<!-- 프로필 조회 이동 -->
-												<br> <br> <img name="proImg" src="..."
-													style="border: 1px solid;" width="50%" height="120px"
-													onerror="this.src='${contextPath}/resources/img/onerror.png'"><br>
-												<br>
+							<!-- 소제목 -->
+							<div class="card-header">
+								<h6 class="m-0 font-weight-bold text-primary">코칭 등록</h6>
+							</div>
 
-												<!-- coach -->
-												<input type="text" name="coach" value="${member.id}"
-													readonly
-													style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;"><br>
-												<br>
-											</div>
-										</div>
-									</div>
+							<!-- 썸네일 -->
+							<div align="center">
+								<br> <label for="cImg" style="cursor: pointer;"><img
+									id="preview" src="..." style="border: 1px solid;" width="100%"
+									height="200vh"
+									onerror="this.src='${contextPath}/resources/img/onerror.png'">
+								</label> <input type="file" id="cImg" name="cImg"
+									onchange="readURL(this);" style="display: none;">
+							</div>
 
-									<!-- 우측 내용 : cImg / cTitle / basicPrice / cContents -->
-									<div class="card px-3"
-										style="width: 50rem; border: 1px solid; background-color: #FFCC99">
+							<!-- 요금 + 분야 + 개발툴 + 내용 -->
+							<div class="cpWrite">
+								<hr>
 
-										<!-- cImg -->
-										<div align="center">
-											<br> <img id="preview" src="${contextPath}/resources/img/onerror.png"
-												width=100% height=300 style="border: 1px solid;" /><br>
-											<br> <label class="btn btn-outline-dark" for="cImg">
-												대표 이미지 변경 </label><input type="file" id="cImg" name="cImg"
-												onchange="readURL(this);" style="display: none;" />
-										</div>
+								<!-- 제목 -->
+								제목 : <input name="cTitle" type="text" id="cTitle"
+									style="border: 1px solid; width: 88%; margin-left: 25px;">
+								<hr>
 
-										<!-- cTitle / basicPrice / cContents 입력 -->
-										<div class="coach">
+								<!-- 요금 -->
+								요금 : <input name="basicPrice" type="number" id="basicPrice"
+									min="0" max="100000000"
+									style="border: 1px solid; width: 150px; margin-left: 25px;">&nbsp;원
+								<hr>
 
-											<!-- cTitle 입력 -->
-											<hr>
-											<input name="cTitle" type="text" placeholder="제목을 입력하세요."
-												id="cTitle"
-												style="border: 1; text-align: center; width: 100%;">
-											<hr>
+								<!-- 분야 -->
+								분야 : <select
+									style="text-align: center; width: 150px; margin-left: 25px; border: 1px solid;"
+									id="cField" name="cField" onchange="categoryChange(this)">
+									<option id="empty" value="empty">-- 선택 --</option>
+									<option id="cField1" value="cField1">Web</option>
+									<option id="cField2" value="cField2">Mobile App</option>
+									<option id="cField3" value="cField3">Embedded</option>
+								</select>
+								<hr>
 
-											<!-- basicPrice 입력 -->
-											요금 : <input name="basicPrice" type="number" id="basicPrice"
-												placeholder="요금을 입력하세요." style="border: 1; width: 30%;">&nbsp;<b>원</b>
-											<hr>
+								<!-- 개발툴 -->
+								개발툴 : <select
+									style="text-align: center; width: 150px; margin-left: 10px; border: 1px solid;"
+									name="tool" id="tool">
+									<option id="empty" value="empty">-- 선택 --</option>
 
-											<!-- cField 선택 -->
-											영역 : <select style="text-align: center; width: 30%;"
-												id="cField" name="cField" onchange="categoryChange(this)">
-												<option id="empty" value="empty">-- 선택 --</option>
-												<option id="cField1" value="cField1">Web</option>
-												<option id="cField2" value="cField2">Mobile App</option>
-												<option id="cField3" value="cField3">Embedded</option>
-											</select>
-											<hr>
+									<option id="tool1" value="tool1" hidden>Spring</option>
+									<option id="tool2" value="tool2" hidden>Django</option>
 
-											<!-- tool 선택 -->
-											개발툴 : <select style="text-align: center; width: 30%;"
-												name="tool" id="tool">
-												<option id="empty" value="empty">-- 선택 --</option>
+									<option id="tool3" value="tool3" hidden>Android Studio</option>
+									<option id="tool4" value="tool4" hidden>Xcode</option>
 
-												<option id="tool1" value="tool1" hidden>Spring</option>
-												<option id="tool2" value="tool2" hidden>Django</option>
+									<option id="tool5" value="tool5" hidden>Arduino</option>
+									<option id="tool6" value="tool6" hidden>Raspberry Pi</option>
+								</select>
+								<hr>
 
-												<option id="tool3" value="tool3" hidden>Android
-													Studio</option>
-												<option id="tool4" value="tool4" hidden>Xcode</option>
+								<!-- 상세 내용 -->
+								상세 내용 : <br> <br>
+								<textarea name="cContents" rows="10" id="cContents"
+									placeholder="Tip. 코칭 가능시간대 포함 (필수)&#13;&#10;Tip. 요금환불 관련사항 포함 (필수)&#13;&#10;Tip. 경력 및 프로젝트 기입 (선택)"
+									style="border: 1px solid; width: 100%; resize: none;"></textarea>
+								<hr>
 
-												<option id="tool5" value="tool5" hidden>Arduino</option>
-												<option id="tool6" value="tool6" hidden>Raspberry
-													Pi</option>
-											</select>
-											<hr>
-
-											<!-- cContents 입력 -->
-											<!-- textarea 닫아주는거 붙여써야함 -->
-											세부 내용 : <br>
-											<textarea name="cContents" rows="10" cols="20" id="cContents"
-												placeholder="요금 측정 기준 및 본인 PR을 해주세요. (공백 포함 2000자 이내)"
-												style="border: 1; width: 100%; resize: none;"></textarea>
-											<hr>
-										</div>
-
-										<!-- 작성(submit) + 취소(버튼) -->
-										<div class="card-body" style="text-align: center">
-											<input type="submit" class="btn btn-outline-dark" value="등록"
-												onclick="nullCheck()"> &nbsp; <a
-												href="/cocoa/goCoachingList" class="btn btn-outline-dark">취소</a>
-										</div>
-									</div>
-
+								<!-- 등록 + 취소 -->
+								<div style="text-align: center; padding-bottom: 15px;">
+									<input type="submit" class="btn btn-outline-dark" value="등 록">
+									&nbsp; <input type="button" class="btn btn-outline-dark"
+										onclick="history.go(-1)" value="취 소">
 								</div>
 							</div>
-						</section>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -189,12 +168,13 @@
 
 	<!-- JS 참조 -->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-	<script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script
+		src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 	<script src="${contextPath}/resources/js/sb-admin-2.min.js"></script>
 	<script src="${contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
 	<script src="${contextPath}/resources/js/demo/chart-area-demo.js"></script>
 	<script src="${contextPath}/resources/js/demo/chart-pie-demo.js"></script>
-
 </body>
 </html>

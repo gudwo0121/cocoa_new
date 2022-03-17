@@ -50,11 +50,12 @@
 					<!-- 본인 프로필 조회 및 수정 -->
 					<form method="post" action="/cocoa/modMyProfile"
 						enctype="multipart/form-data">
-						<div class="row">
+						<div class="row" style="margin: 0 auto;">
 
 							<!-- 프로필 이미지 + 이름 -->
-							<div class="col-sm-3 px-5">
-								<div class="card shadow mb-4">
+							<div class="col-sm-4 px-4">
+								<div class="card shadow mb-4"
+									style="float: right; width: 200px;">
 									<div class="col" style="text-align: center; padding: 20px;">
 
 										<!-- 프로필 이미지 -->
@@ -79,15 +80,15 @@
 							</div>
 
 							<!-- 프로필 내용 -->
-							<div class="col-sm-9 px-5">
-								<div class="card shadow mb-4">
+							<div class="col-sm-8 px-4">
+								<div class="card shadow mb-4" style="float: left; width: 700px;">
 
 									<!-- 소제목 -->
 									<div class="card-header">
 										<h6 class="m-0 font-weight-bold text-primary">소개 및 경력</h6>
 									</div>
 
-									<div class="card-body" style="height: 100vh;">
+									<div class="card-body" style="height: 70vh;">
 										<textarea name="proContents" id="proContents"
 											placeholder="Tip. 전직장 혹은 현직장&#13;&#10;Tip. 진행했던 프로젝트&#13;&#10;Tip. 코칭 분야&#13;&#10;Tip. 그 외 어필할 수 있는 경력사항">${profile.proContents}</textarea>
 									</div>

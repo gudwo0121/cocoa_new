@@ -551,3 +551,16 @@
 
 ***
 
+22.03.17 추가
+
+* myProfile 너비 설정 변경
+
+  = 반응형 -> 적응형
+
+  = `card shadow mb-4` width 고정 
+
+* 공통) 작성시 placeholder는 textarea 태그에만 추가
+
+* coachingWrite 요금 = min~max 값 (0~1억원) 설정
+
+***

@@ -12,14 +12,18 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cocoa</title>
-<link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
-<script type="text/javascript" src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="${contextPath}/resources/js/projectWrite.js"></script>
+<link href="${contextPath}/resources/css/sb-admin-2.min.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/projectWrite.js"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
@@ -37,128 +41,105 @@
 				<!-- 메인 콘텐츠 -->
 				<div class="container-fluid">
 
-					<!-- Page Heading -->
+					<!-- 헤드라인 -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">프로젝트 모집</h1>
+						<h1 class="h3 mb-0 text-gray-800">Project Post</h1>
 					</div>
 
 					<!-- 프로젝트 모집 작성 -->
-					<form name="projectWrite" action="/cocoa/projectWrite"
-						method="post" id="projectWrite" enctype="multipart/form-data">
-						<section class="py-5">
-							<div class="container main-secction">
-								<div class="row" style="flex-wrap: unset;">
+					<form method="post" action="/cocoa/projectWrite"
+						enctype="multipart/form-data">
 
-									<!-- 좌측 프로필 : leader~proImg / leader~name -->
-									<div
-										class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
-										<div class="row">
-											<div
-												class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center"
-												style="width: 80%; height: 100%; border: 2px solid; background-color: #FFCCCC;">
+						<!-- 정보 입력란 -->
+						<div class="card shadow mb-4"
+							style="margin: 0 auto; width: 700px;">
 
-												<!-- 프로필 조회 이동 -->
-												<br> <br> <img name="proImg" src="..."
-													style="border: 1px solid;" width="50%" height="120px"
-													onerror="this.src='resources/img/onerror.png'"><br>
-												<br>
-
-												<!-- leader -->
-												<input type="text" name="leader" value="${member.id}"
-													readonly
-													style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;"><br>
-												<br>
-
-												<!-- kakao -->
-												<b>카카오톡 오픈채팅 :</b><br> <br> <input type="text"
-													name="kakao" placeholder="링크 입력" id="kakao"
-													style="text-align: center; border: 1; background-color: #FFCCCC; width: 80%;"><br>
-												<br>
-											</div>
-										</div>
-									</div>
-
-									<!-- 우측 내용 : pImg / pTitle / memberCount / pContents -->
-									<div class="card px-3"
-										style="width: 50rem; border: 1px solid; background-color: #FFCC99">
-
-										<!-- pImg -->
-										<div align="center">
-											<br> <img id="preview" src="${contextPath}/resources/img/onerror.png"
-												width=100% height=300 style="border: 1px solid;" /><br>
-											<br> <label class="btn btn-outline-dark" for="pImg">
-												대표 이미지 변경 </label><input type="file" id="pImg" name="pImg"
-												onchange="readURL(this);" style="display: none;" />
-										</div>
-
-										<!-- pTitle / memberCount / pContents 입력 -->
-										<div class="project">
-
-											<!-- pTitle 입력 -->
-											<hr>
-											<input name="pTitle" type="text" placeholder="제목을 입력하세요."
-												id="pTitle"
-												style="border: 1; text-align: center; width: 100%;">
-											<hr>
-
-											<!-- memberCount 입력 -->
-											인원 : <input name="memberCount" type="number" id="memberCount"
-												placeholder="인원수를 입력하세요." style="border: 1; width: 30%;">&nbsp;<b>명</b>
-											<hr>
-
-											<!-- pField 선택 -->
-											분야 : <select style="text-align: center; width: 30%;"
-												id="pField" name="pField">
-												<option id="empty">-- 선택 --</option>
-												<option id="pField1" value="pField1">Web</option>
-												<option id="pField2" value="pField2">Mobile App</option>
-												<option id="pField3" value="pField3">Embedded</option>
-											</select>
-											<hr>
-
-											<!-- level 선택 -->
-											난이도 : <select style="text-align: center; width: 30%;"
-												id="level" name="level">
-												<option id="empty">-- 선택 --</option>
-												<option id="level1" value="level1">Basic</option>
-												<option id="level2" value="level2">Intermediate</option>
-												<option id="level3" value="level3">Advanced</option>
-											</select>
-											<hr>
-
-											<!-- pContents 입력 -->
-											<!-- textarea 닫아주는거 붙여써야함 -->
-											세부 내용 : <br> <br>
-											<textarea name="pContents" rows="10" cols="20" id="pContents"
-												placeholder="프로젝트 개요 및 포지션 별 자격요건을 써주세요. (공백포함 2000자 이내)"
-												style="border: 1; width: 100%; resize: none;"></textarea>
-											<hr>
-
-											<!-- &nbsp;모임 장소 : <input type="text" name="map" id="addr"
-												size="35" placeholder='장소를 입력해주세요.'> <input
-												type="button" name="send" id="sendMark" value="검색"><br>
-											<br>
-											<div id="map" style="width: 100%; height: 400px;"></div>
-											<hr> -->
-
-										</div>
-
-										<!-- 작성(submit) + 취소(버튼) -->
-										<div class="card-body" style="text-align: center">
-											<input type="submit" class="btn btn-outline-dark" value="등록"
-												onclick="nullCheck()"> &nbsp; <a
-												href="/cocoa/goProjectList" class="btn btn-outline-dark">취소</a>
-										</div>
-									</div>
-								</div>
+							<!-- 소제목 -->
+							<div class="card-header">
+								<h6 class="m-0 font-weight-bold text-primary">프로젝트 모집</h6>
 							</div>
-						</section>
+
+							<!-- 썸네일 -->
+							<div align="center">
+								<br> <label for="pImg" style="cursor: pointer;"><img
+									id="preview" src="..." style="border: 1px solid;" width="100%"
+									height="200vh"
+									onerror="this.src='${contextPath}/resources/img/onerror.png'">
+								</label> <input type="file" id="pImg" name="pImg"
+									onchange="readURL(this);" style="display: none;">
+							</div>
+
+							<!-- 제목 + 인원 + 분야 + 난이도 + 내용 + 카톡링크 + 장소 -->
+							<div class="cpWrite">
+								<hr>
+
+								<!-- 제목 -->
+								제목 : <input name="pTitle" type="text" id="pTitle"
+									style="border: 1px solid; width: 88%; margin-left: 25px;">
+								<hr>
+
+								<!-- 인원 -->
+								인원 : <input name="memberCount" type="number" id="basicPrice"
+									min="0" max="99"
+									style="border: 1px solid; width: 150px; margin-left: 25px;">&nbsp;명
+								<hr>
+
+								<!-- 분야 -->
+								분야 : <select
+									style="text-align: center; width: 150px; margin-left: 25px; border: 1px solid;"
+									id="pField" name="pField">
+									<option id="empty">-- 선택 --</option>
+									<option id="pField1" value="pField1">Web</option>
+									<option id="pField2" value="pField2">Mobile App</option>
+									<option id="pField3" value="pField3">Embedded</option>
+								</select>
+								<hr>
+
+								<!-- 레벨 -->
+								레벨 : <select
+									style="text-align: center; width: 150px; margin-left: 25px; border: 1px solid;"
+									id="level" name="level">
+									<option id="empty">-- 선택 --</option>
+									<option id="level1" value="level1">Basic</option>
+									<option id="level2" value="level2">Intermediate</option>
+									<option id="level3" value="level3">Advanced</option>
+								</select>
+								<hr>
+
+								<!-- 내용 -->
+								상세 내용 : <br> <br>
+								<textarea name="pContents" rows="10" id="pContents"
+									maxlength="2000"
+									placeholder="Tip. 프로젝트 개요 포함 (필수)&#13;&#10;Tip. 개발환경 및 필수역량 포함 (필수)&#13;&#10;Tip. 프로젝트 진행계획 포함 (필수)"
+									style="border: 1px solid; width: 100%; resize: none;"></textarea>
+								<hr>
+
+								<!-- 카톡링크 -->
+								오픈 채팅 : <input name="kakao" type="text" id="kakao"
+									style="border: 1px solid; width: 300px; margin-left: 10px;">
+								<hr>
+
+								<!-- 장소 -->
+								모임 장소 : <input type="text" name="map" id="addr" size="35"
+									style="border: 1px solid; width: 300px; margin-left: 10px; margin-right: 5px;"
+									placeholder="Tip. 지번 or 도로명 주소 입력"> <input
+									type="button" name="send" id="sendMark" value="검색">
+								<div id="map"></div>
+								<hr>
+
+							</div>
+
+							<!-- 작성 + 취소 -->
+							<div style="text-align: center; padding-bottom: 15px;">
+								<input type="submit" class="btn btn-outline-dark" value="등 록">
+								&nbsp; <input type="button" class="btn btn-outline-dark"
+									onclick="history.go(-1)" value="취 소">
+							</div>
+						</div>
 					</form>
 				</div>
-
 			</div>
-
 
 			<!-- 하단바 -->
 			<jsp:include page="footer.jsp"></jsp:include>
@@ -196,8 +177,10 @@
 
 	<!-- JS 참조 -->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-	<script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script
+		src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 	<script src="${contextPath}/resources/js/sb-admin-2.min.js"></script>
 	<script src="${contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
 	<script src="${contextPath}/resources/js/demo/chart-area-demo.js"></script>

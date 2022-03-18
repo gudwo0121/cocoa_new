@@ -70,7 +70,7 @@
 									onchange="readURL(this);" style="display: none;">
 							</div>
 
-							<!-- 요금 + 분야 + 개발툴 + 내용 -->
+							<!-- 제목 + 요금 + 분야 + 개발툴 + 내용 -->
 							<div class="cpWrite">
 								<hr>
 
@@ -116,6 +116,7 @@
 								<!-- 상세 내용 -->
 								상세 내용 : <br> <br>
 								<textarea name="cContents" rows="10" id="cContents"
+									maxlength="2000"
 									placeholder="Tip. 코칭 가능시간대 포함 (필수)&#13;&#10;Tip. 요금환불 관련사항 포함 (필수)&#13;&#10;Tip. 경력 및 프로젝트 기입 (선택)"
 									style="border: 1px solid; width: 100%; resize: none;"></textarea>
 								<hr>

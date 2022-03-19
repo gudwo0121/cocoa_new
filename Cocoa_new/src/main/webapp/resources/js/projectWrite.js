@@ -1,5 +1,5 @@
 	
-	// 미리보기
+	// 이미지 미리보기
 	function readURL(input) {
 
 		if (input.files && input.files[0]) {
@@ -12,34 +12,46 @@
 		}
 	}
 
-	// 유효성 검증
-	function nullCheck() {
-		var _kakao = $("#kakao").val();
-		var _pTitle = $("#pTitle").val();
-		var _memberCount = $("#memberCount").val();
-		var _pField = $("#pField").val();
-		var _level = $("#level").val();
-		var _pContents = $("#pContents").val();
+	$(document).ready(function() {
 		
-		if (_kakao == "") {
-			alert("카카오 오픈채팅 링크를 입력하세요");
-			$('#projectWrite').attr('onSubmit', "return false;");
-		} else if (_pTitle == "") {
-			alert("제목을 입력하세요");
-			$('#projectWrite').attr('onSubmit', "return false;");
-		} else if (_memberCount == "") {
-			alert("인원을 입력하세요");
-			$('#projectWrite').attr('onSubmit', "return false;");
-		} else if (_pField == "-- 선택 --") {
-			alert("영역을 선택해주세요");
-			$('#projectWrite').attr('onSubmit', "return false;");
-		} else if (level == "-- 선택 --") {
-			alert("수준을 선택해주세요");
-			$('#projectWrite').attr('onSubmit', "return false;");
-		} else if (_pContents == "") {
-			alert("내용을 입력하세요");
-			$('#projectWrite').attr('onSubmit', "return false;");
-		} else {
-			$('#projectWrite').removeAttr('onSubmit');
-		}
-	}
+		// 지도 검색
+		$('#search').click(function() {
+			// 지도 표시 유지
+			event.preventDefault();
+			
+			$.ajax({
+			
+				type : "GET",
+				url : "/cocoa/searchMap",
+				contentType : "application/json",
+				data : {"addr" : $("#addr").val()},
+				
+				success : function(data, textStatus) {
+				
+					// 반환 결과를 파싱 후 저장
+					resultText = JSON.parse(data);
+					
+					// 좌표 찍기 = Pin 처리
+					var lang1 = resultText.addresses[0].x;
+					var lat1 = resultText.addresses[0].y;
+					var mapOptions = {
+						center : new naver.maps.LatLng(lat1, lang1),
+						zoom : 15
+					};
+					var map = new naver.maps.Map('map', mapOptions);
+					var marker = new naver.maps.Marker({
+						position : new naver.maps.LatLng(lat1, lang1),
+						map : map
+					});
+				},
+				
+				error : function(data, textStatus) {
+					alert("검색 불가! 다시 시도해주세요.");
+				},
+				
+				complete : function(data, textStatus) {
+				}
+				
+			});
+		});
+	});

@@ -3,6 +3,7 @@ package com.milk.cocoa.project;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -175,9 +176,6 @@ public class ProjectControllerImpl {
 			pFieldHistory = "embedded";
 		}
 
-		// map은 아직 구현 전 = 하드코딩 "default"로 대체 @@@@@@@@@@@
-		projectMap.put("map", "default");
-
 		// 성공, 실패 시 알림
 		String message;
 		ResponseEntity resEnt = null;
@@ -259,5 +257,19 @@ public class ProjectControllerImpl {
 		byte[] buffer = new byte[1024 * 8];
 		out.write(buffer);
 		out.close();
+	}
+
+	// 지도 검색 = Ajax
+	@ResponseBody
+	@RequestMapping(value = "/searchMap", method = RequestMethod.GET, produces = "application/text; charset=UTF-8")
+	public void searchMapByAddr(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		request.setCharacterEncoding("utf-8");
+		String addr = request.getParameter("addr");
+		response.setContentType("text/text; charset=utf-8");
+		
+		// 검색 후 응답 결과(JSON) 저장
+		String result = projectServiceImpl.searchMapByAddrService(addr);
+		response.getWriter().print(result);
 	}
 }

@@ -24,6 +24,8 @@
 	src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/resources/js/projectWrite.js"></script>
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=jp1by0tzk9"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
@@ -124,7 +126,8 @@
 								모임 장소 : <input type="text" name="map" id="addr" size="35"
 									style="border: 1px solid; width: 300px; margin-left: 10px; margin-right: 5px;"
 									placeholder="Tip. 지번 or 도로명 주소 입력"> <input
-									type="button" name="send" id="sendMark" value="검색">
+									type="button" name="search" id="search" value="검색">
+								<br><br>
 								<div id="map"></div>
 								<hr>
 

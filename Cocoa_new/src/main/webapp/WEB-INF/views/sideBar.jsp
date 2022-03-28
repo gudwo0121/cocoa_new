@@ -12,13 +12,16 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cocoa</title>
-<link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
-<script type="text/javascript" src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<link href="${contextPath}/resources/css/sb-admin-2.min.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -27,7 +30,9 @@
 		id="accordionSidebar">
 
 		<!-- Sidebar - Brand -->
-		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/cocoa/">
+		<a
+			class="sidebar-brand d-flex align-items-center justify-content-center"
+			href="/cocoa/">
 			<div class="sidebar-brand-icon rotate-n-15">
 				<i class="fas fa-laugh-wink"></i>
 			</div>
@@ -57,9 +62,12 @@
 				data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
 					<h3 class="collapse-header">분야:</h3>
-					<label class="collapse-item" onclick="location.href='/cocoa/coaching/web'">Web</label>
-					<label class="collapse-item" onclick="location.href='/cocoa/coaching/mobile'">Mobile</label>
-					<label class="collapse-item" onclick="location.href='/cocoa/coaching/embedded'">Embedded</label>
+					<label style="cursor: pointer;" class="collapse-item"
+						onclick="location.href='/cocoa/coaching/web'">Web</label> <label
+						style="cursor: pointer;" class="collapse-item"
+						onclick="location.href='/cocoa/coaching/mobile'">Mobile</label> <label
+						style="cursor: pointer;" class="collapse-item"
+						onclick="location.href='/cocoa/coaching/embedded'">Embedded</label>
 				</div>
 			</div></li>
 
@@ -73,9 +81,12 @@
 				aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
 					<h3 class="collapse-header">분야:</h3>
-					<label class="collapse-item" onclick="location.href='/cocoa/project/web'">Web</label>
-					<label class="collapse-item" onclick="location.href='/cocoa/project/mobile'">Mobile</label>
-					<label class="collapse-item" onclick="location.href='/cocoa/project/embedded'">Embedded</label>
+					<label style="cursor: pointer;" class="collapse-item"
+						onclick="location.href='/cocoa/project/web'">Web</label> <label
+						style="cursor: pointer;" class="collapse-item"
+						onclick="location.href='/cocoa/project/mobile'">Mobile</label> <label
+						style="cursor: pointer;" class="collapse-item"
+						onclick="location.href='/cocoa/project/embedded'">Embedded</label>
 				</div>
 			</div></li>
 

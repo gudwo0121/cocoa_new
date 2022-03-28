@@ -250,4 +250,23 @@ public class CoachingControllerImpl {
 		out.write(buffer);
 		out.close();
 	}
+
+	// 코칭 글 Get in 조회 (REST)
+	@GetMapping("/coaching/post/{coachNO}")
+	public ModelAndView getInCoachingPostByNum(@PathVariable(value = "coachNO") int coachNO,
+			HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/coachingPost";
+		mav.setViewName(url);
+
+		// 조회된 코칭 글 정보 전송
+		// 로그인 상태면 For input string : ".." 발생
+		// = 어디선가 coachNO 값 중복으로 나와 충돌(?)
+		// = URI에 .. 값이 어느순간 포함된다(?)
+		CoachingVO coachingInfo = coachingServiceImpl.selectCoachingPostByNumService(coachNO);
+		mav.addObject("coachingInfo", coachingInfo);
+
+		return mav;
+	}
+
 }

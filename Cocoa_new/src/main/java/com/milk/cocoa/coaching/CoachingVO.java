@@ -93,4 +93,5 @@ public class CoachingVO {
 	public void setcContents(String cContents) {
 		this.cContents = cContents;
 	}
+
 }

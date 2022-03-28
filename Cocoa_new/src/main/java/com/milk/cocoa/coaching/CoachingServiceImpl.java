@@ -24,6 +24,12 @@ public class CoachingServiceImpl {
 		return coachingPost;
 	}
 
+	// 코칭 글 넘버별 조건 조회
+	public CoachingVO selectCoachingPostByNumService(int coachNO) {
+		CoachingVO coachingInfo = coachingDAOImpl.selectCoachingPostByNum(coachNO);
+		return coachingInfo;
+	}
+
 	// 코칭 글 작성
 	public int insertCoachingPostService(Map coachMap) {
 		return coachingDAOImpl.insertCoachingPost(coachMap);

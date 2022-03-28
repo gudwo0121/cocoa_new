@@ -186,8 +186,10 @@
 										<div id="postBgColor2" class="card-footer pt-2 border-top-0"
 											style="background-color: #FFCCCC;">
 											<div class="text-center">
-												<a class="btn btn-outline-dark mt-auto" href="#"><b>Get
-														in</b></a>
+												<input type="button" class="btn btn-outline-dark mt-auto"
+													onclick="getIn()" value="Get in">
+												<!-- 프로젝트 글 넘버 = PK를 URI로 활용하기 위함 -->
+												<div id="postNo" hidden="">${projectPost.projectNO}</div>
 											</div>
 										</div>
 									</div>

@@ -25,6 +25,12 @@ public class CoachingDAOImpl {
 		return coachingPost;
 	}
 
+	// 코칭 글 넘버별 조건 조회
+	public CoachingVO selectCoachingPostByNum(int coachNO) {
+		CoachingVO coachingInfo = sqlSession.selectOne("mapper.coach.selectCoachingPostByNum", coachNO);
+		return coachingInfo;
+	}
+
 	// 코칭 글 작성
 	public int insertCoachingPost(Map coachingMap) {
 		// 코칭 넘버링으로 생성된 번호를 coachNO으로 삽입

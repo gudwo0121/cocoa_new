@@ -11934,3 +11934,12 @@ body.sidebar-toggled footer.sticky-footer {
 	background-repeat: no-repeat;
 	border: 1px solid;
 }
+
+#getInContents {
+	border: none;
+	width: 100%;
+	resize: none;
+	background-color: white;
+	font-weight: bold;
+	color: black;
+}

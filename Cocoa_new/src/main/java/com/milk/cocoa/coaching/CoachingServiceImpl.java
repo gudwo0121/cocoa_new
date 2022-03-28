@@ -34,5 +34,12 @@ public class CoachingServiceImpl {
 	public int insertCoachingPostService(Map coachMap) {
 		return coachingDAOImpl.insertCoachingPost(coachMap);
 	}
+	
+	// 코칭 글 수정
+	public int updateCoachingPostByNumService(Map coachingInfo) {
+		int isUpdated = 0;
+		isUpdated = coachingDAOImpl.updateCoachingPostByNum(coachingInfo);
+		return isUpdated;
+	}
 
 }

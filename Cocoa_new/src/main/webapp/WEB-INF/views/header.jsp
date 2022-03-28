@@ -138,7 +138,7 @@
 							<h6 class="dropdown-header">Message Center</h6>
 							<a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
-									<img class="rounded-circle" src="..." alt="...">
+									<!-- <img class="rounded-circle" src="..." alt="..."> -->
 									<div class="status-indicator bg-success"></div>
 								</div>
 								<div class="font-weight-bold">
@@ -148,7 +148,7 @@
 								</div>
 							</a> <a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
-									<img class="rounded-circle" src="..." alt="...">
+									<!-- <img class="rounded-circle" src="..." alt="..."> -->
 									<div class="status-indicator"></div>
 								</div>
 								<div>
@@ -158,7 +158,7 @@
 								</div>
 							</a> <a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
-									<img class="rounded-circle" src="..." alt="...">
+									<!-- <img class="rounded-circle" src="..." alt="..."> -->
 									<div class="status-indicator bg-warning"></div>
 								</div>
 								<div>
@@ -169,8 +169,8 @@
 								</div>
 							</a> <a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
-									<img class="rounded-circle"
-										src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
+									<!-- <img class="rounded-circle"
+										src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="..."> -->
 									<div class="status-indicator bg-success"></div>
 								</div>
 								<div>

@@ -253,20 +253,84 @@ public class CoachingControllerImpl {
 
 	// 코칭 글 Get in 조회 (REST)
 	@GetMapping("/coaching/post/{coachNO}")
-	public ModelAndView getInCoachingPostByNum(@PathVariable(value = "coachNO") int coachNO,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView getInCoachingPostByNum(@PathVariable(value = "coachNO") int coachNO, HttpServletRequest request,
+			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/coachingPost";
 		mav.setViewName(url);
 
 		// 조회된 코칭 글 정보 전송
-		// 로그인 상태면 For input string : ".." 발생
-		// = 어디선가 coachNO 값 중복으로 나와 충돌(?)
-		// = URI에 .. 값이 어느순간 포함된다(?)
+		// = 로그인 상태면 For input string : ".." 발생
+		// = header.jsp의 메시지함 img src가 존재하지 않아서 생긴 오류
+		// = 정말 엉뚱한 곳에서 해결 = F12 콘솔을 잘보자
 		CoachingVO coachingInfo = coachingServiceImpl.selectCoachingPostByNumService(coachNO);
 		mav.addObject("coachingInfo", coachingInfo);
 
 		return mav;
 	}
 
+	// 코칭 글 Get in 수정
+	@ResponseBody
+	@RequestMapping(value = "/modCoachingPost", method = RequestMethod.POST)
+	public ResponseEntity modCoachingPostByNum(MultipartHttpServletRequest multipartRequest,
+			HttpServletResponse response) throws Exception {
+		multipartRequest.setCharacterEncoding("utf-8");
+		Map<String, Object> coachingInfo = new HashMap<String, Object>();
+		Enumeration enu = multipartRequest.getParameterNames();
+
+		while (enu.hasMoreElements()) {
+			String name = (String) enu.nextElement();
+			String value = multipartRequest.getParameter(name);
+			coachingInfo.put(name, value);
+		}
+		HttpSession session = multipartRequest.getSession();
+
+		String cImg = cImgUpload(multipartRequest);
+		coachingInfo.put("cImg", cImg);
+
+		String coachNO = (String) coachingInfo.get("coachNO");
+		String coach = (String) coachingInfo.get("coach");
+
+		System.out.println(coachNO);
+		System.out.println(coach);
+
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
+		try {
+			System.out.println(coachingInfo);
+			int result = coachingServiceImpl.updateCoachingPostByNumService(coachingInfo);
+			System.out.println(result);
+
+			if (cImg != null && cImg.length() != 0 && result != 0) {
+				String defaultImg = (String) coachingInfo.get("defaultImg");
+				File oldFile = new File(COACH_IMAGE_REPO + "/" + coach + "/" + coachNO + "/" + defaultImg);
+				oldFile.delete();
+
+				File srcFile = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg);
+				File destDir = new File(COACH_IMAGE_REPO + "/" + coach + "/" + coachNO);
+				FileUtils.moveFileToDirectory(srcFile, destDir, true);
+			}
+			message = "<script>";
+			message += " alert('작성 내용이 반영되었습니다.');";
+//			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/"
+//					+ coachingInfo.get("cField") + "';";
+			message += " history.go(-1);";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+
+			File srcFile = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg);
+			srcFile.delete();
+
+			message = " <script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/post/" + coachNO + "';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+		}
+		return resEnt;
+	}
 }

@@ -26,8 +26,6 @@
 	src="${contextPath}/resources/js/coachingWrite.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/resources/js/conditionRead.js"></script>
-<script type="text/javascript"
-	src="${contextPath}/resources/js/showFieldsAndTools.js"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
@@ -61,6 +59,11 @@
 							<form method="post" action="/cocoa/modCoachingPost"
 								enctype="multipart/form-data">
 
+								<!-- 코칭 넘버 정보 = 코칭 글 수정을 위함 -->
+								<input type="hidden" name="coachNO" value="${coachNO}">
+								<!-- 작성자 정보 = 코칭 글 수정을 위함 -->
+								<input type="hidden" name="coach" value="${coachingInfo.coach}">
+
 								<!-- 정보 입력란 -->
 								<div class="card shadow mb-4"
 									style="margin: 0 auto; width: 700px;">
@@ -89,23 +92,30 @@
 										<!-- 제목 -->
 										제목 : <input name="cTitle" type="text" id="cTitle"
 											value="${coachingInfo.cTitle}"
-											style="border: none; width: 88%; margin-left: 25px;">
+											style="border: 1px solid; width: 88%; margin-left: 25px;">
 										<hr>
 
 										<!-- 요금 -->
 										요금 : <input name="basicPrice" type="number" id="basicPrice"
 											value="${coachingInfo.basicPrice}" min="0" max="100000000"
-											style="border: none; width: 150px; margin-left: 25px;">&nbsp;원
+											style="border: 1px solid; width: 150px; margin-left: 25px;">&nbsp;원
 										<hr>
 
 										<!-- 분야 -->
 										분야 : <select
 											style="text-align: center; width: 150px; margin-left: 25px; border: 1px solid;"
 											id="cField" name="cField" onchange="categoryChange(this)">
-											<option id="empty" value="empty">-- 선택 --</option>
-											<option id="cField1" value="cField1">Web</option>
-											<option id="cField2" value="cField2">Mobile App</option>
-											<option id="cField3" value="cField3">Embedded</option>
+											<option id="getcField" style="display: none;"
+												value="${coachingInfo.cField}">
+												<c:choose>
+													<c:when test="${coachingInfo.cField == 'cField1'}">Web</c:when>
+													<c:when test="${coachingInfo.cField == 'cField2'}">Mobile App</c:when>
+													<c:when test="${coachingInfo.cField == 'cField3'}">Embedded</c:when>
+												</c:choose>
+											</option>
+											<option id="cfield1" value="cField1">Web</option>
+											<option id="cfield2" value="cField2">Mobile App</option>
+											<option id="cfield3" value="cField3">Embedded</option>
 										</select>
 										<hr>
 
@@ -113,17 +123,16 @@
 										개발툴 : <select
 											style="text-align: center; width: 150px; margin-left: 10px; border: 1px solid;"
 											name="tool" id="tool">
-											<option id="empty" value="empty">-- 선택 --</option>
-
-											<option id="tool1" value="tool1" hidden>Spring</option>
-											<option id="tool2" value="tool2" hidden>Django</option>
-
-											<option id="tool3" value="tool3" hidden>Android
-												Studio</option>
-											<option id="tool4" value="tool4" hidden>Xcode</option>
-
-											<option id="tool5" value="tool5" hidden>Arduino</option>
-											<option id="tool6" value="tool6" hidden>Raspberry Pi</option>
+											<option id="default" value="${coachingInfo.tool}">
+												<c:choose>
+													<c:when test="${coachingInfo.tool == 'tool1'}">Spring</c:when>
+													<c:when test="${coachingInfo.tool == 'tool2'}">Django</c:when>
+													<c:when test="${coachingInfo.tool == 'tool3'}">Android Studio</c:when>
+													<c:when test="${coachingInfo.tool == 'tool4'}">Xcode</c:when>
+													<c:when test="${coachingInfo.tool == 'tool5'}">Arduino</c:when>
+													<c:when test="${coachingInfo.tool == 'tool6'}">Raspberry Pi</c:when>
+												</c:choose>
+											</option>
 										</select>
 										<hr>
 
@@ -191,15 +200,15 @@
 
 									<!-- 상세 내용 -->
 									상세 내용 : <br> <br>
-									<textarea rows="10" maxlength="2000" disabled
-										style="border: none; width: 100%; resize: none; background-color: white; font-weight: bold;">${coachingInfo.cContents}</textarea>
+									<textarea rows="10" maxlength="2000" id="getInContents"
+										disabled>${coachingInfo.cContents}</textarea>
 									<hr>
 
-									<!-- 등록 + 취소 -->
+									<!-- 코칭요청 + 목록으로 -->
 									<div style="text-align: center; padding-bottom: 15px;">
-										<input type="submit" class="btn btn-outline-dark" value="등 록">
+										<input type="button" class="btn btn-outline-dark" value="코칭요청">
 										&nbsp; <input type="button" class="btn btn-outline-dark"
-											onclick="history.go(-1)" value="취 소">
+											onclick="history.go(-1)" value="목록으로">
 									</div>
 								</div>
 							</div>

@@ -55,6 +55,25 @@
 		]]>
 	</insert>
 
+	<!-- 코칭 글 수정 -->
+	<update id="updateCoachingPostByNum"
+		parameterType="java.util.Map">
+		<![CDATA[
+			UPDATE coachTBL
+			SET cTitle = #{cTitle}, basicPrice = #{basicPrice}, cField = #{cField}, tool = #{tool}, cContents = #{cContents}
+		]]>
+		<!-- 이미지 미변경시 업데이트에서 제외 -->
+		<!-- test 내부의 "and"는 대문자로 쓰면 인식불가 -->
+		<if test="cImg != '' and cImg != null">
+				<![CDATA[
+					, cImg = #{cImg}
+				]]>
+		</if>
+		<![CDATA[
+			WHERE coachNO = #{coachNO}
+		]]>
+	</update>
+
 	<!-- 코치 글 넘버링 -->
 	<select id="coachingPostNumbering" resultType="int">
 		<![CDATA[

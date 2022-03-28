@@ -41,6 +41,14 @@ public class CoachingDAOImpl {
 		return coachNO;
 	}
 
+	// 코칭 글 수정
+	public int updateCoachingPostByNum(Map coachingInfo) {
+		int isUpdated = 0;
+		System.out.println(coachingInfo);
+		isUpdated = sqlSession.update("mapper.coach.updateCoachingPostByNum", coachingInfo);
+		return isUpdated;
+	}
+
 	// 코칭 넘버링 = coachNO을 순차적으로 증가시키기 위함
 	private int coachingPostNumbering() {
 		return sqlSession.selectOne("mapper.coach.coachingPostNumbering");

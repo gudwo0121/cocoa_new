@@ -12,8 +12,9 @@
 			}
 		}
 	
-		// 영역 변경시 개발툴 초기화 셋팅
+		// 분야 변경시 개발툴 초기화 셋팅
 		function categoryChange(e) {
+		
 			var tool_cField1_value = [ "tool", "tool1", "tool2" ];
 			var tool_cField2_value = [ "tool", "tool3", "tool4" ];
 			var tool_cField3_value = [ "tool", "tool5", "tool6" ];
@@ -41,23 +42,6 @@
 				opt.value = v[x];
 				opt.innerHTML = o[x];
 				target.appendChild(opt);
-			}
-		}
-	
-		// 유효성 검증
-		function nullCheck() {
-			var _cTitle = $("#cTitle").val();
-			var _basicPrice = $("#basicPrice").val();
-			var _cField = $("#cField").val();
-			var _tool = $("#tool").val();
-			var _cContents = $("#cContents").val();
-	
-			if (_cTitle == "" || _basicPrice == "" || _cField == "empty"
-					|| _tool == "tool" || _cContents == "") {
-				alert("빈칸없이 입력하세요");
-				$('#coachingWrite').attr('onSubmit', "return false;");
-			} else {
-				$('#coachingWrite').removeAttr('onSubmit');
 			}
 		}
 		

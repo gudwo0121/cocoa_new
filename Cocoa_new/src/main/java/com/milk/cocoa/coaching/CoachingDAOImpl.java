@@ -44,7 +44,6 @@ public class CoachingDAOImpl {
 	// 코칭 글 수정
 	public int updateCoachingPostByNum(Map coachingInfo) {
 		int isUpdated = 0;
-		System.out.println(coachingInfo);
 		isUpdated = sqlSession.update("mapper.coach.updateCoachingPostByNum", coachingInfo);
 		return isUpdated;
 	}

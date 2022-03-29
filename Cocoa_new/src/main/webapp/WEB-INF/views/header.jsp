@@ -191,7 +191,7 @@
 						aria-expanded="false"> <span
 							class="mr-2 d-none d-lg-inline text-gray-600 small">${member.id}
 						</span> <img class="img-profile rounded-circle"
-							src="${contextPath}/proImgLoad?id=${member.id}&proImg=${member.proImg}">
+							src="${contextPath}/proImgLoad?id=${member.id}">
 					</a>
 
 						<div

@@ -76,7 +76,8 @@
 
 									<!-- 썸네일 -->
 									<div align="center">
-										<br> <label for="cImg" style="cursor: pointer;"><img
+										<br> <label for="cImg" style="cursor: pointer;"><input
+											type="hidden" name="defaultImg" value="${coachingInfo.cImg}"><img
 											id="preview"
 											src="${contextPath}/cImgLoad?coach=${coachingInfo.coach}&coachNO=${coachingInfo.coachNO}&cImg=${coachingInfo.cImg}"
 											style="border: 1px solid;" width="100%" height="200vh"

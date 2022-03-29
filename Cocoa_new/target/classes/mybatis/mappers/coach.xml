@@ -56,10 +56,9 @@
 	</insert>
 
 	<!-- 코칭 글 수정 -->
-	<update id="updateCoachingPostByNum"
-		parameterType="java.util.Map">
+	<update id="updateCoachingPostByNum" parameterType="java.util.Map">
 		<![CDATA[
-			UPDATE coachTBL
+			UPDATE coachingTBL
 			SET cTitle = #{cTitle}, basicPrice = #{basicPrice}, cField = #{cField}, tool = #{tool}, cContents = #{cContents}
 		]]>
 		<!-- 이미지 미변경시 업데이트에서 제외 -->

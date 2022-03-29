@@ -151,8 +151,7 @@ public class MemberControllerImpl {
 
 	// 파일 불러오기 = 경로에 저장된 이미지를 썸네일로 가져오기
 	@RequestMapping("/proImgLoad")
-	protected void proImgLoad(@RequestParam("id") String id, @RequestParam("proImg") String proImg,
-			HttpServletResponse response) throws Exception {
+	protected void proImgLoad(@RequestParam("id") String id, HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
 		MemberVO memberInfo = memberServiceImpl.selectMemberInfoByIdService(id);
 		String profileImg = memberInfo.getproImg();

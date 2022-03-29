@@ -1,6 +1,7 @@
 package com.milk.cocoa.coaching;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Enumeration;
@@ -30,8 +31,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.milk.cocoa.member.MemberVO;
-
-import net.coobird.thumbnailator.Thumbnails;
 
 @RestController("coachingController")
 public class CoachingControllerImpl {
@@ -217,6 +216,7 @@ public class CoachingControllerImpl {
 			String fileName = fileNames.next();
 			MultipartFile mFile = multipartRequest.getFile(fileName);
 			cImg = mFile.getOriginalFilename();
+
 			File file = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + fileName);
 
 			// 이미지가 유효하면 경로 생성 및 저장
@@ -241,13 +241,17 @@ public class CoachingControllerImpl {
 		String downFile = COACH_IMAGE_REPO + "/" + coach + "/" + coachNO + "/" + cImg;
 		File file = new File(downFile);
 
-		if (file.exists()) {
-			// 원본 이미지에 대한 썸네일 이미지를 생성한 후 OutputStream 객체에 할당
-			Thumbnails.of(file).size(1024, 1024).outputFormat("png").toOutputStream(out);
-		}
-		// 썸네일 이미지를 OutputStream 객체를 이용해 뷰로 전송
+		response.setHeader("Cache-Control", "no-cache");
+		response.addHeader("Content-disposition", "attachment; fileName=" + cImg);
+		FileInputStream in = new FileInputStream(file);
 		byte[] buffer = new byte[1024 * 8];
-		out.write(buffer);
+		while (true) {
+			int count = in.read(buffer);
+			if (count == -1)
+				break;
+			out.write(buffer, 0, count);
+		}
+		in.close();
 		out.close();
 	}
 
@@ -273,7 +277,7 @@ public class CoachingControllerImpl {
 	@ResponseBody
 	@RequestMapping(value = "/modCoachingPost", method = RequestMethod.POST)
 	public ResponseEntity modCoachingPostByNum(MultipartHttpServletRequest multipartRequest,
-			HttpServletResponse response) throws Exception {
+			HttpServletResponse response) throws IOException {
 		multipartRequest.setCharacterEncoding("utf-8");
 		Map<String, Object> coachingInfo = new HashMap<String, Object>();
 		Enumeration enu = multipartRequest.getParameterNames();
@@ -288,11 +292,19 @@ public class CoachingControllerImpl {
 		String cImg = cImgUpload(multipartRequest);
 		coachingInfo.put("cImg", cImg);
 
+		// 필요한 값들 따로 변수화
 		String coachNO = (String) coachingInfo.get("coachNO");
 		String coach = (String) coachingInfo.get("coach");
+		String cField = (String) coachingInfo.get("cField");
 
-		System.out.println(coachNO);
-		System.out.println(coach);
+		// 수치 to 글씨
+		if (cField.equals("cField1")) {
+			cField = "web";
+		} else if (cField.equals("cField2")) {
+			cField = "mobile";
+		} else if (cField.equals("cField3")) {
+			cField = "embedded";
+		}
 
 		String message;
 		ResponseEntity resEnt = null;
@@ -300,11 +312,10 @@ public class CoachingControllerImpl {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
-			System.out.println(coachingInfo);
 			int result = coachingServiceImpl.updateCoachingPostByNumService(coachingInfo);
-			System.out.println(result);
 
 			if (cImg != null && cImg.length() != 0 && result != 0) {
+				// defaultImg -> jsp 에서 꼭 받아오기
 				String defaultImg = (String) coachingInfo.get("defaultImg");
 				File oldFile = new File(COACH_IMAGE_REPO + "/" + coach + "/" + coachNO + "/" + defaultImg);
 				oldFile.delete();
@@ -313,11 +324,10 @@ public class CoachingControllerImpl {
 				File destDir = new File(COACH_IMAGE_REPO + "/" + coach + "/" + coachNO);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
+
 			message = "<script>";
 			message += " alert('작성 내용이 반영되었습니다.');";
-//			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/"
-//					+ coachingInfo.get("cField") + "';";
-			message += " history.go(-1);";
+			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/" + cField + "';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		} catch (Exception e) {

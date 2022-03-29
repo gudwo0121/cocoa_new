@@ -625,6 +625,8 @@
   = Select 박스 (기존 표시 + 수정 가능) = `style="display: none;"` 추가
   
   = STS 5.0.7 & spring-jdbc 5.0.7 = 디펜던시 버전 동일해야함
+  
+  = ~~수정시에도 defaultImg 받아오는 것 잊지말자!~~
 
 ***
 

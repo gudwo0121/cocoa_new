@@ -264,9 +264,6 @@ public class CoachingControllerImpl {
 		mav.setViewName(url);
 
 		// 조회된 코칭 글 정보 전송
-		// = 로그인 상태면 For input string : ".." 발생
-		// = header.jsp의 메시지함 img src가 존재하지 않아서 생긴 오류
-		// = 정말 엉뚱한 곳에서 해결 = F12 콘솔을 잘보자
 		CoachingVO coachingInfo = coachingServiceImpl.selectCoachingPostByNumService(coachNO);
 		mav.addObject("coachingInfo", coachingInfo);
 

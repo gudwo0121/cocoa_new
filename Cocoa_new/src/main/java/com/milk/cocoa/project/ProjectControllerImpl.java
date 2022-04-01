@@ -1,9 +1,9 @@
 package com.milk.cocoa.project;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -31,8 +31,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.milk.cocoa.member.MemberVO;
-
-import net.coobird.thumbnailator.Thumbnails;
 
 @RestController("projectController")
 public class ProjectControllerImpl {
@@ -249,25 +247,114 @@ public class ProjectControllerImpl {
 		String downFile = PROJECT_IMAGE_REPO + "/" + leader + "/" + projectNO + "/" + pImg;
 		File file = new File(downFile);
 
-		if (file.exists()) {
-			// 원본 이미지에 대한 썸네일 이미지를 생성한 후 OutputStream 객체에 할당
-			Thumbnails.of(file).size(1024, 1024).outputFormat("png").toOutputStream(out);
-		}
-		// 썸네일 이미지를 OutputStream 객체를 이용해 뷰로 전송
+		response.setHeader("Cache-Control", "no-cache");
+		response.addHeader("Content-disposition", "attachment; fileName=" + pImg);
+		FileInputStream in = new FileInputStream(file);
 		byte[] buffer = new byte[1024 * 8];
-		out.write(buffer);
+		while (true) {
+			int count = in.read(buffer);
+			if (count == -1)
+				break;
+			out.write(buffer, 0, count);
+		}
+		in.close();
 		out.close();
+	}
+
+	// 프로젝트 글 Get in 조회 (REST)
+	@GetMapping("/project/post/{projectNO}")
+	public ModelAndView getInProjectPostByNum(@PathVariable(value = "projectNO") int projectNO,
+			HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/projectPost";
+		mav.setViewName(url);
+
+		// 조회된 코칭 글 정보 전송
+		ProjectVO projectInfo = projectServiceImpl.selectProjectPostByNumService(projectNO);
+		mav.addObject("projectInfo", projectInfo);
+
+		return mav;
+	}
+
+	// 프로젝트 글 Get in 수정
+	@ResponseBody
+	@RequestMapping(value = "/modProjectPost", method = RequestMethod.POST)
+	public ResponseEntity modProjectPostByNum(MultipartHttpServletRequest multipartRequest,
+			HttpServletResponse response) throws IOException {
+		multipartRequest.setCharacterEncoding("utf-8");
+		Map<String, Object> projectInfo = new HashMap<String, Object>();
+		Enumeration enu = multipartRequest.getParameterNames();
+
+		while (enu.hasMoreElements()) {
+			String name = (String) enu.nextElement();
+			String value = multipartRequest.getParameter(name);
+			projectInfo.put(name, value);
+		}
+		HttpSession session = multipartRequest.getSession();
+
+		String pImg = pImgUpload(multipartRequest);
+		projectInfo.put("pImg", pImg);
+
+		// 필요한 값들 따로 변수화
+		String projectNO = (String) projectInfo.get("projectNO");
+		String leader = (String) projectInfo.get("leader");
+		String pField = (String) projectInfo.get("pField");
+
+		// 수치 to 글씨
+		if (pField.equals("pField1")) {
+			pField = "web";
+		} else if (pField.equals("pField2")) {
+			pField = "mobile";
+		} else if (pField.equals("pField3")) {
+			pField = "embedded";
+		}
+
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
+		try {
+			int result = projectServiceImpl.updateProjectPostByNumService(projectInfo);
+
+			if (pImg != null && pImg.length() != 0 && result != 0) {
+				// defaultImg -> jsp 에서 꼭 받아오기
+				String defaultImg = (String) projectInfo.get("defaultImg");
+				File oldFile = new File(PROJECT_IMAGE_REPO + "/" + leader + "/" + projectNO + "/" + defaultImg);
+				oldFile.delete();
+
+				File srcFile = new File(PROJECT_IMAGE_REPO + "/" + "temp" + "/" + pImg);
+				File destDir = new File(PROJECT_IMAGE_REPO + "/" + leader + "/" + projectNO);
+				FileUtils.moveFileToDirectory(srcFile, destDir, true);
+			}
+
+			message = "<script>";
+			message += " alert('작성 내용이 반영되었습니다.');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/project/" + pField + "';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+
+			File srcFile = new File(PROJECT_IMAGE_REPO + "/" + "temp" + "/" + pImg);
+			srcFile.delete();
+
+			message = " <script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/project/post/" + projectNO + "';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+		}
+		return resEnt;
 	}
 
 	// 지도 검색 = Ajax
 	@ResponseBody
 	@RequestMapping(value = "/searchMap", method = RequestMethod.GET, produces = "application/text; charset=UTF-8")
-	public void searchMapByAddr(HttpServletRequest request, HttpServletResponse response)
-			throws IOException {
+	public void searchMapByAddr(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("utf-8");
 		String addr = request.getParameter("addr");
 		response.setContentType("text/text; charset=utf-8");
-		
+
 		// 검색 후 응답 결과(JSON) 저장
 		String result = projectServiceImpl.searchMapByAddrService(addr);
 		response.getWriter().print(result);

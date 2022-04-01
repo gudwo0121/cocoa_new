@@ -72,7 +72,7 @@
 									onchange="readURL(this);" style="display: none;">
 							</div>
 
-							<!-- 제목 + 인원 + 분야 + 난이도 + 내용 + 카톡링크 + 장소 -->
+							<!-- 제목 + 인원 + 분야 + 난이도 + 내용 + 링크 + 장소 -->
 							<div class="cpWrite">
 								<hr>
 
@@ -83,7 +83,7 @@
 
 								<!-- 인원 -->
 								인원 : <input name="memberCount" type="number" id="basicPrice"
-									min="0" max="99"
+									min="0" max="99" placeholder="0"
 									style="border: 1px solid; width: 150px; margin-left: 25px;">&nbsp;명
 								<hr>
 
@@ -91,18 +91,18 @@
 								분야 : <select
 									style="text-align: center; width: 150px; margin-left: 25px; border: 1px solid;"
 									id="pField" name="pField">
-									<option id="empty">-- 선택 --</option>
+									<option id="empty" style="display: none;">-- 선택 --</option>
 									<option id="pField1" value="pField1">Web</option>
 									<option id="pField2" value="pField2">Mobile App</option>
 									<option id="pField3" value="pField3">Embedded</option>
 								</select>
 								<hr>
 
-								<!-- 레벨 -->
-								레벨 : <select
-									style="text-align: center; width: 150px; margin-left: 25px; border: 1px solid;"
+								<!-- 난이도 -->
+								난이도 : <select
+									style="text-align: center; width: 150px; margin-left: 10px; border: 1px solid;"
 									id="level" name="level">
-									<option id="empty">-- 선택 --</option>
+									<option id="empty" style="display: none;">-- 선택 --</option>
 									<option id="level1" value="level1">Basic</option>
 									<option id="level2" value="level2">Intermediate</option>
 									<option id="level3" value="level3">Advanced</option>
@@ -117,8 +117,9 @@
 									style="border: 1px solid; width: 100%; resize: none;"></textarea>
 								<hr>
 
-								<!-- 카톡링크 -->
-								오픈 채팅 : <input name="kakao" type="text" id="kakao"
+								<!-- 링크 -->
+								채팅 링크 : <input name="link" type="text" id="link"
+									placeholder="Tip. 소통 가능한 채팅방 링크 입력"
 									style="border: 1px solid; width: 300px; margin-left: 10px;">
 								<hr>
 
@@ -126,8 +127,8 @@
 								모임 장소 : <input type="text" name="map" id="addr" size="35"
 									style="border: 1px solid; width: 300px; margin-left: 10px; margin-right: 5px;"
 									placeholder="Tip. 지번 or 도로명 주소 입력"> <input
-									type="button" name="search" id="search" value="검색">
-								<br><br>
+									type="button" name="search" id="search" value="검색"> <br>
+								<br>
 								<div id="map"></div>
 								<hr>
 

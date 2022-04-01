@@ -1,7 +1,9 @@
+<%@page import="org.apache.tiles.jsp.taglib.GetAsStringTag"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +28,8 @@
 	src="${contextPath}/resources/js/conditionRead.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/resources/js/showLevelsSelected.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/getIn.js"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
@@ -176,7 +180,7 @@
 												<b style="font-size: 15px; color: black;">${projectPost.pTitle}</b><br>
 												<br>
 
-												<!-- 인원수 -->
+												<!-- 인원 -->
 												<b style="font-size: 15px; color: #333333; float: right;">${projectPost.memberCount}명
 													모집중</b>
 											</div>
@@ -189,7 +193,7 @@
 												<input type="button" class="btn btn-outline-dark mt-auto"
 													onclick="getIn()" value="Get in">
 												<!-- 프로젝트 글 넘버 = PK를 URI로 활용하기 위함 -->
-												<div id="postNo" hidden="">${projectPost.projectNO}</div>
+												<div id="post" hidden="">${projectPost.projectNO}</div>
 											</div>
 										</div>
 									</div>

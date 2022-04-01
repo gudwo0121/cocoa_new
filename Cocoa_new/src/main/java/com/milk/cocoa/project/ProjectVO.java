@@ -14,14 +14,14 @@ public class ProjectVO {
 	private String level;
 	private String pContents;
 	private String map;
-	private String kakao;
+	private String link;
 
 	public ProjectVO() {
 
 	}
 
 	public ProjectVO(int projectNO, String leader, String pImg, String pTitle, int memberCount, String pField,
-			String level, String pContents, String map, String kakao) {
+			String level, String pContents, String map, String link) {
 		this.projectNO = projectNO;
 		this.leader = leader;
 		this.pImg = pImg;
@@ -31,7 +31,7 @@ public class ProjectVO {
 		this.level = level;
 		this.pContents = pContents;
 		this.map = map;
-		this.kakao = kakao;
+		this.link = link;
 	}
 
 	public int getProjectNO() {
@@ -106,11 +106,11 @@ public class ProjectVO {
 		this.map = map;
 	}
 
-	public String getKakao() {
-		return kakao;
+	public String getlink() {
+		return link;
 	}
 
-	public void setKakao(String kakao) {
-		this.kakao = kakao;
+	public void setlink(String link) {
+		this.link = link;
 	}
 }

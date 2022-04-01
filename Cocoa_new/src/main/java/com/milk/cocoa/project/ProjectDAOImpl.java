@@ -25,6 +25,12 @@ public class ProjectDAOImpl {
 		return projectPost;
 	}
 
+	// 프로젝트 글 넘버별 조건 조회
+	public ProjectVO selectProjectPostByNum(int projectNO) {
+		ProjectVO projectInfo = sqlSession.selectOne("mapper.project.selectProjectPostByNum", projectNO);
+		return projectInfo;
+	}
+
 	// 프로젝트 글 작성
 	public int insertProjectPost(Map projectMap) {
 		// 프로젝트 넘버링으로 생성된 번호를 projectNO으로 삽입
@@ -33,6 +39,13 @@ public class ProjectDAOImpl {
 		// 받아온 입력과 함께 쿼리문 실행
 		sqlSession.insert("mapper.project.insertProjectPost", projectMap);
 		return projectNO;
+	}
+
+	// 프로젝트 글 수정
+	public int updateProjectPostByNum(Map projectInfo) {
+		int isUpdated = 0;
+		isUpdated = sqlSession.update("mapper.project.updateProjectPostByNum", projectInfo);
+		return isUpdated;
 	}
 
 	// 프로젝트 넘버링 = projectNO을 순차적으로 증가시키기 위함

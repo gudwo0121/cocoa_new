@@ -30,6 +30,8 @@
 	src="${contextPath}/resources/js/conditionRead.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/resources/js/showToolsSelected.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/getIn.js"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
@@ -175,7 +177,7 @@
 												<input type="button" class="btn btn-outline-dark mt-auto"
 													onclick="getIn()" value="Get in">
 												<!-- 코칭 글 넘버 = PK를 URI로 활용하기 위함 -->
-												<div id="postNO" hidden="">${coachingPost.coachNO}</div>
+												<div id="post" hidden="">${coachingPost.coachNO}</div>
 											</div>
 										</div>
 									</div>

@@ -23,9 +23,11 @@
 <script type="text/javascript"
 	src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/resources/js/coachingWrite.js"></script>
+	src="${contextPath}/resources/js/projectWrite.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/resources/js/conditionRead.js"></script>
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=jp1by0tzk9"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
@@ -46,23 +48,23 @@
 					<!-- 헤드라인 -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Coaching Post</h1>
+						<h1 class="h3 mb-0 text-gray-800">Project Post</h1>
 					</div>
 
 					<!-- 본인 작성 글이면 수정 가능 -->
 					<c:choose>
 
-						<c:when test="${member.id == coachingInfo.coach}">
+						<c:when test="${member.id == projectInfo.leader}">
 
 							<!-- 본인 -->
 							<!-- 코칭 등록 -->
-							<form method="post" action="/cocoa/modCoachingPost"
+							<form method="post" action="/cocoa/modProjectPost"
 								enctype="multipart/form-data">
 
 								<!-- 코칭 넘버 정보 = 코칭 글 수정을 위함 -->
-								<input type="hidden" name="coachNO" value="${coachNO}">
+								<input type="hidden" name="projectNO" value="${projectNO}">
 								<!-- 작성자 정보 = 코칭 글 수정을 위함 -->
-								<input type="hidden" name="coach" value="${coachingInfo.coach}">
+								<input type="hidden" name="leader" value="${projectInfo.leader}">
 
 								<!-- 정보 입력란 -->
 								<div class="card shadow mb-4"
@@ -70,79 +72,96 @@
 
 									<!-- 소제목 -->
 									<div class="card-header">
-										<h6 class="m-0 font-weight-bold text-primary">${coachingInfo.coach}님의
-											코칭</h6>
+										<h6 class="m-0 font-weight-bold text-primary">${projectInfo.leader}님의
+											프로젝트</h6>
 									</div>
 
 									<!-- 썸네일 -->
 									<div align="center">
-										<br> <label for="cImg" style="cursor: pointer;"><input
-											type="hidden" name="defaultImg" value="${coachingInfo.cImg}"><img
+										<br> <label for="pImg" style="cursor: pointer;"><input
+											type="hidden" name="defaultImg" value="${projectInfo.pImg}"><img
 											id="preview"
-											src="${contextPath}/cImgLoad?coach=${coachingInfo.coach}&coachNO=${coachingInfo.coachNO}&cImg=${coachingInfo.cImg}"
+											src="${contextPath}/pImgLoad?leader=${projectInfo.leader}&projectNO=${projectInfo.projectNO}&pImg=${projectInfo.pImg}"
 											style="border: 1px solid;" width="100%" height="200vh"
 											onerror="this.src='${contextPath}/resources/img/onerror.png'">
-										</label> <input type="file" id="cImg" name="cImg"
+										</label> <input type="file" id="pImg" name="pImg"
 											onchange="readURL(this);" style="display: none;">
 									</div>
 
-									<!-- 제목 + 요금 + 분야 + 개발툴 + 내용 -->
+									<!-- 제목 + 인원 + 분야 + 난이도 + 내용 + 카톡링크 + 장소 -->
 									<div class="cpWrite" style="color: black;">
 										<hr>
 
 										<!-- 제목 -->
-										제목 : <input name="cTitle" type="text" id="cTitle"
-											value="${coachingInfo.cTitle}"
+										제목 : <input name="pTitle" type="text" id="pTitle"
+											value="${projectInfo.pTitle}"
 											style="border: 1px solid; width: 88%; margin-left: 25px;">
 										<hr>
 
-										<!-- 요금 -->
-										요금 : <input name="basicPrice" type="number" id="basicPrice"
-											value="${coachingInfo.basicPrice}" min="0" max="100000000"
-											style="border: 1px solid; width: 150px; margin-left: 25px;">&nbsp;원
+										<!-- 인원 -->
+										인원 : <input name="memberCount" type="number" id="memberCount"
+											value="${projectInfo.memberCount}" min="0" max="99"
+											style="border: 1px solid; width: 150px; margin-left: 25px;">&nbsp;명
 										<hr>
 
 										<!-- 분야 -->
 										분야 : <select
 											style="text-align: center; width: 150px; margin-left: 25px; border: 1px solid;"
-											id="cField" name="cField" onchange="categoryChange(this)">
-											<option id="getcField" style="display: none;"
-												value="${coachingInfo.cField}">
+											id="pField" name="pField" onchange="categoryChange(this)">
+											<option id="getpField" style="display: none;"
+												value="${projectInfo.pField}">
 												<c:choose>
-													<c:when test="${coachingInfo.cField == 'cField1'}">Web</c:when>
-													<c:when test="${coachingInfo.cField == 'cField2'}">Mobile App</c:when>
-													<c:when test="${coachingInfo.cField == 'cField3'}">Embedded</c:when>
+													<c:when test="${projectInfo.pField == 'pField1'}">Web</c:when>
+													<c:when test="${projectInfo.pField == 'pField2'}">Mobile App</c:when>
+													<c:when test="${projectInfo.pField == 'pField3'}">Embedded</c:when>
 												</c:choose>
 											</option>
-											<option id="cfield1" value="cField1">Web</option>
-											<option id="cfield2" value="cField2">Mobile App</option>
-											<option id="cfield3" value="cField3">Embedded</option>
+											<option id="pfield1" value="pField1">Web</option>
+											<option id="pfield2" value="pField2">Mobile App</option>
+											<option id="pfield3" value="pField3">Embedded</option>
 										</select>
 										<hr>
 
-										<!-- 개발툴 -->
-										개발툴 : <select
+										<!-- 난이도 -->
+										난이도 : <select
 											style="text-align: center; width: 150px; margin-left: 10px; border: 1px solid;"
-											name="tool" id="tool">
-											<option id="default" value="${coachingInfo.tool}">
+											name="level" id="level">
+											<option id="default" style="display: none;"
+												value="${projectInfo.level}">
 												<c:choose>
-													<c:when test="${coachingInfo.tool == 'tool1'}">Spring</c:when>
-													<c:when test="${coachingInfo.tool == 'tool2'}">Django</c:when>
-													<c:when test="${coachingInfo.tool == 'tool3'}">Android Studio</c:when>
-													<c:when test="${coachingInfo.tool == 'tool4'}">Xcode</c:when>
-													<c:when test="${coachingInfo.tool == 'tool5'}">Arduino</c:when>
-													<c:when test="${coachingInfo.tool == 'tool6'}">Raspberry Pi</c:when>
+													<c:when test="${projectInfo.level == 'level1'}">Beginner</c:when>
+													<c:when test="${projectInfo.level == 'level2'}">Intermediate</c:when>
+													<c:when test="${projectInfo.level == 'level3'}">Advanced</c:when>
 												</c:choose>
 											</option>
+											<option id="level1" value="level1">Beginner</option>
+											<option id="level2" value="level2">Intermediate</option>
+											<option id="level3" value="level3">Advanced</option>
 										</select>
 										<hr>
 
 										<!-- 상세 내용 -->
 										상세 내용 : <br> <br>
-										<textarea name="cContents" rows="10" id="cContents"
+										<textarea name="pContents" rows="10" id="pContents"
 											maxlength="2000"
-											placeholder="Tip. 코칭 가능시간대 포함 (필수)&#13;&#10;Tip. 요금환불 관련사항 포함 (필수)&#13;&#10;Tip. 경력 및 프로젝트 기입 (선택)"
-											style="border: 1px solid; width: 100%; resize: none;">${coachingInfo.cContents}</textarea>
+											placeholder="Tip. 프로젝트 개요 포함 (필수)&#13;&#10;Tip. 개발환경 및 필수역량 포함 (필수)&#13;&#10;Tip. 프로젝트 진행계획 포함 (필수)"
+											style="border: 1px solid; width: 100%; resize: none;">${projectInfo.pContents}</textarea>
+										<hr>
+
+										<!-- 채팅 링크 -->
+										채팅 링크 : <input name="link" type="text" id="link"
+											placeholder="Tip. 소통 가능한 채팅방 링크 입력"
+											value="${projectInfo.link}"
+											style="border: 1px solid; width: 300px; margin-left: 10px;">
+										<hr>
+
+										<!-- 장소 -->
+										모임 장소 : <input type="text" name="map" id="addr" size="35"
+											style="border: 1px solid; width: 300px; margin-left: 10px; margin-right: 5px;"
+											placeholder="Tip. 지번 or 도로명 주소 입력" value="${projectInfo.map}">
+										<input type="button" name="search" id="search" value="검색">
+										<br> <br>
+										<div id="map"></div>
 										<hr>
 
 										<!-- 등록 + 취소 -->
@@ -166,60 +185,57 @@
 
 								<!-- 소제목 -->
 								<div class="card-header">
-									<h6 class="m-0 font-weight-bold text-primary">${coachingInfo.coach}님의
-										코칭</h6>
+									<h6 class="m-0 font-weight-bold text-primary">${projectInfo.leader}님의
+										프로젝트</h6>
 								</div>
 
 								<!-- 썸네일 -->
 								<div align="center">
 									<br> <img
-										src="${contextPath}/cImgLoad?coach=${coachingInfo.coach}&coachNO=${coachingInfo.coachNO}&cImg=${coachingInfo.cImg}"
+										src="${contextPath}/pImgLoad?leader=${projectInfo.leader}&projectNO=${projectInfo.projectNO}&pImg=${projectInfo.pImg}"
 										style="border: 1px solid;" width="50%" height="200vh"
 										onerror="this.src='${contextPath}/resources/img/onerror.png'">
 								</div>
 
-								<!-- 제목 + 요금 + 분야 + 개발툴 + 내용 -->
+								<!-- 제목 + 인원 + 분야 + 난이도 + 내용 + 장소 -->
 								<div class="cpWrite">
 									<hr>
 
 									<!-- 제목 -->
-									제목 : <span style="margin-left: 25px;">${coachingInfo.cTitle}</span>
+									제목 : <span style="margin-left: 25px;">${projectInfo.pTitle}</span>
 									<hr>
 
-									<!-- 요금 -->
-									요금 : <span style="margin-left: 25px;">${coachingInfo.basicPrice}
-										원</span>
+									<!-- 인원 -->
+									인원 : <span style="margin-left: 25px;">${projectInfo.memberCount}
+										명</span>
 									<hr>
 
 									<!-- 분야 -->
-									분야 : <span id="cField" style="margin-left: 25px;"> <c:choose>
-											<c:when test="${coachingInfo.cField == 'cField1'}">Web</c:when>
-											<c:when test="${coachingInfo.cField == 'cField2'}">Mobile App</c:when>
-											<c:when test="${coachingInfo.cField == 'cField3'}">Embedded</c:when>
-										</c:choose></span>
+									분야 : <span id="pField" style="margin-left: 25px;">${projectInfo.pField}</span>
 									<hr>
 
-									<!-- 개발툴 -->
-									개발툴 : <span id="tool" style="margin-left: 10px;"> <c:choose>
-											<c:when test="${coachingInfo.tool == 'tool1'}">Spring</c:when>
-											<c:when test="${coachingInfo.tool == 'tool2'}">Django</c:when>
-											<c:when test="${coachingInfo.tool == 'tool3'}">Android Studio</c:when>
-											<c:when test="${coachingInfo.tool == 'tool4'}">Xcode</c:when>
-											<c:when test="${coachingInfo.tool == 'tool5'}">Arduino</c:when>
-											<c:when test="${coachingInfo.tool == 'tool6'}">Raspberry Pi</c:when>
-										</c:choose>
-									</span>
+									<!-- 난이도 -->
+									난이도 : <span id="level" style="margin-left: 25px;">${projectInfo.level}</span>
 									<hr>
 
 									<!-- 상세 내용 -->
 									상세 내용 : <br> <br>
 									<textarea rows="10" maxlength="2000" id="getInContents"
-										disabled>${coachingInfo.cContents}</textarea>
+										disabled>${projectInfo.pContents}</textarea>
 									<hr>
 
-									<!-- 코칭요청 + 목록으로 -->
+									<!-- 장소 -->
+									모임 장소 : <input type="text" name="map" id="addr" size="35"
+										readonly
+										style="font-weight: bold; border: none; outline: none; width: 300px; margin-left: 10px; margin-right: 5px;"
+										value="${projectInfo.map}"> <br> <br>
+									<div id="map"></div>
+									<hr>
+
+									<!-- 합류요청 + 목록으로 -->
+									<!-- 합류요청 클릭 시 링크 바로 연결(새창?) -->
 									<div style="text-align: center; padding-bottom: 15px;">
-										<input type="button" class="btn btn-outline-dark" value="코칭요청">
+										<input type="button" class="btn btn-outline-dark" value="합류요청">
 										&nbsp; <input type="button" class="btn btn-outline-dark"
 											onclick="history.go(-1)" value="목록으로">
 									</div>

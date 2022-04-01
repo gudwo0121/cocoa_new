@@ -29,10 +29,23 @@ public class ProjectServiceImpl {
 		return projectPost;
 	}
 
+	// 프로젝트 글 넘버별 조건 조회
+	public ProjectVO selectProjectPostByNumService(int projectNO) {
+		ProjectVO projectInfo = projectDAOImpl.selectProjectPostByNum(projectNO);
+		return projectInfo;
+	}
+
 	// 프로젝트 글 작성
 	public int insertProjectPostService(Map projectMap) {
 		return projectDAOImpl.insertProjectPost(projectMap);
 
+	}
+
+	// 프로젝트 글 수정
+	public int updateProjectPostByNumService(Map projectInfo) {
+		int isUpdated = 0;
+		isUpdated = projectDAOImpl.updateProjectPostByNum(projectInfo);
+		return isUpdated;
 	}
 
 	// 지도 검색

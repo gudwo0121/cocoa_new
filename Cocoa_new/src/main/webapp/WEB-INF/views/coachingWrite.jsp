@@ -81,7 +81,7 @@
 
 								<!-- 요금 -->
 								요금 : <input name="basicPrice" type="number" id="basicPrice"
-									min="0" max="100000000"
+									min="0" max="100000000" placeholder="0"
 									style="border: 1px solid; width: 150px; margin-left: 25px;">&nbsp;원
 								<hr>
 
@@ -89,7 +89,8 @@
 								분야 : <select
 									style="text-align: center; width: 150px; margin-left: 25px; border: 1px solid;"
 									id="cField" name="cField" onchange="categoryChange(this)">
-									<option id="empty" value="empty">-- 선택 --</option>
+									<option id="empty" value="empty" style="display: none;">--
+										선택 --</option>
 									<option id="cField1" value="cField1">Web</option>
 									<option id="cField2" value="cField2">Mobile App</option>
 									<option id="cField3" value="cField3">Embedded</option>
@@ -100,7 +101,8 @@
 								개발툴 : <select
 									style="text-align: center; width: 150px; margin-left: 10px; border: 1px solid;"
 									name="tool" id="tool">
-									<option id="empty" value="empty">-- 선택 --</option>
+									<option id="empty" value="empty" style="display: none;">--
+										선택 --</option>
 
 									<option id="tool1" value="tool1" hidden>Spring</option>
 									<option id="tool2" value="tool2" hidden>Django</option>

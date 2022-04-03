@@ -27,6 +27,8 @@
 <script type="text/javascript"
 	src="${contextPath}/resources/js/conditionRead.js"></script>
 <script type="text/javascript"
+	src="${contextPath}/resources/js/projectOpenLink.js"></script>
+<script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=jp1by0tzk9"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
@@ -177,6 +179,10 @@
 
 
 						<c:otherwise>
+							<!-- 로그인 상태 -->
+							<input id="isLogOn" type="hidden" value="${isLogOn}">
+							<!-- 링크 -->
+							<input id="linkInfo" type="hidden" value="${projectInfo.link}">
 
 							<!-- 타인 -->
 							<!-- 정보 입력란 -->
@@ -235,9 +241,10 @@
 									<!-- 합류요청 + 목록으로 -->
 									<!-- 합류요청 클릭 시 링크 바로 연결(새창?) -->
 									<div style="text-align: center; padding-bottom: 15px;">
-										<input type="button" class="btn btn-outline-dark" value="합류요청">
-										&nbsp; <input type="button" class="btn btn-outline-dark"
-											onclick="history.go(-1)" value="목록으로">
+										<input type="button" class="btn btn-outline-dark" value="합류요청"
+											onclick="openLink()"> &nbsp; <input type="button"
+											class="btn btn-outline-dark" onclick="history.go(-1)"
+											value="목록으로">
 									</div>
 								</div>
 							</div>

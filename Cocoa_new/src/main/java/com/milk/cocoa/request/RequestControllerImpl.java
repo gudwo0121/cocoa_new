@@ -84,7 +84,7 @@ public class RequestControllerImpl {
 		requestMap.put("req", req);
 
 		// coachNO 직접 입력
-		String coachNO = multipartRequest.getServletPath();
+		String coachNO = ;
 		System.out.println(coachNO);
 
 		// rImg 직접 입력

@@ -26,6 +26,8 @@
 	src="${contextPath}/resources/js/coachingWrite.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/resources/js/conditionRead.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/requestIsLogOn.js"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
@@ -217,12 +219,27 @@
 										disabled>${coachingInfo.cContents}</textarea>
 									<hr>
 
-									<!-- 코칭요청 + 목록으로 -->
-									<div style="text-align: center; padding-bottom: 15px;">
-										<input type="button" class="btn btn-outline-dark" value="코칭요청">
-										&nbsp; <input type="button" class="btn btn-outline-dark"
-											onclick="history.go(-1)" value="목록으로">
-									</div>
+									<!-- 로그인 상태 -->
+									<input id="isLogOn" type="hidden" value="${isLogOn}">
+
+									<!-- 코칭 요청 페이지에 필요한 정보 전송 -->
+									<form action="/cocoa/goSendRequest" method="POST">
+
+										<!-- 요청 후 돌아가기 위한 경로에 필요 -->
+										<input name="coachNO" type="hidden"
+											value="${coachingInfo.coachNO}">
+
+										<!-- res 삽입에 필요 -->
+										<input name="res" type="hidden" value="${coachingInfo.coach}">
+
+										<!-- 코칭요청 + 목록으로 -->
+										<div style="text-align: center; padding-bottom: 15px;">
+											<input type="submit" class="btn btn-outline-dark"
+												onclick="return isLogOn();" value="코칭요청"> &nbsp; <input
+												type="button" class="btn btn-outline-dark"
+												onclick="history.go(-1)" value="목록으로">
+										</div>
+									</form>
 								</div>
 							</div>
 						</c:otherwise>

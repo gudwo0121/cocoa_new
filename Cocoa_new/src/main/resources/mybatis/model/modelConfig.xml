@@ -6,6 +6,7 @@
 	<typeAliases>
 		<typeAlias type="com.milk.cocoa.project.ProjectVO" alias="projectVO" />
 		<typeAlias type="com.milk.cocoa.coaching.CoachingVO" alias="coachingVO" />
+		<typeAlias type="com.milk.cocoa.request.RequestVO" alias="requestVO" />
 		<typeAlias type="com.milk.cocoa.member.MemberVO" alias="memberVO" />
 	</typeAliases>
 </configuration>

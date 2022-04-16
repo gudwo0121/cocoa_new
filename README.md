@@ -669,7 +669,19 @@
 
 * 코칭 글 요청 구현
 
-  = 
+  = coachNO, res 정보 담아오는 것까지 완료
+  
+  = Insert 적용시키기만 하면 OK
+
+***
+
+22.04.16 추가
+
+* 코칭 글 요청 구현
+
+  = res는 multipartRequest로 담겨 바로 삽입
+
+  = coachNO은 컨트롤러 Logic에서 경로를 설정해주기 때문에 requestMap에서 직접 get
 
 ***
 

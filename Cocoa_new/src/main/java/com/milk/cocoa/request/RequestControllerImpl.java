@@ -84,8 +84,7 @@ public class RequestControllerImpl {
 		requestMap.put("req", req);
 
 		// coachNO 직접 입력
-		String coachNO = ;
-		System.out.println(coachNO);
+		String coachNO = (String) requestMap.get("coachNO");
 
 		// rImg 직접 입력
 		String rImg = this.rImgUpload(multipartRequest);
@@ -98,11 +97,8 @@ public class RequestControllerImpl {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
-
-			System.out.println(requestMap);
 			// reqNO 따라 해당 요청자의 경로로 업로드
 			int reqNO = requestServiceImpl.insertRequestService(requestMap);
-			System.out.println(reqNO);
 
 			// 파일(이미지)가 유효하면 경로에도 저장
 			if (rImg != null && rImg.length() != 0) {

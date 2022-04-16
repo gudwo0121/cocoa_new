@@ -89,10 +89,10 @@
 								</div>
 								<hr>
 								
-								<!-- res 삽입에 필요 -->
-								<input type="hidden" value="${res}">
-								<!-- 경로에 필요 -->
-								<input type="hidden" value="${coachNO}">
+								<!-- 코칭 요청 = res 삽입에 필요 -->
+								<input type="hidden" name="res" value="${res}">
+								<!-- 되돌아오는 경로에 필요 -->
+								<input type="hidden" name="coachNO" value="${coachNO}">
 
 								<!-- 요청 + 취소 -->
 								<div style="text-align: center; padding-bottom: 15px;">

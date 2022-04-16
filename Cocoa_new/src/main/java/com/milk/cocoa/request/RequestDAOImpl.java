@@ -1,10 +1,13 @@
 package com.milk.cocoa.request;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.milk.cocoa.coaching.CoachingVO;
 
 @Repository("requestDAO")
 public class RequestDAOImpl {
@@ -19,6 +22,18 @@ public class RequestDAOImpl {
 		requestInfo.put("reqNO", reqNO);
 		isInserted = sqlSession.insert("mapper.request.insertRequest", requestInfo);
 		return isInserted;
+	}
+
+	// 보낸 요청 조회
+	public List selectRequestByReq(String req) {
+		List<RequestVO> requestList = sqlSession.selectList("mapper.request.selectRequestByReq", req);
+		return requestList;
+	}
+
+	// 받은 요청 조회
+	public List selectRequestByRes(String res) {
+		List<RequestVO> requestList = sqlSession.selectList("mapper.request.selectRequestByRes", res);
+		return requestList;
 	}
 
 	// 요청 넘버링 = reqNO을 순차적으로 증가시키기 위함

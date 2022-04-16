@@ -12,13 +12,16 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cocoa</title>
-<link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
-<script type="text/javascript" src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<link href="${contextPath}/resources/css/sb-admin-2.min.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -65,8 +68,10 @@
 			<div id="collapseUtilities" class="collapse"
 				aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-					<label class="collapse-item" onclick="">보낸 요청</label> <label
-						class="collapse-item" onclick="">받은 요청</label>
+					<label class="collapse-item" style="cursor: pointer;"
+						onclick="location.href='/cocoa/request/sent'">보낸 요청</label> <label
+						class="collapse-item" style="cursor: pointer;"
+						onclick="location.href='/cocoa/request/got'">받은 요청</label>
 				</div>
 			</div></li>
 

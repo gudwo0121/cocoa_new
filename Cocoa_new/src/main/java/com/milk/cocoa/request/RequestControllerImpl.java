@@ -4,10 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -176,5 +178,47 @@ public class RequestControllerImpl {
 		}
 		in.close();
 		out.close();
+	}
+
+	// 보낸 요청 목록 이동 = 조회 포함
+	@GetMapping("/request/sent")
+	public ModelAndView viewRequestSent(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/requestSent";
+		mav.setViewName(url);
+
+		// 세션 불러오기
+		HttpSession session = request.getSession();
+		// 세션값 VO에 담기
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		// 세션값에서 현재 로그인한 id값 get = req로 활용
+		String req = memberVO.getId();
+
+		// 보낸 요청 리스트 정보 전송
+		List<RequestVO> requestList = requestServiceImpl.selectRequestByReqService(req);
+		mav.addObject("requestList", requestList);
+
+		return mav;
+	}
+
+	// 받은 요청 목록 이동 = 조회 포함
+	@GetMapping("/request/got")
+	public ModelAndView viewRequestGot(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/requestGot";
+		mav.setViewName(url);
+
+		// 세션 불러오기
+		HttpSession session = request.getSession();
+		// 세션값 VO에 담기
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		// 세션값에서 현재 로그인한 id값 get = res로 활용
+		String res = memberVO.getId();
+
+		// 받은 요청 리스트 정보 전송
+		List<RequestVO> requestList = requestServiceImpl.selectRequestByResService(res);
+		mav.addObject("requestList", requestList);
+
+		return mav;
 	}
 }

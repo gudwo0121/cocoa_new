@@ -36,6 +36,12 @@ public class RequestDAOImpl {
 		return requestList;
 	}
 
+	// 요청 상세 조회
+	public RequestVO selectRequestByNum(int reqNO) {
+		RequestVO requestInfo = sqlSession.selectOne("mapper.request.selectRequestByNum", reqNO);
+		return requestInfo;
+	}
+
 	// 요청 넘버링 = reqNO을 순차적으로 증가시키기 위함
 	private int requestNumbering() {
 		return sqlSession.selectOne("mapper.request.requestNumbering");

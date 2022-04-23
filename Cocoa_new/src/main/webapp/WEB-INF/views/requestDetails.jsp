@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -23,6 +22,8 @@
 	rel="stylesheet">
 <script type="text/javascript"
 	src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/coachingWrite.js"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
@@ -32,7 +33,7 @@
 		<jsp:include page="profileSideBar.jsp"></jsp:include>
 
 		<div id="content-wrapper" class="d-flex flex-column">
-			<div id="content" style="min-width: 1000px; max-width: 1920px;">
+			<div id="content">
 
 				<!-- 상단바 -->
 				<jsp:include page="header.jsp"></jsp:include>
@@ -43,47 +44,73 @@
 					<!-- 헤드라인 -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-dark">Sent Request</h1>
+						<h1 class="h3 mb-0 text-gray-800">Request Details</h1>
 					</div>
 
-					<!-- 보낸 요청 리스트 -->
-					<div
-						style="text-align: center; padding: 50px; padding-left: 130px;">
-						<div class="table-responsive px-3" style="border: 1px solid grey;">
-							<table class="table table-striped table-sm">
-								<thead>
-									<tr>
-										<th scope="col">코치</th>
-										<th scope="col">요청 제목</th>
-										<th scope="col">요청 날짜</th>
-										<th scope="col">요청 상태</th>
-									</tr>
-								</thead>
-								<tbody>
-									<!-- 리스트 한 줄 -->
-									<c:forEach var="requestList" items="${requestList}">
-										<tr>
-											<td>${requestList.res}</td>
-											<td style="text-align: left;"><a
-												style="text-decoration-line: none; color: dark; font-weight: 700;"
-												href="/cocoa/request/sent/${requestList.reqNO}">${requestList.rTitle}</a></td>
-											<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd"
-												value="${requestList.rDate}" />
-											<fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd"
-												value="${dateFmt}" />
-											<td>${dateTempParse}</td>
-											<td><c:choose>
-													<c:when test="${requestList.status == 'status1'}">대기</c:when>
-													<c:when test="${requestList.status == 'status2'}">수락</c:when>
-													<c:when test="${requestList.status == 'status3'}">거절</c:when>
-													<c:when test="${requestList.status == 'status4'}">완료</c:when>
-												</c:choose></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+					<!-- 대기, 수락, 거절, 완료 -->
+					<!-- 각 상태별 보여지는 화면 구분 -->
+					<!-- 1. 대기 상태 (수정 포함) -->
+					<form method="post" action="/cocoa/modWaitReq"
+						enctype="multipart/form-data">
+
+						<!-- 정보 입력란 -->
+						<div class="card shadow mb-4"
+							style="margin: 0 auto; width: 700px;">
+
+							<!-- 소제목 -->
+							<div class="card-header">
+								<h6 class="m-0 font-weight-bold text-primary">${requestInfo.res}에게
+									보낸 요청</h6>
+							</div>
+
+							<!-- 제목 + 내용 + 첨부파일 -->
+							<div class="cpWrite">
+
+								<!-- 제목 -->
+								제목 : <input name="rTitle" type="text" id="rTitle"
+									value="${requestInfo.rTitle}"
+									style="border: 1px solid; width: 88%; margin-left: 25px; margin-top: 20px;">
+								<hr>
+
+								<!-- 요청 내용 -->
+								요청 내용 :
+								<textarea name="rContents" rows="10" id="rContents"
+									maxlength="2000"
+									placeholder="Tip. @@@ (필수)&#13;&#10;Tip. @@@ (필수)&#13;&#10;Tip. @@@ (선택)"
+									style="border: 1px solid; width: 100%; resize: none; margin-top: 10px;">${requestInfo.rContents}</textarea>
+								<hr>
+
+								<!-- 프로필 이미지 -->
+								<input type="hidden" name="defaultImg"
+									value="${requestInfo.rImg}" /> <label for="rImg"
+									style="cursor: pointer;"><img id="preview"
+									src="${contextPath}/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}"
+									style="border: 1px solid;" width="100%" height="160vh"
+									onerror="this.src='${contextPath}/resources/img/onerror.png'">
+								</label> <input type="file" id="rImg" name="rImg"
+									onchange="readURL(this);" style="display: none;">
+								<hr>
+
+								<!-- 요청 + 취소 -->
+								<div style="text-align: center; padding-bottom: 15px;">
+									<input type="submit" class="btn btn-outline-dark" value="수 정">
+									&nbsp; <input type="button" class="btn btn-outline-dark"
+										onclick="history.go(-1)" value="취 소">
+								</div>
+							</div>
 						</div>
-					</div>
+					</form>
+
+					<!-- 2. 수락 상태 -->
+
+					<!-- 3. 거절 상태 -->
+
+					<!-- 4. 완료 상태 -->
+
+
+
+
+
 
 				</div>
 			</div>
@@ -132,6 +159,5 @@
 	<script src="${contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
 	<script src="${contextPath}/resources/js/demo/chart-area-demo.js"></script>
 	<script src="${contextPath}/resources/js/demo/chart-pie-demo.js"></script>
-
 </body>
 </html>

@@ -48,6 +48,16 @@
 		]]>
 	</select>
 
+	<!-- 요청 상세 조회 -->
+	<select id="selectRequestByNum" resultType="requestVO"
+		parameterType="int">
+		<![CDATA[
+			SELECT *
+			FROM requestTBL
+			WHERE reqNO = #{reqNO}
+		]]>
+	</select>
+
 	<!-- 요청 넘버링 -->
 	<select id="requestNumbering" resultType="int">
 		<![CDATA[

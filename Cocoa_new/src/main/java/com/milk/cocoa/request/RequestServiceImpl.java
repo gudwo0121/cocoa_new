@@ -6,8 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.milk.cocoa.coaching.CoachingVO;
-
 @Service("requestService")
 public class RequestServiceImpl {
 
@@ -31,5 +29,11 @@ public class RequestServiceImpl {
 	public List selectRequestByResService(String res) {
 		List<RequestVO> requestList = requestDAOImpl.selectRequestByRes(res);
 		return requestList;
+	}
+
+	// 요청 상세 조회
+	public RequestVO selectRequestByNumService(int reqNO) {
+		RequestVO requestInfo = requestDAOImpl.selectRequestByNum(reqNO);
+		return requestInfo;
 	}
 }

@@ -54,9 +54,7 @@
 
 		<!-- Nav Item - Pages Collapse Menu -->
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="/cocoa/goMyProfile" data-toggle="collapse"
-			data-target="#collapseTwo" aria-expanded="true"
-			aria-controls="collapseTwo"><i class="fas fa-fw fa-cog"></i> <span>내
+			href="/cocoa/profile"><i class="fas fa-fw fa-cog"></i> <span>내
 					정보</span> </a></li>
 
 		<!-- Nav Item - Utilities Collapse Menu -->

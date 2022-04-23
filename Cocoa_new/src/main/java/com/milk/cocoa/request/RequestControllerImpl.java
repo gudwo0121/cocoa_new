@@ -99,8 +99,9 @@ public class RequestControllerImpl {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
-			// reqNO 따라 해당 요청자의 경로로 업로드
-			int reqNO = requestServiceImpl.insertRequestService(requestMap);
+			int isInserted = requestServiceImpl.insertRequestService(requestMap);
+			// reqNO 따로 빼주기 = 안그럼 '/1'에만 저장됨
+			int reqNO = (Integer) requestMap.get("reqNO");
 
 			// 파일(이미지)가 유효하면 경로에도 저장
 			if (rImg != null && rImg.length() != 0) {
@@ -122,7 +123,7 @@ public class RequestControllerImpl {
 			srcFile.delete();
 
 			message = " <script>";
-			message += " alert('요청에 실패했습니다. 다시 시도해주세요.');');";
+			message += " alert('요청에 실패했습니다. 다시 시도해주세요.');";
 			message += " location.href='" + multipartRequest.getContextPath() + "/goSendRequest';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
@@ -180,7 +181,7 @@ public class RequestControllerImpl {
 		out.close();
 	}
 
-	// 보낸 요청 목록 이동 = 조회 포함
+	// 보낸 요청 목록 이동 = 조회 포함 (REST)
 	@GetMapping("/request/sent")
 	public ModelAndView viewRequestSent(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
@@ -201,7 +202,7 @@ public class RequestControllerImpl {
 		return mav;
 	}
 
-	// 받은 요청 목록 이동 = 조회 포함
+	// 받은 요청 목록 이동 = 조회 포함 (REST)
 	@GetMapping("/request/got")
 	public ModelAndView viewRequestGot(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
@@ -218,6 +219,21 @@ public class RequestControllerImpl {
 		// 받은 요청 리스트 정보 전송
 		List<RequestVO> requestList = requestServiceImpl.selectRequestByResService(res);
 		mav.addObject("requestList", requestList);
+
+		return mav;
+	}
+
+	// 보낸 요청 상세 조회 = 수정 포함 (REST)
+	@GetMapping("/request/sent/{reqNO}")
+	public ModelAndView viewSentReqDetails(@PathVariable(value = "reqNO") int reqNO, HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/requestDetails";
+		mav.setViewName(url);
+
+		// 보낸 요청 상세 정보 전송
+		RequestVO requestInfo = requestServiceImpl.selectRequestByNumService(reqNO);
+		mav.addObject("requestInfo", requestInfo);
 
 		return mav;
 	}

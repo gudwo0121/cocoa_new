@@ -47,7 +47,7 @@
 						<h1 class="h3 mb-0 text-gray-800">Send Request</h1>
 					</div>
 
-					<!-- 코칭 등록 -->
+					<!-- 코칭 요청 -->					
 					<form method="post" action="/cocoa/requestWrite"
 						enctype="multipart/form-data">
 

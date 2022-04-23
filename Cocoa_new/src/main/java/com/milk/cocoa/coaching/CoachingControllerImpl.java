@@ -200,7 +200,7 @@ public class CoachingControllerImpl {
 			message += " alert('등록에 실패했습니다. 다시 시도해주세요.');');";
 			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/goCoachingWrite';";
 			message += " </script>";
-			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
 		}
 		return resEnt;
 	}

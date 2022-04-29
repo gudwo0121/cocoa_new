@@ -699,7 +699,7 @@
 
 * 4가지 (대기, 수락, 거절, 완료) 화면을 하나의 jsp에 `status`값으로 구분하여 출력
 
-  = (대기) 조회 구현
+  = (대기) 보낸 요청 조회 구현
   
   = `For String ...` 에러 다시 마주침 : 쿼리문의 데이터 타입이 불일치해도 발생 (2가지 원인)
   
@@ -711,17 +711,33 @@
 
 * 4가지 (대기, 수락, 거절, 완료) 화면을 하나의 jsp에 `status`값으로 구분하여 출력
 
-  = (대기) 자체 수정 추가 구현
+  = (대기) 보낸 요청 수정 추가 구현
   
   = `insert`, `update`시 현재 시간 자동 입력
   
-  -> 생성시 : `rDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,`
+  -> 생성시 : 
   
-  -> 수정시 : `ALTER TABLE reviewTBL`
+  ```sql
+  rDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  ON UPDATE CURRENT_TIMESTAMP,
+  ```
   
-   					`MODIFY 'rDate' datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;`
+  -> 수정시 : 
+  
+  ```sql
+  ALTER TABLE reviewTBL
+  MODIFY 'rDate' datetime DEFAULT CURRENT_TIMESTAMP
+  ON UPDATE CURRENT_TIMESTAMP;
+  ```
   
   = 요청 내용 `placeholder` 멘트 수정
 
 ***
 
+22.04.30 추가
+
+* 4가지 (대기, 수락, 거절, 완료) 화면을 하나의 jsp에 `status`값으로 구분하여 출력
+
+  = (대기) 받은 요청 조회 구현
+
+***

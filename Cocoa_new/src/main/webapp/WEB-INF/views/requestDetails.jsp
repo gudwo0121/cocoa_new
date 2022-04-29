@@ -50,7 +50,7 @@
 					<!-- 대기, 수락, 거절, 완료 -->
 					<!-- 각 상태별 보여지는 화면 구분 -->
 					<!-- 1. 대기 상태 (수정 포함) -->
-					<form method="post" action="/cocoa/modWaitReq"
+					<form method="post" action="/cocoa/modRequest"
 						enctype="multipart/form-data">
 
 						<!-- 정보 입력란 -->
@@ -66,6 +66,10 @@
 							<!-- 제목 + 내용 + 첨부파일 -->
 							<div class="cpWrite">
 
+								<!-- reqNO & req -->
+								<input type="hidden" name="reqNO" value="${requestInfo.reqNO}">
+								<input type="hidden" name="req" value="${requestInfo.req}">
+
 								<!-- 제목 -->
 								제목 : <input name="rTitle" type="text" id="rTitle"
 									value="${requestInfo.rTitle}"
@@ -76,7 +80,7 @@
 								요청 내용 :
 								<textarea name="rContents" rows="10" id="rContents"
 									maxlength="2000"
-									placeholder="Tip. @@@ (필수)&#13;&#10;Tip. @@@ (필수)&#13;&#10;Tip. @@@ (선택)"
+									placeholder="Tip. 현재 개발환경 포함 (필수)&#13;&#10;Tip. 구체적인 에러 및 문제점 상황설명 (필수)&#13;&#10;Tip. 첨부파일 추가설명 (선택)"
 									style="border: 1px solid; width: 100%; resize: none; margin-top: 10px;">${requestInfo.rContents}</textarea>
 								<hr>
 
@@ -91,11 +95,11 @@
 									onchange="readURL(this);" style="display: none;">
 								<hr>
 
-								<!-- 요청 + 취소 -->
+								<!-- 수정 + 취소 -->
 								<div style="text-align: center; padding-bottom: 15px;">
 									<input type="submit" class="btn btn-outline-dark" value="수 정">
 									&nbsp; <input type="button" class="btn btn-outline-dark"
-										onclick="history.go(-1)" value="취 소">
+										onclick="location.href='/cocoa/request/sent'" value="취 소">
 								</div>
 							</div>
 						</div>

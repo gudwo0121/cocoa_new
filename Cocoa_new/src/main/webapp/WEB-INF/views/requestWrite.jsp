@@ -72,7 +72,7 @@
 								요청 내용 :
 								<textarea name="rContents" rows="10" id="rContents"
 									maxlength="2000"
-									placeholder="Tip. @@@ (필수)&#13;&#10;Tip. @@@ (필수)&#13;&#10;Tip. @@@ (선택)"
+									placeholder="Tip. 현재 개발환경 포함 (필수)&#13;&#10;Tip. 구체적인 에러 및 문제점 상황설명 (필수)&#13;&#10;Tip. 첨부파일 추가설명 (선택)"
 									style="border: 1px solid; width: 100%; resize: none; margin-top: 10px;"></textarea>
 								<hr>
 

@@ -57,6 +57,24 @@
 			WHERE reqNO = #{reqNO}
 		]]>
 	</select>
+	
+	<!-- 보낸 요청 수정 -->
+	<update id="updateRequestByNum" parameterType="java.util.Map">
+		<![CDATA[
+			UPDATE requestTBL
+			SET rTitle = #{rTitle}, rContents = #{rContents}
+		]]>
+		<!-- 이미지 미변경시 업데이트에서 제외 -->
+		<!-- test 내부의 "and"는 대문자로 쓰면 인식불가 -->
+		<if test="rImg != '' and rImg != null">
+				<![CDATA[
+					, rImg = #{rImg}
+				]]>
+		</if>
+		<![CDATA[
+			WHERE reqNO = #{reqNO}
+		]]>
+	</update>
 
 	<!-- 요청 넘버링 -->
 	<select id="requestNumbering" resultType="int">

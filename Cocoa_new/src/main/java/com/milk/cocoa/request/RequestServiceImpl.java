@@ -36,4 +36,11 @@ public class RequestServiceImpl {
 		RequestVO requestInfo = requestDAOImpl.selectRequestByNum(reqNO);
 		return requestInfo;
 	}
+
+	// 보낸 요청 수정
+	public int updateRequestByNumService(Map requestInfo) {
+		int isUpdated = 0;
+		isUpdated = requestDAOImpl.updateRequestByNum(requestInfo);
+		return isUpdated;
+	}
 }

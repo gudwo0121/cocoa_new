@@ -43,7 +43,7 @@ public class RequestControllerImpl {
 	@Autowired
 	private RequestServiceImpl requestServiceImpl;
 
-	// 코칭 요청 이동 = coachNO & res 정보는 coachingPost에서 받아놓은 상태
+	// 코칭 요청 이동 = coachNO & res 정보는 requestPost에서 받아놓은 상태
 	@RequestMapping(value = "/goSendRequest", method = RequestMethod.POST)
 	public ModelAndView goSendRequest(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
@@ -112,7 +112,7 @@ public class RequestControllerImpl {
 
 			message = "<script>";
 			message += " alert('요청이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/coaching/post/" + coachNO + "';";
+			message += " location.href='" + multipartRequest.getContextPath() + "/request/post/" + coachNO + "';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -236,5 +236,65 @@ public class RequestControllerImpl {
 		mav.addObject("requestInfo", requestInfo);
 
 		return mav;
+	}
+
+	// 보낸 요청 수정
+	@ResponseBody
+	@RequestMapping(value = "/modRequest", method = RequestMethod.POST)
+	public ResponseEntity modRequestByNum(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws IOException {
+		multipartRequest.setCharacterEncoding("utf-8");
+		Map<String, Object> requestInfo = new HashMap<String, Object>();
+		Enumeration enu = multipartRequest.getParameterNames();
+
+		while (enu.hasMoreElements()) {
+			String name = (String) enu.nextElement();
+			String value = multipartRequest.getParameter(name);
+			requestInfo.put(name, value);
+		}
+		HttpSession session = multipartRequest.getSession();
+
+		String rImg = rImgUpload(multipartRequest);
+		requestInfo.put("rImg", rImg);
+
+		String req = (String) requestInfo.get("req");
+		String reqNO = (String) requestInfo.get("reqNO");
+
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
+		try {
+			int result = requestServiceImpl.updateRequestByNumService(requestInfo);
+
+			if (rImg != null && rImg.length() != 0 && result != 0) {
+				// defaultImg -> jsp 에서 꼭 받아오기
+				String defaultImg = (String) requestInfo.get("defaultImg");
+				File oldFile = new File(REQUEST_IMAGE_REPO + "/" + req + "/" + reqNO + "/" + defaultImg);
+				oldFile.delete();
+
+				File srcFile = new File(REQUEST_IMAGE_REPO + "/" + "temp" + "/" + rImg);
+				File destDir = new File(REQUEST_IMAGE_REPO + "/" + req + "/" + reqNO);
+				FileUtils.moveFileToDirectory(srcFile, destDir, true);
+			}
+
+			message = "<script>";
+			message += " alert('작성 내용이 반영되었습니다.');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/request/sent/" + reqNO + "';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+
+			File srcFile = new File(REQUEST_IMAGE_REPO + "/" + "temp" + "/" + rImg);
+			srcFile.delete();
+
+			message = " <script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/request/sent/" + reqNO + "';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+		}
+		return resEnt;
 	}
 }

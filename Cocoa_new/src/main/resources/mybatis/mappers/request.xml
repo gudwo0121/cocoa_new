@@ -75,6 +75,14 @@
 			WHERE reqNO = #{reqNO}
 		]]>
 	</update>
+	
+	<!-- 보낸 요청 (대기) 삭제  -->
+	<delete id="deleteRequestByNum" parameterType="String">
+		<![CDATA[
+			DELETE FROM requestTBL
+			WHERE reqNO = #{reqNO}
+		]]>
+	</delete>
 
 	<!-- 요청 넘버링 -->
 	<select id="requestNumbering" resultType="int">

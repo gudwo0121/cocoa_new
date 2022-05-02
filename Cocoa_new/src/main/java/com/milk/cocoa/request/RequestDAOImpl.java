@@ -49,6 +49,13 @@ public class RequestDAOImpl {
 		return isUpdated;
 	}
 
+	// 보낸 요청 (대기) 삭제
+	public int deleteRequestByNum(int reqNO) {
+		int isDeleted = 0;
+		isDeleted = sqlSession.delete("mapper.request.deleteRequestByNum", reqNO);
+		return isDeleted;
+	}
+
 	// 요청 넘버링 = reqNO을 순차적으로 증가시키기 위함
 	private int requestNumbering() {
 		return sqlSession.selectOne("mapper.request.requestNumbering");

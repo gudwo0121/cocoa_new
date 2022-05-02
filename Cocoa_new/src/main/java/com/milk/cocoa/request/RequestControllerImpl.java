@@ -112,7 +112,7 @@ public class RequestControllerImpl {
 
 			message = "<script>";
 			message += " alert('요청이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/request/post/" + coachNO + "';";
+			message += " location.href='" + multipartRequest.getContextPath() + "/request/sent/" + reqNO + "';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -297,4 +297,18 @@ public class RequestControllerImpl {
 		}
 		return resEnt;
 	}
+
+	// 보낸 요청 (대기) 철회 = Ajax
+	@ResponseBody
+	@RequestMapping(value = "/delRequest", method = RequestMethod.POST)
+	public int delRequestByNum(int reqNO, String req) throws IOException {
+		int isDeleted = 0;
+		isDeleted = requestServiceImpl.deleteRequestByNumService(reqNO);
+
+		File destDir = new File(REQUEST_IMAGE_REPO + "/" + req + "/" + reqNO);
+		FileUtils.deleteDirectory(destDir);
+
+		return isDeleted;
+	}
+
 }

@@ -43,4 +43,11 @@ public class RequestServiceImpl {
 		isUpdated = requestDAOImpl.updateRequestByNum(requestInfo);
 		return isUpdated;
 	}
+
+	// 보낸 요청 (대기) 삭제
+	public int deleteRequestByNumService(int reqNO) {
+		int isDeleted = 0;
+		isDeleted = requestDAOImpl.deleteRequestByNum(reqNO);
+		return isDeleted;
+	}
 }

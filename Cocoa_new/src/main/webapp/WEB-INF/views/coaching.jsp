@@ -175,7 +175,7 @@
 											style="background-color: #FFCCCC;">
 											<div class="text-center">
 												<input type="button" class="btn btn-outline-dark mt-auto"
-													onclick="getIn()" value="Get in">
+													onclick="getIn(${coachingPost.coachNO})" value="Get in">
 												<!-- 코칭 글 넘버 = PK를 URI로 활용하기 위함 -->
 												<div id="post" hidden="">${coachingPost.coachNO}</div>
 											</div>

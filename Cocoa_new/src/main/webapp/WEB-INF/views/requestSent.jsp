@@ -64,9 +64,11 @@
 									<c:forEach var="requestList" items="${requestList}">
 										<tr>
 											<td>${requestList.res}</td>
-											<td style="text-align: left;"><a
+											<td style="text-align: left;">
+												<!-- Details 이동 --> <a
 												style="text-decoration-line: none; color: dark; font-weight: 700;"
-												href="/cocoa/request/sent/${requestList.reqNO}">${requestList.rTitle}</a></td>
+												href="/cocoa/request/sent/${requestList.reqNO}">${requestList.rTitle}</a>
+											</td>
 											<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd"
 												value="${requestList.rDate}" />
 											<fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd"

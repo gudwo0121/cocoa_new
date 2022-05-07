@@ -11943,3 +11943,13 @@ body.sidebar-toggled footer.sticky-footer {
 	font-weight: bold;
 	color: black;
 }
+
+#rContents {
+	border: none;
+	width: 100%;
+	resize: none;
+	background-color: white;
+	font-weight: bold;
+	color: black;
+	margin-top: 20px;
+}

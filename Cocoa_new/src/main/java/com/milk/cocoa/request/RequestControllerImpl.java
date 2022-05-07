@@ -223,12 +223,12 @@ public class RequestControllerImpl {
 		return mav;
 	}
 
-	// 보낸 요청 상세 조회 = 수정 포함 (REST)
+	// 보낸 요청 상세 조회 = REST
 	@GetMapping("/request/sent/{reqNO}")
 	public ModelAndView viewSentReqDetails(@PathVariable(value = "reqNO") int reqNO, HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
-		String url = "/requestDetails";
+		String url = "/requestSentDetails";
 		mav.setViewName(url);
 
 		// 보낸 요청 상세 정보 전송
@@ -309,6 +309,21 @@ public class RequestControllerImpl {
 		FileUtils.deleteDirectory(destDir);
 
 		return isDeleted;
+	}
+
+	// 받은 요청 상세 조회 = REST
+	@GetMapping("/request/got/{reqNO}")
+	public ModelAndView viewGotReqDetails(@PathVariable(value = "reqNO") int reqNO, HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/requestGotDetails";
+		mav.setViewName(url);
+
+		// 받은 요청 상세 정보 전송
+		RequestVO requestInfo = requestServiceImpl.selectRequestByNumService(reqNO);
+		mav.addObject("requestInfo", requestInfo);
+
+		return mav;
 	}
 
 }

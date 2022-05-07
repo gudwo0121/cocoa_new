@@ -51,68 +51,56 @@
 
 					<!-- 대기, 수락, 거절, 완료 -->
 					<!-- 각 상태별 보여지는 화면 구분 -->
-					<!-- 1. 대기 상태 (수정 / 철회 포함) -->
+					<!-- 1. 대기 상태 (수정 / 철회 미포함) -->
 					<c:choose>
 
 						<c:when test="${requestInfo.status == 'status1'}">
 
-							<form method="post" action="/cocoa/modRequest"
-								enctype="multipart/form-data">
+							<!-- 정보 입력란 -->
+							<div class="card shadow mb-4"
+								style="margin: 0 auto; width: 700px;">
 
-								<!-- 정보 입력란 -->
-								<div class="card shadow mb-4"
-									style="margin: 0 auto; width: 700px;">
+								<!-- 소제목 -->
+								<div class="card-header">
+									<h6 class="m-0 font-weight-bold text-primary">${requestInfo.req}가
+										보낸 요청</h6>
+								</div>
 
-									<!-- 소제목 -->
-									<div class="card-header">
-										<h6 class="m-0 font-weight-bold text-primary">${requestInfo.res}에게
-											보낸 요청<input type="button" id="delRequest"
-												style="float: right;" value="철 회">
-										</h6>
-									</div>
+								<!-- 제목 + 내용 + 첨부파일 -->
+								<div class="cpWrite">
+									<br>
 
-									<!-- 제목 + 내용 + 첨부파일 -->
-									<div class="cpWrite">
+									<!-- 제목 -->
+									제목 : <span style="width: 88%; margin-left: 25px;">${requestInfo.rTitle}</span>
+									<hr>
 
-										<!-- reqNO & req -->
-										<input type="hidden" id="reqNO" name="reqNO"
-											value="${requestInfo.reqNO}"> <input type="hidden"
-											id="req" name="req" value="${requestInfo.req}">
+									<!-- 요청 내용 -->
+									요청 내용 :
+									<textarea name="rContents" rows="10" id="rContents" disabled>${requestInfo.rContents}</textarea>
+									<hr>
 
-										<!-- 제목 -->
-										제목 : <input name="rTitle" type="text" id="rTitle"
-											value="${requestInfo.rTitle}"
-											style="border: 1px solid; width: 88%; margin-left: 25px; margin-top: 20px;">
-										<hr>
+									<!-- 첨부된 이미지 -->
+									<img id="preview"
+										src="${contextPath}/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}"
+										style="border: 1px solid; cursor: pointer;" width="100%"
+										height="160vh"
+										onclick="location.href='/cocoa/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}'"
+										onerror="this.src='${contextPath}/resources/img/onerror.png'">
+									<hr>
 
-										<!-- 요청 내용 -->
-										요청 내용 :
-										<textarea name="rContents" rows="10" id="rContents"
-											maxlength="2000"
-											placeholder="Tip. 현재 개발환경 포함 (필수)&#13;&#10;Tip. 구체적인 에러 및 문제점 상황설명 (필수)&#13;&#10;Tip. 첨부파일 추가설명 (선택)"
-											style="border: 1px solid; width: 100%; resize: none; margin-top: 10px;">${requestInfo.rContents}</textarea>
-										<hr>
-
-										<!-- 프로필 이미지 -->
-										<input type="hidden" name="defaultImg"
-											value="${requestInfo.rImg}" /> <label for="rImg"
-											style="cursor: pointer;"><img id="preview"
-											src="${contextPath}/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}"
-											style="border: 1px solid;" width="100%" height="160vh"
-											onerror="this.src='${contextPath}/resources/img/onerror.png'">
-										</label> <input type="file" id="rImg" name="rImg"
-											onchange="readURL(this);" style="display: none;">
-										<hr>
-
-										<!-- 수정 + 취소 -->
-										<div style="text-align: center; padding-bottom: 15px;">
-											<input type="submit" class="btn btn-outline-dark" value="수 정">
-											&nbsp; <input type="button" class="btn btn-outline-dark"
-												onclick="location.href='/cocoa/request/sent'" value="취 소">
-										</div>
+									<!-- 수락 + 거절 + 목록으로 -->
+									<div style="text-align: center; padding-bottom: 15px;">
+										<input type="button" class="btn btn-outline-dark"
+											onclick="location.href='/cocoa/request/got'" value="수락"><input
+											type="button" class="btn btn-outline-dark"
+											style="margin-left: 10px;"
+											onclick="location.href='/cocoa/request/got'" value="거절"><input
+											type="button" class="btn btn-outline-dark"
+											style="margin-left: 10px;"
+											onclick="location.href='/cocoa/request/got'" value="목록으로">
 									</div>
 								</div>
-							</form>
+							</div>
 						</c:when>
 
 

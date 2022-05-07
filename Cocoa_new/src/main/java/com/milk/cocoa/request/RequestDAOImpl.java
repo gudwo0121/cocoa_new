@@ -60,4 +60,5 @@ public class RequestDAOImpl {
 	private int requestNumbering() {
 		return sqlSession.selectOne("mapper.request.requestNumbering");
 	}
+	
 }

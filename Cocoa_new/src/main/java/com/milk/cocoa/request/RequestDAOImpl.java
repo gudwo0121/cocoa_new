@@ -7,8 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.milk.cocoa.coaching.CoachingVO;
-
 @Repository("requestDAO")
 public class RequestDAOImpl {
 
@@ -56,9 +54,16 @@ public class RequestDAOImpl {
 		return isDeleted;
 	}
 
+	// 요청 수락
+	public int updateAcceptInfo(Map acceptInfo) {
+		int isUpdated = 0;
+		isUpdated = sqlSession.update("mapper.request.updateAcceptInfo", acceptInfo);
+		return isUpdated;
+	}
+
 	// 요청 넘버링 = reqNO을 순차적으로 증가시키기 위함
 	private int requestNumbering() {
 		return sqlSession.selectOne("mapper.request.requestNumbering");
 	}
-	
+
 }

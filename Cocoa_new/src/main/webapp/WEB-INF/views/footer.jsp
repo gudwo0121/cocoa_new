@@ -25,9 +25,6 @@
 </head>
 <body>
 
-	<!-- 비정상 접근 차단 -->
-	<jsp:include page="notTheWay.jsp"></jsp:include>
-
 	<footer class="sticky-footer bg-white">
 		<div class="container my-auto">
 			<div class="copyright text-center my-auto">

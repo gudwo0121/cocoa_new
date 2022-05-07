@@ -57,7 +57,7 @@
 			WHERE reqNO = #{reqNO}
 		]]>
 	</select>
-	
+
 	<!-- 보낸 요청 수정 -->
 	<update id="updateRequestByNum" parameterType="java.util.Map">
 		<![CDATA[
@@ -75,14 +75,24 @@
 			WHERE reqNO = #{reqNO}
 		]]>
 	</update>
-	
-	<!-- 보낸 요청 (대기) 삭제  -->
+
+	<!-- 보낸 요청 (대기) 삭제 -->
 	<delete id="deleteRequestByNum" parameterType="String">
 		<![CDATA[
 			DELETE FROM requestTBL
 			WHERE reqNO = #{reqNO}
 		]]>
 	</delete>
+
+	<!-- 요청 수락 -->
+	<update id="updateAcceptInfo" parameterType="java.util.Map">
+		<![CDATA[
+			UPDATE requestTBL
+			SET contact = #{contact}, realPrice = #{realPrice},
+				notice = #{notice}, status = "status2"
+			WHERE reqNO = #{reqNO}
+		]]>
+	</update>
 
 	<!-- 요청 넘버링 -->
 	<select id="requestNumbering" resultType="int">

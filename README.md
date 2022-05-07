@@ -773,46 +773,52 @@
   = 수정 및 철회는 불가 : 받은 요청은 권한 x
 
   = rImg는 클릭 시 다운로드
-  
+
   = `selectRequestByNumService` 공통 활용
-  
-  Hotfix : 코칭 게시 글 Get In 기능 `coachNO` id 값 받아오는 걸 함수 파라미터로 받기로 수정
-  
-  = B눌렀는데 A가 나오는 현상 해결
+
+* Hotfix :
+
+1. 코칭 게시 글 Get In B눌렀는데 A가 나오는 현상 해결
+
+   = `coachNO` id 값 받아오는 걸 `getIn()` 파라미터로 수정
+
+2. URL 직접 접근 막기
+
+   = JSP 코드 추가 ( URL 직접 접근 시 홈으로 강제 이동 )
+
+```jsp
+<%
+	String strReferer = request.getHeader("referer");
+	if (strReferer == null) {
+%>
+	<script type="text/javascript">
+		alert("정상적인 접근이 아닙니다. 메인 화면으로 돌아갑니다.");
+		location.href = "/cocoa/";
+	</script>
+<%
+	return;
+	}
+%>
+```
+
+3. 코칭 요청 클릭 로그인 여부 판단 추가 fix
+
+   = Controller 코드에 URL 조건 추가
+
+   = 세션값 존재 시, 정상 이동. 그 외 로그인 강제 이동
+
+   = isLogOn.js 는 `alert`만 담당
+
+   = 추가적으로 코칭등록 / 프로젝트 모집에도 `alert` 추가
 
 ***
 
 22.05.08 추가
 
-* Hotfix : 보안
+* 받은 요청 수락 구현
 
-  = URL 직접 접근 막기 + 로그인 여부 판단 추가 fix
-
-  = JSP 코드 추가 ( URL 직접 접근 시 홈으로 강제 이동 )
-
-  ```jsp
-  <%
-  	String strReferer = request.getHeader("referer");
-  	if (strReferer == null) {
-  %>
-  	<script type="text/javascript">
-  		alert("정상적인 접근이 아닙니다. 메인 화면으로 돌아갑니다.");
-  		location.href = "/cocoa/";
-  	</script>
-  <%
-  	return;
-  	}
-  %>
-  ```
+  = Insert가 아닌 Update로 구현 (상태는 이미 Insert 되었기 때문에 충돌 발생)
   
-  = 코칭 요청 클릭 로그인 여부 판단 추가 fix
-  
-  = Controller 코드에 URL 조건 추가
-  
-  = 세션값 존재 시, 정상 이동. 그 외 로그인 강제 이동
-  
-  = isLogOn.js 는 `alert`만 담당
-  
-  = 추가적으로 코칭등록 / 프로젝트 모집에도 `alert` 추가
+  = UI 다듬어 줘야함
 
 ***

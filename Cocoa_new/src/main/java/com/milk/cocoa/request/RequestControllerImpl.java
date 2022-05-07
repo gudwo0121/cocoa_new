@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -203,6 +204,10 @@ public class RequestControllerImpl {
 		HttpSession session = request.getSession();
 		// 세션값 VO에 담기
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+
+		if (memberVO == null) {
+			return mav;
+		}
 		// 세션값에서 현재 로그인한 id값 get = req로 활용
 		String req = memberVO.getId();
 
@@ -224,6 +229,10 @@ public class RequestControllerImpl {
 		HttpSession session = request.getSession();
 		// 세션값 VO에 담기
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+
+		if (memberVO == null) {
+			return mav;
+		}
 		// 세션값에서 현재 로그인한 id값 get = res로 활용
 		String res = memberVO.getId();
 
@@ -343,8 +352,58 @@ public class RequestControllerImpl {
 			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/requestAcceptForm";
+
+		// 받은 요청 상세 정보 전송
+		RequestVO requestInfo = requestServiceImpl.selectRequestByNumService(reqNO);
+		mav.addObject("requestInfo", requestInfo);
+
 		mav.setViewName(url);
 		return mav;
+	}
+
+	// 받은 요청 수락
+	@ResponseBody
+	@RequestMapping(value = "/acceptRequest", method = RequestMethod.POST)
+	public ResponseEntity acceptRequest(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws UnsupportedEncodingException {
+		multipartRequest.setCharacterEncoding("utf-8");
+		Map<String, Object> acceptInfo = new HashMap<String, Object>();
+		Enumeration enu = multipartRequest.getParameterNames();
+
+		while (enu.hasMoreElements()) {
+			String name = (String) enu.nextElement();
+			String value = multipartRequest.getParameter(name);
+			acceptInfo.put(name, value);
+		}
+		HttpSession session = multipartRequest.getSession();
+
+		// 요청 넘버 꺼내오기
+		String reqNO = (String) acceptInfo.get("reqNO");
+
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
+		try {
+			int result = requestServiceImpl.updateAcceptInfoService(acceptInfo);
+
+			if (result > 0) {
+				message = "<script>";
+				message += " alert('요청이 수락되었습니다.');";
+				message += " location.href='" + multipartRequest.getContextPath() + "/request/sent/';";
+				message += " </script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+
+			message = " <script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/request/got/" + reqNO + "/accept';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+		}
+		return resEnt;
 	}
 
 }

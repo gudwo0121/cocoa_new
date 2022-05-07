@@ -50,4 +50,11 @@ public class RequestServiceImpl {
 		isDeleted = requestDAOImpl.deleteRequestByNum(reqNO);
 		return isDeleted;
 	}
+
+	// 요청 수락
+	public int updateAcceptInfoService(Map acceptInfo) {
+		int isUpdated = 0;
+		isUpdated = requestDAOImpl.updateAcceptInfo(acceptInfo);
+		return isUpdated;
+	}
 }

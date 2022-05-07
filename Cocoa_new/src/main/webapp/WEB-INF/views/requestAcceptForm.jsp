@@ -22,10 +22,6 @@
 	rel="stylesheet">
 <script type="text/javascript"
 	src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript"
-	src="${contextPath}/resources/js/coachingWrite.js"></script>
-<script type="text/javascript"
-	src="${contextPath}/resources/js/removeReq.js"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
@@ -52,8 +48,7 @@
 						<h1 class="h3 mb-0 text-gray-800">Request Details</h1>
 					</div>
 
-					<!-- 요청 수락 -->
-					<!-- 정보 입력란 -->
+					<!-- 요청 수락 정보 입력란 -->
 					<div class="card shadow mb-4" style="margin: 0 auto; width: 700px;">
 
 						<!-- 소제목 -->
@@ -66,39 +61,39 @@
 						<div class="cpWrite">
 							<br>
 
-							<!-- 연결수단@@@@@@@@@@@@@@@@@@@@수정 필요 -->
-							연결수단 : <input name="contact" type="text" id="contact"
-								placeholder="Tip. 화상회의(ex.Zoom, Teams, etc) 링크 (필수)"
-								value="${requestInfo.rTitle}"
-								style="border: 1px solid; width: 88%; margin-left: 25px; margin-top: 20px;">
-							<hr>
+							<form action="/cocoa/acceptRequest" method="post"
+								enctype="multipart/form-data">
 
-							<!-- 요청 내용 -->
-							요청 내용 :
-							<textarea name="rContents" rows="10" id="rContents" disabled>${requestInfo.rContents}</textarea>
-							<hr>
+								<!-- reqNO -->
+								<input type="hidden" name="reqNO" value="${requestInfo.reqNO}">
 
-							<!-- 첨부된 이미지 -->
-							<img id="preview"
-								src="${contextPath}/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}"
-								style="border: 1px solid; cursor: pointer;" width="100%"
-								height="160vh"
-								onclick="location.href='/cocoa/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}'"
-								onerror="this.src='${contextPath}/resources/img/onerror.png'">
-							<hr>
+								<!-- 연결수단 -->
+								연결수단 : <input name="contact" type="text" id="contact"
+									placeholder="Tip. 화상회의(ex.Zoom, Teams, etc) 링크 (필수)"
+									style="border: 1px solid; width: 88%; margin-left: 25px; margin-top: 20px;">
+								<hr>
 
-							<!-- 수락 + 거절 + 목록으로 -->
-							<div style="text-align: center; padding-bottom: 15px;">
-								<input type="button" class="btn btn-outline-dark"
-									onclick="location.href='/cocoa/request/got/${requestInfo.reqNO}/accept'"
-									value="수락"><input type="button"
-									class="btn btn-outline-dark" style="margin-left: 10px;"
-									onclick="location.href='/cocoa/request/got/${requestInfo.reqNO}/reject'"
-									value="거절"><input type="button"
-									class="btn btn-outline-dark" style="margin-left: 10px;"
-									onclick="location.href='/cocoa/request/got'" value="목록으로">
-							</div>
+								<!-- 요금 -->
+								요금 : <input name="realPrice" type="number" id="realPrice"
+									min="0" max="100000000" placeholder="0"
+									style="border: 1px solid; width: 150px; margin-left: 25px;">&nbsp;원
+								<hr>
+
+								<!-- 공지사항 -->
+								공지사항 : <input name="notice" type="text" id="notice"
+									style="border: 1px solid; width: 88%; margin-left: 25px;">
+								<hr>
+
+								<!-- 전송 + 취소 -->
+								<div style="text-align: center; padding-bottom: 15px;">
+									<input type="submit" class="btn btn-outline-dark" value="전 송"><input
+										type="button" class="btn btn-outline-dark"
+										style="margin-left: 10px;" onclick="history.go(-1)"
+										value="취 소">
+								</div>
+							</form>
 						</div>
+
 					</div>
 
 				</div>

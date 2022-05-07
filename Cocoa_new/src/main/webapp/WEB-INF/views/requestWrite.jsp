@@ -27,6 +27,9 @@
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
+	<!-- 비정상 접근 차단 -->
+	<jsp:include page="notTheWay.jsp"></jsp:include>
+
 	<div id="wrapper">
 
 		<!-- 사이드바 -->
@@ -47,7 +50,7 @@
 						<h1 class="h3 mb-0 text-gray-800">Send Request</h1>
 					</div>
 
-					<!-- 코칭 요청 -->					
+					<!-- 코칭 요청 -->
 					<form method="post" action="/cocoa/requestWrite"
 						enctype="multipart/form-data">
 
@@ -88,7 +91,7 @@
 									</label>
 								</div>
 								<hr>
-								
+
 								<!-- 코칭 요청 = res 삽입에 필요 -->
 								<input type="hidden" name="res" value="${res}">
 								<!-- 되돌아오는 경로에 필요 -->

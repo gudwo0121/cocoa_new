@@ -33,6 +33,9 @@
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
+	<!-- 비정상 접근 차단 -->
+	<jsp:include page="notTheWay.jsp"></jsp:include>
+
 	<div id="wrapper">
 
 		<!-- 사이드바 -->
@@ -62,7 +65,8 @@
 							<c:otherwise>
 								<label
 									class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-									onclick="location.href='/cocoa/goLogin'">프로젝트 모집</label>
+									onclick="alert('로그인이 필요합니다.');location.href='/cocoa/goLogin';">프로젝트
+									모집</label>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -191,9 +195,7 @@
 											style="background-color: #FFCCCC;">
 											<div class="text-center">
 												<input type="button" class="btn btn-outline-dark mt-auto"
-													onclick="getIn()" value="Get in">
-												<!-- 프로젝트 글 넘버 = PK를 URI로 활용하기 위함 -->
-												<div id="post" hidden="">${projectPost.projectNO}</div>
+													onclick="getIn(${projectPost.projectNO})" value="Get in">
 											</div>
 										</div>
 									</div>

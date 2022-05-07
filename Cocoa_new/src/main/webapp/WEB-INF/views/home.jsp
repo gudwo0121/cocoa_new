@@ -7,14 +7,21 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cocoa</title>
-<link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
-<script type="text/javascript" src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<link
+	href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+<link href="${contextPath}/resources/css/sb-admin-2.min.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
@@ -31,7 +38,7 @@
 
 				<!-- 메인 콘텐츠 -->
 				<div class="container-fluid">
-				
+
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -388,8 +395,8 @@
 	</div>
 
 	<!-- 맨위로 -->
-	<a class="scroll-to-top rounded" href="#page-top">
-		<i class="fas fa-angle-up"></i>
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
 	</a>
 
 	<!-- 로그아웃 확인 멘트
@@ -417,8 +424,10 @@
 
 	<!-- JS 참조 -->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-	<script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script
+		src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 	<script src="${contextPath}/resources/js/sb-admin-2.min.js"></script>
 	<script src="${contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
 	<script src="${contextPath}/resources/js/demo/chart-area-demo.js"></script>

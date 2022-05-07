@@ -47,7 +47,18 @@ public class RequestControllerImpl {
 	@RequestMapping(value = "/goSendRequest", method = RequestMethod.POST)
 	public ModelAndView goSendRequest(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
-		String url = "/requestWrite";
+		String url = "";
+
+		// 세션 값으로 로그인 여부 판단
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+
+		// 비 로그인시 로그인 화면 강제 이동
+		if (memberVO == null) {
+			url = "/login";
+		} else {
+			url = "/requestWrite";
+		}
 
 		// 코칭 요청 시 res 값으로 필요
 		mav.addObject("res", request.getParameter("res"));
@@ -323,6 +334,16 @@ public class RequestControllerImpl {
 		RequestVO requestInfo = requestServiceImpl.selectRequestByNumService(reqNO);
 		mav.addObject("requestInfo", requestInfo);
 
+		return mav;
+	}
+
+	// 받은 요청 수락 이동 = REST
+	@GetMapping("/request/got/{reqNO}/accept")
+	public ModelAndView viewReqAcceptForm(@PathVariable(value = "reqNO") int reqNO, HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/requestAcceptForm";
+		mav.setViewName(url);
 		return mav;
 	}
 

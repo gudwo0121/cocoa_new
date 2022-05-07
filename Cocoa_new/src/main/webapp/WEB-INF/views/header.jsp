@@ -25,6 +25,9 @@
 </head>
 <body>
 
+	<!-- 비정상 접근 차단 -->
+	<jsp:include page="notTheWay.jsp"></jsp:include>
+
 	<nav
 		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 

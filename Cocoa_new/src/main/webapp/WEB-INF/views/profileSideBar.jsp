@@ -25,6 +25,9 @@
 </head>
 <body>
 
+	<!-- 비정상 접근 차단 -->
+	<jsp:include page="notTheWay.jsp"></jsp:include>
+
 	<ul
 		class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion"
 		style="background-image: none;" id="accordionSidebar">

@@ -781,3 +781,38 @@
   = B눌렀는데 A가 나오는 현상 해결
 
 ***
+
+22.05.08 추가
+
+* Hotfix : 보안
+
+  = URL 직접 접근 막기 + 로그인 여부 판단 추가 fix
+
+  = JSP 코드 추가 ( URL 직접 접근 시 홈으로 강제 이동 )
+
+  ```jsp
+  <%
+  	String strReferer = request.getHeader("referer");
+  	if (strReferer == null) {
+  %>
+  	<script type="text/javascript">
+  		alert("정상적인 접근이 아닙니다. 메인 화면으로 돌아갑니다.");
+  		location.href = "/cocoa/";
+  	</script>
+  <%
+  	return;
+  	}
+  %>
+  ```
+  
+  = 코칭 요청 클릭 로그인 여부 판단 추가 fix
+  
+  = Controller 코드에 URL 조건 추가
+  
+  = 세션값 존재 시, 정상 이동. 그 외 로그인 강제 이동
+  
+  = isLogOn.js 는 `alert`만 담당
+  
+  = 추가적으로 코칭등록 / 프로젝트 모집에도 `alert` 추가
+
+***

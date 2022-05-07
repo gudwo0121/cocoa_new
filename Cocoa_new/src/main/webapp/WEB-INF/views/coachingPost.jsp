@@ -27,9 +27,12 @@
 <script type="text/javascript"
 	src="${contextPath}/resources/js/conditionRead.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/resources/js/requestIsLogOn.js"></script>
+	src="${contextPath}/resources/js/isLogOn.js"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
+
+	<!-- 비정상 접근 차단 -->
+	<jsp:include page="notTheWay.jsp"></jsp:include>
 
 	<div id="wrapper">
 
@@ -219,8 +222,8 @@
 										disabled>${coachingInfo.cContents}</textarea>
 									<hr>
 
-									<!-- 로그인 상태 -->
-									<input id="isLogOn" type="hidden" value="${isLogOn}">
+									<!-- 로그인 세션값 -->
+									<input type="hidden" id="isLogOn" value="${isLogOn}">
 
 									<!-- 코칭 요청 페이지에 필요한 정보 전송 -->
 									<form action="/cocoa/goSendRequest" method="POST">
@@ -235,7 +238,7 @@
 										<!-- 코칭요청 + 목록으로 -->
 										<div style="text-align: center; padding-bottom: 15px;">
 											<input type="submit" class="btn btn-outline-dark"
-												onclick="return isLogOn();" value="코칭요청"> &nbsp; <input
+												onclick="isLogOn()" value="코칭요청"> &nbsp; <input
 												type="button" class="btn btn-outline-dark"
 												onclick="history.go(-1)" value="목록으로">
 										</div>

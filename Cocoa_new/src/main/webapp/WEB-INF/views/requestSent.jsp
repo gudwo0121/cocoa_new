@@ -26,6 +26,9 @@
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
+	<!-- 비정상 접근 차단 -->
+	<jsp:include page="notTheWay.jsp"></jsp:include>
+
 	<div id="wrapper">
 
 		<!-- 사이드바 -->

@@ -822,3 +822,10 @@
   = ~~UI 다듬어 줘야함~~
 
 ***
+
+22.05.14 추가
+
+* `requestAcceptForm.jsp` (=요청수락 화면) 입력란 정렬
+* `requestSentDetails.jsp` (=대기 요청상세 화면) 이미지 크기 고정
+
+***

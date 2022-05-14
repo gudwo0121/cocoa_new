@@ -53,7 +53,7 @@
 
 						<!-- 소제목 -->
 						<div class="card-header">
-							<h6 class="m-0 font-weight-bold text-primary">${requestInfo.req}가
+							<h6 class="m-0 font-weight-bold text-primary">${requestInfo.req}이
 								보낸 요청</h6>
 						</div>
 
@@ -70,18 +70,18 @@
 								<!-- 연결수단 -->
 								연결수단 : <input name="contact" type="text" id="contact"
 									placeholder="Tip. 화상회의(ex.Zoom, Teams, etc) 링크 (필수)"
-									style="border: 1px solid; width: 88%; margin-left: 25px; margin-top: 20px;">
+									style="border: 1px solid; width: 80%; margin-left: 15px;">
 								<hr>
 
-								<!-- 요금 -->
-								요금 : <input name="realPrice" type="number" id="realPrice"
+								<!-- 최종요금 -->
+								최종요금 : <input name="realPrice" type="number" id="realPrice"
 									min="0" max="100000000" placeholder="0"
-									style="border: 1px solid; width: 150px; margin-left: 25px;">&nbsp;원
+									style="border: 1px solid; width: 20%; margin-left: 15px;">&nbsp;원
 								<hr>
 
 								<!-- 공지사항 -->
 								공지사항 : <input name="notice" type="text" id="notice"
-									style="border: 1px solid; width: 88%; margin-left: 25px;">
+									style="border: 1px solid; width: 80%; margin-left: 15px;">
 								<hr>
 
 								<!-- 전송 + 취소 -->

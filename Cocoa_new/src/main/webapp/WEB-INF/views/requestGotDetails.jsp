@@ -65,7 +65,7 @@
 
 								<!-- 소제목 -->
 								<div class="card-header">
-									<h6 class="m-0 font-weight-bold text-primary">${requestInfo.req}가
+									<h6 class="m-0 font-weight-bold text-primary">${requestInfo.req}이
 										보낸 요청</h6>
 								</div>
 

@@ -101,7 +101,7 @@
 											value="${requestInfo.rImg}" /> <label for="rImg"
 											style="cursor: pointer;"><img id="preview"
 											src="${contextPath}/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}"
-											style="border: 1px solid;" width="100%" height="160vh"
+											style="border: 1px solid;" width="400vw" height="300vh"
 											onerror="this.src='${contextPath}/resources/img/onerror.png'">
 										</label> <input type="file" id="rImg" name="rImg"
 											onchange="readURL(this);" style="display: none;">

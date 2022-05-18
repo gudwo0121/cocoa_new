@@ -61,6 +61,13 @@ public class RequestDAOImpl {
 		return isUpdated;
 	}
 
+	// 요청 거절
+	public int updateRejectInfo(Map rejectInfo) {
+		int isUpdated = 0;
+		isUpdated = sqlSession.update("mapper.request.updateRejectInfo", rejectInfo);
+		return isUpdated;
+	}
+
 	// 요청 넘버링 = reqNO을 순차적으로 증가시키기 위함
 	private int requestNumbering() {
 		return sqlSession.selectOne("mapper.request.requestNumbering");

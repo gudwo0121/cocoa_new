@@ -94,6 +94,15 @@
 		]]>
 	</update>
 
+	<!-- 요청 거절 -->
+	<update id="updateRejectInfo" parameterType="java.util.Map">
+		<![CDATA[
+			UPDATE requestTBL
+			SET 	notice = #{notice}, status = "status3"
+			WHERE reqNO = #{reqNO}
+		]]>
+	</update>
+
 	<!-- 요청 넘버링 -->
 	<select id="requestNumbering" resultType="int">
 		<![CDATA[

@@ -243,7 +243,7 @@ public class RequestControllerImpl {
 		return mav;
 	}
 
-	// 보낸 요청 상세 조회 = REST
+	// 보낸 요청 상세 조회 (REST)
 	@GetMapping("/request/sent/{reqNO}")
 	public ModelAndView viewSentReqDetails(@PathVariable(value = "reqNO") int reqNO, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -318,7 +318,7 @@ public class RequestControllerImpl {
 		return resEnt;
 	}
 
-	// 보낸 요청 (대기) 철회 = Ajax
+	// 보낸 요청 (대기) 철회 (Ajax)
 	@ResponseBody
 	@RequestMapping(value = "/delRequest", method = RequestMethod.POST)
 	public int delRequestByNum(int reqNO, String req) throws IOException {
@@ -331,7 +331,7 @@ public class RequestControllerImpl {
 		return isDeleted;
 	}
 
-	// 받은 요청 상세 조회 = REST
+	// 받은 요청 상세 조회 (REST)
 	@GetMapping("/request/got/{reqNO}")
 	public ModelAndView viewGotReqDetails(@PathVariable(value = "reqNO") int reqNO, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -346,7 +346,7 @@ public class RequestControllerImpl {
 		return mav;
 	}
 
-	// 받은 요청 수락 이동 = REST
+	// 받은 요청 수락 이동 (REST)
 	@GetMapping("/request/got/{reqNO}/accept")
 	public ModelAndView viewReqAcceptForm(@PathVariable(value = "reqNO") int reqNO, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -391,7 +391,7 @@ public class RequestControllerImpl {
 			if (result > 0) {
 				message = "<script>";
 				message += " alert('요청이 수락되었습니다.');";
-				message += " location.href='" + multipartRequest.getContextPath() + "/request/sent/';";
+				message += " location.href='" + multipartRequest.getContextPath() + "/request/got/';";
 				message += " </script>";
 				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 			}
@@ -406,4 +406,63 @@ public class RequestControllerImpl {
 		return resEnt;
 	}
 
+	// 받은 요청 거절 이동 (REST)
+	@GetMapping("/request/got/{reqNO}/reject")
+	public ModelAndView viewReqRejectForm(@PathVariable(value = "reqNO") int reqNO, HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/requestRejectForm";
+
+		// 받은 요청 상세 정보 전송
+		RequestVO requestInfo = requestServiceImpl.selectRequestByNumService(reqNO);
+		mav.addObject("requestInfo", requestInfo);
+
+		mav.setViewName(url);
+		return mav;
+	}
+
+	// 받은 요청 거절
+	@ResponseBody
+	@RequestMapping(value = "/rejectRequest", method = RequestMethod.POST)
+	public ResponseEntity rejectRequest(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws UnsupportedEncodingException {
+		multipartRequest.setCharacterEncoding("utf-8");
+		Map<String, Object> rejectInfo = new HashMap<String, Object>();
+		Enumeration enu = multipartRequest.getParameterNames();
+
+		while (enu.hasMoreElements()) {
+			String name = (String) enu.nextElement();
+			String value = multipartRequest.getParameter(name);
+			rejectInfo.put(name, value);
+		}
+		HttpSession session = multipartRequest.getSession();
+
+		// 요청 넘버 꺼내오기
+		String reqNO = (String) rejectInfo.get("reqNO");
+
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
+		try {
+			int result = requestServiceImpl.updateRejectInfoService(rejectInfo);
+
+			if (result > 0) {
+				message = "<script>";
+				message += " alert('요청이 거절되었습니다.');";
+				message += " location.href='" + multipartRequest.getContextPath() + "/request/got/';";
+				message += " </script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+
+			message = " <script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/request/got/" + reqNO + "/reject';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+		}
+		return resEnt;
+	}
 }

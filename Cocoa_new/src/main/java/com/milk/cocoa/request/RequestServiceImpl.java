@@ -57,4 +57,11 @@ public class RequestServiceImpl {
 		isUpdated = requestDAOImpl.updateAcceptInfo(acceptInfo);
 		return isUpdated;
 	}
+
+	// 요청 거절
+	public int updateRejectInfoService(Map rejectInfo) {
+		int isUpdated = 0;
+		isUpdated = requestDAOImpl.updateRejectInfo(rejectInfo);
+		return isUpdated;
+	}
 }

@@ -22,10 +22,6 @@
 	rel="stylesheet">
 <script type="text/javascript"
 	src="${contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript"
-	src="${contextPath}/resources/js/coachingWrite.js"></script>
-<script type="text/javascript"
-	src="${contextPath}/resources/js/removeReq.js"></script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
@@ -52,74 +48,43 @@
 						<h1 class="h3 mb-0 text-gray-800">Request Details</h1>
 					</div>
 
-					<!-- 대기, 수락, 거절, 완료 -->
-					<!-- 각 상태별 보여지는 화면 구분 -->
-					<!-- 1. 대기 상태 (수정 / 철회 미포함) -->
-					<c:choose>
+					<!-- 요청 수락 정보 입력란 -->
+					<div class="card shadow mb-4" style="margin: 0 auto; width: 700px;">
 
-						<c:when test="${requestInfo.status == 'status1'}">
+						<!-- 소제목 -->
+						<div class="card-header">
+							<h6 class="m-0 font-weight-bold text-primary">${requestInfo.req}이
+								보낸 요청</h6>
+						</div>
 
-							<!-- 정보 입력란 -->
-							<div class="card shadow mb-4"
-								style="margin: 0 auto; width: 700px;">
+						<!-- 거절사유 -->
+						<div class="cpWrite">
+							<br>
 
-								<!-- 소제목 -->
-								<div class="card-header">
-									<h6 class="m-0 font-weight-bold text-primary">${requestInfo.req}이
-										보낸 요청</h6>
+							<form action="/cocoa/rejectRequest" method="post"
+								enctype="multipart/form-data">
+
+								<!-- reqNO -->
+								<input type="hidden" name="reqNO" value="${requestInfo.reqNO}">
+
+
+								<!-- 거절사유 -->
+								거절사유 : <input name="notice" type="text" id="notice"
+									style="border: 1px solid; width: 80%; margin-left: 15px;">
+								<hr>
+
+								<!-- 전송 + 취소 -->
+								<div style="text-align: center; padding-bottom: 15px;">
+									<input type="submit" class="btn btn-outline-dark" value="전 송"><input
+										type="button" class="btn btn-outline-dark"
+										style="margin-left: 10px;" onclick="history.go(-1)"
+										value="취 소">
 								</div>
+							</form>
+						</div>
 
-								<!-- 제목 + 내용 + 첨부파일 -->
-								<div class="cpWrite">
-									<br>
+					</div>
 
-									<!-- 제목 -->
-									제목 : <span style="width: 88%; margin-left: 25px;">${requestInfo.rTitle}</span>
-									<hr>
-
-									<!-- 요청 내용 -->
-									요청 내용 :
-									<textarea name="rContents" rows="10" id="rContents" disabled>${requestInfo.rContents}</textarea>
-									<hr>
-
-									<!-- 첨부된 이미지 -->
-									<img id="preview"
-										src="${contextPath}/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}"
-										style="border: 1px solid; cursor: pointer;" width="100%"
-										height="300vh"
-										onclick="location.href='/cocoa/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}'"
-										onerror="this.src='${contextPath}/resources/img/onerror.png'">
-									<hr>
-
-									<!-- 수락 + 거절 + 목록으로 -->
-									<div style="text-align: center; padding-bottom: 15px;">
-										<input type="button" class="btn btn-outline-dark"
-											onclick="location.href='/cocoa/request/got/${requestInfo.reqNO}/accept'"
-											value="수락"><input type="button"
-											class="btn btn-outline-dark" style="margin-left: 10px;"
-											onclick="location.href='/cocoa/request/got/${requestInfo.reqNO}/reject'"
-											value="거절"><input type="button"
-											class="btn btn-outline-dark" style="margin-left: 10px;"
-											onclick="location.href='/cocoa/request/got'" value="목록으로">
-									</div>
-								</div>
-							</div>
-						</c:when>
-
-
-						<%-- <!-- 2. 수락 상태 -->
-						<c:when test="${requestInfo.status == 'status2'}">
-						</c:when>
-
-						<!-- 3. 거절 상태 -->
-						<c:when test="${requestInfo.status == 'status3'}">
-						</c:when>
-
-						<!-- 4. 완료 상태 -->
-						<c:when test="${requestInfo.status == 'status4'}">
-						</c:when> --%>
-
-					</c:choose>
 				</div>
 			</div>
 

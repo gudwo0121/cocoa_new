@@ -26,6 +26,27 @@
 	src="${contextPath}/resources/js/coachingWrite.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/resources/js/removeReq.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/requestOpenLink.js"></script>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script>
+	// js 파일 참조 방식으로 불러오기 실패
+	// 코드 직접 참조
+	function requestPay() {
+		IMP.init("iamport");
+		IMP.request_pay({
+			name : "${requestInfo.res}'s coaching", // 코치명
+			amount : "${requestInfo.realPrice}", // 최종요금
+		}, function(rsp) {
+			if (rsp.success) {
+				var msg = '결제가 완료되었습니다.';
+			} else {
+				var msg = '결제에 실패하였습니다.';
+			}
+		});
+	}
+</script>
 </head>
 <body id="page-top" style="min-width: 1000px; max-width: 1920px;">
 
@@ -54,11 +75,139 @@
 
 					<!-- 대기, 수락, 거절, 완료 -->
 					<!-- 각 상태별 보여지는 화면 구분 -->
-					<!-- 1. 대기 상태 (수정 / 철회 포함) -->
 					<c:choose>
-
 						<c:when test="${requestInfo.status == 'status1'}">
+							<!-- 1. 대기 상태 (수정 / 철회 포함) -->
+							<form method="post" action="/cocoa/modRequest"
+								enctype="multipart/form-data">
 
+								<!-- 정보 입력란 -->
+								<div class="card shadow mb-4"
+									style="margin: 0 auto; width: 700px;">
+
+									<!-- 소제목 + 철회 -->
+									<div class="card-header">
+										<h6 class="m-0 font-weight-bold text-primary">${requestInfo.res}에게
+											보낸 요청<input type="button" id="delRequest"
+												style="float: right;" value="철 회">
+										</h6>
+									</div>
+
+									<!-- 제목 + 내용 + 첨부파일 -->
+									<div class="cpWrite">
+
+										<!-- reqNO & req -->
+										<input type="hidden" id="reqNO" name="reqNO"
+											value="${requestInfo.reqNO}"> <input type="hidden"
+											id="req" name="req" value="${requestInfo.req}">
+
+										<!-- 제목 -->
+										제목 : <input name="rTitle" type="text" id="rTitle"
+											value="${requestInfo.rTitle}"
+											style="border: 1px solid; width: 88%; margin-left: 25px; margin-top: 20px;">
+										<hr>
+
+										<!-- 요청 내용 -->
+										요청 내용 :
+										<textarea name="rContents" rows="10" id="rContents"
+											maxlength="2000"
+											placeholder="Tip. 현재 개발환경 포함 (필수)&#13;&#10;Tip. 구체적인 에러 및 문제점 상황설명 (필수)&#13;&#10;Tip. 첨부파일 추가설명 (선택)"
+											style="border: 1px solid; width: 100%; resize: none; margin-top: 10px;">${requestInfo.rContents}</textarea>
+										<hr>
+
+										<!-- 첨부한 이미지 -->
+										<input type="hidden" name="defaultImg"
+											value="${requestInfo.rImg}" /> <label for="rImg"
+											style="cursor: pointer;"><img id="preview"
+											src="${contextPath}/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}"
+											style="border: 1px solid;" width="400vw" height="300vh"
+											onerror="this.src='${contextPath}/resources/img/onerror.png'">
+										</label> <input type="file" id="rImg" name="rImg"
+											onchange="readURL(this);" style="display: none;">
+										<hr>
+
+										<!-- 수정 + 취소 -->
+										<div style="text-align: center; padding-bottom: 15px;">
+											<input type="submit" class="btn btn-outline-dark" value="수 정">
+											&nbsp; <input type="button" class="btn btn-outline-dark"
+												onclick="location.href='/cocoa/request/sent'" value="취 소">
+										</div>
+									</div>
+								</div>
+							</form>
+						</c:when>
+
+						<c:when test="${requestInfo.status == 'status2'}">
+							<!-- 2. 수락 상태 (수정 불가 / 철회 가능) -->
+							<form method="post" action="/cocoa/modRequest"
+								enctype="multipart/form-data">
+
+								<!-- 정보 입력란 -->
+								<div class="card shadow mb-4"
+									style="margin: 0 auto; width: 700px;">
+
+									<!-- 소제목 + 철회 -->
+									<div class="card-header">
+										<h6 class="m-0 font-weight-bold text-primary">${requestInfo.res}에게
+											보낸 요청<input type="button" id="delRequest"
+												style="float: right;" value="철 회">
+										</h6>
+									</div>
+
+									<!-- 제목 + 내용 + 첨부파일 -->
+									<div class="cpWrite">
+
+										<!-- reqNO & req -->
+										<input type="hidden" id="reqNO" name="reqNO"
+											value="${requestInfo.reqNO}"> <input type="hidden"
+											id="req" name="req" value="${requestInfo.req}"> <br>
+
+										<!-- 제목 -->
+										제목 : <span style="width: 88%; margin-left: 25px;">${requestInfo.rTitle}</span>
+										<hr>
+
+										<!-- 요청 내용 -->
+										요청 내용 :
+										<textarea name="rContents" rows="10" id="rContents" disabled>${requestInfo.rContents}</textarea>
+										<hr>
+
+										<!-- 첨부한 이미지 -->
+										<img id="preview"
+											src="${contextPath}/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}"
+											style="border: 1px solid; cursor: pointer;" width="100%"
+											height="300vh"
+											onclick="location.href='/cocoa/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}'"
+											onerror="this.src='${contextPath}/resources/img/onerror.png'">
+										<hr>
+
+										<!-- 연결수단 -->
+										연결수단 : <span
+											style="width: 88%; margin-left: 25px; cursor: pointer;"
+											id="contactLink" onclick="openLink()">${requestInfo.contact}</span>
+										<hr>
+
+										<!-- 최종요금 -->
+										최종요금 : <span style="width: 88%; margin-left: 25px;">${requestInfo.realPrice}</span>&nbsp;원
+										<hr>
+
+										<!-- 공지사항 -->
+										공지사항 : <span style="width: 88%; margin-left: 25px;">${requestInfo.notice}</span>
+										<hr>
+
+										<!-- 결제 + 목록으로 -->
+										<div style="text-align: center; padding-bottom: 15px;">
+											<input type="button" class="btn btn-outline-dark"
+												onclick="requestPay()" value="결 제"> &nbsp; <input
+												type="button" class="btn btn-outline-dark"
+												onclick="location.href='/cocoa/request/sent'" value="목록으로">
+										</div>
+									</div>
+								</div>
+							</form>
+						</c:when>
+
+						<c:when test="${requestInfo.status == 'status3'}">
+							<!-- 3. 거절 상태 -->
 							<form method="post" action="/cocoa/modRequest"
 								enctype="multipart/form-data">
 
@@ -118,16 +267,7 @@
 							</form>
 						</c:when>
 
-
-						<%-- <!-- 2. 수락 상태 -->
-						<c:when test="${requestInfo.status == 'status2'}">
-						</c:when>
-
-						<!-- 3. 거절 상태 -->
-						<c:when test="${requestInfo.status == 'status3'}">
-						</c:when>
-
-						<!-- 4. 완료 상태 -->
+						<%-- <!-- 4. 완료 상태 -->
 						<c:when test="${requestInfo.status == 'status4'}">
 						</c:when> --%>
 

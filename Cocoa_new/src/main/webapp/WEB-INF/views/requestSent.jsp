@@ -68,9 +68,10 @@
 										<tr>
 											<td>${requestList.res}</td>
 											<td style="text-align: left;">
-												<!-- Details 이동 --> <a
+												<!-- 상태에 따른 요청 상세 이동 --> <a
 												style="text-decoration-line: none; color: dark; font-weight: 700;"
 												href="/cocoa/request/sent/${requestList.reqNO}">${requestList.rTitle}</a>
+
 											</td>
 											<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd"
 												value="${requestList.rDate}" />

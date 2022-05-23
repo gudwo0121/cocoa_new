@@ -11953,3 +11953,7 @@ body.sidebar-toggled footer.sticky-footer {
 	color: black;
 	margin-top: 20px;
 }
+
+#contactLink:hover {
+	color: red;
+}

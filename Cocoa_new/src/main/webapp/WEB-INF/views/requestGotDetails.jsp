@@ -54,10 +54,10 @@
 
 					<!-- 대기, 수락, 거절, 완료 -->
 					<!-- 각 상태별 보여지는 화면 구분 -->
-					<!-- 1. 대기 상태 (수정 / 철회 미포함) -->
 					<c:choose>
 
 						<c:when test="${requestInfo.status == 'status1'}">
+							<!-- 1. 대기 상태 (수락 or 거절 가능) -->
 
 							<!-- 정보 입력란 -->
 							<div class="card shadow mb-4"
@@ -107,15 +107,139 @@
 						</c:when>
 
 
-						<%-- <!-- 2. 수락 상태 -->
 						<c:when test="${requestInfo.status == 'status2'}">
+							<!-- 2. 수락 상태 (수락 정보 재전송 가능) -->
+
+							<!-- 정보 입력란 -->
+							<div class="card shadow mb-4"
+								style="margin: 0 auto; width: 700px;">
+
+								<!-- 소제목 -->
+								<div class="card-header">
+									<h6 class="m-0 font-weight-bold text-primary">${requestInfo.req}이
+										보낸 요청</h6>
+								</div>
+
+								<!-- 제목 + 내용 + 첨부파일 -->
+								<div class="cpWrite">
+
+									<!-- reqNO & req -->
+									<input type="hidden" id="reqNO" name="reqNO"
+										value="${requestInfo.reqNO}"> <input type="hidden"
+										id="req" name="req" value="${requestInfo.req}"> <br>
+
+									<!-- 제목 -->
+									제목 : <span style="width: 88%; margin-left: 25px;">${requestInfo.rTitle}</span>
+									<hr>
+
+									<!-- 요청 내용 -->
+									요청 내용 :
+									<textarea name="rContents" rows="10" id="rContents" disabled>${requestInfo.rContents}</textarea>
+									<hr>
+
+									<!-- 첨부된 이미지 -->
+									<img id="preview"
+										src="${contextPath}/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}"
+										style="border: 1px solid; cursor: pointer;" width="100%"
+										height="300vh"
+										onclick="location.href='/cocoa/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}'"
+										onerror="this.src='${contextPath}/resources/img/onerror.png'">
+									<hr>
+
+									<!-- 요청 수락 (재전송 포함) -->
+									<form action="/cocoa/acceptRequest" method="post"
+										enctype="multipart/form-data">
+
+										<!-- reqNO -->
+										<input type="hidden" name="reqNO" value="${requestInfo.reqNO}">
+
+										<!-- 연결수단 -->
+										연결수단 : <input name="contact" type="text" id="contact"
+											placeholder="Tip. 화상회의(ex.Zoom, Teams, etc) 링크 (필수)"
+											value="${requestInfo.contact}"
+											style="border: 1px solid; width: 80%; margin-left: 15px;">
+										<hr>
+
+										<!-- 최종요금 -->
+										최종요금 : <input name="realPrice" type="number" id="realPrice"
+											min="0" max="100000000" placeholder="0"
+											value="${requestInfo.realPrice}"
+											style="border: 1px solid; width: 20%; margin-left: 15px;">&nbsp;원
+										<hr>
+
+										<!-- 공지사항 -->
+										공지사항 : <input name="notice" type="text" id="notice"
+											placeholder="Tip. 코칭 가능 시간대 (ex.00일 00시 00분 접속 바람) (필수)"
+											value="${requestInfo.notice}"
+											style="border: 1px solid; width: 80%; margin-left: 15px;">
+										<hr>
+
+										<!-- 재전송 + 취소 -->
+										<div style="text-align: center; padding-bottom: 15px;">
+											<input type="submit" class="btn btn-outline-dark" value="재전송"><input
+												type="button" class="btn btn-outline-dark"
+												style="margin-left: 10px;"
+												onclick="location.href='/cocoa/request/got'" value="취 소">
+										</div>
+									</form>
+
+								</div>
+							</div>
 						</c:when>
 
-						<!-- 3. 거절 상태 -->
 						<c:when test="${requestInfo.status == 'status3'}">
+							<!-- 3. 거절 상태 (재전송 불가) -->
+
+							<!-- 정보 입력란 -->
+							<div class="card shadow mb-4"
+								style="margin: 0 auto; width: 700px;">
+
+								<!-- 소제목 + 철회 -->
+								<div class="card-header">
+									<h6 class="m-0 font-weight-bold text-primary">${requestInfo.req}이
+										보낸 요청</h6>
+								</div>
+
+								<!-- 제목 + 내용 + 첨부파일 -->
+								<div class="cpWrite">
+
+									<!-- reqNO & req -->
+									<input type="hidden" id="reqNO" name="reqNO"
+										value="${requestInfo.reqNO}"> <input type="hidden"
+										id="req" name="req" value="${requestInfo.req}"> <br>
+
+									<!-- 제목 -->
+									제목 : <span style="width: 88%; margin-left: 25px;">${requestInfo.rTitle}</span>
+									<hr>
+
+									<!-- 요청 내용 -->
+									요청 내용 :
+									<textarea name="rContents" rows="10" id="rContents" disabled>${requestInfo.rContents}</textarea>
+									<hr>
+
+									<!-- 첨부한 이미지 -->
+									<img id="preview"
+										src="${contextPath}/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}"
+										style="border: 1px solid; cursor: pointer;" width="100%"
+										height="300vh"
+										onclick="location.href='/cocoa/rImgLoad?req=${requestInfo.req}&reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}'"
+										onerror="this.src='${contextPath}/resources/img/onerror.png'">
+									<hr>
+
+									<!-- 거절사유 -->
+									거절사유 : <span style="width: 88%; margin-left: 25px;">${requestInfo.notice}</span>
+									<hr>
+
+									<!-- 목록으로 -->
+									<div style="text-align: center; padding-bottom: 15px;">
+										<input type="button" class="btn btn-outline-dark"
+											onclick="location.href='/cocoa/request/got'" value="목록으로">
+									</div>
+								</div>
+							</div>
 						</c:when>
 
-						<!-- 4. 완료 상태 -->
+						<%-- <!-- 4. 완료 상태 -->
 						<c:when test="${requestInfo.status == 'status4'}">
 						</c:when> --%>
 

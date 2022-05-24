@@ -81,6 +81,7 @@
 
 								<!-- 공지사항 -->
 								공지사항 : <input name="notice" type="text" id="notice"
+									placeholder="Tip. 코칭 가능 시간대 (ex.00일 00시 00분 접속 바람) (필수)"
 									style="border: 1px solid; width: 80%; margin-left: 15px;">
 								<hr>
 

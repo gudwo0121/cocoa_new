@@ -361,7 +361,7 @@ public class RequestControllerImpl {
 		return mav;
 	}
 
-	// 받은 요청 수락
+	// 받은 요청 수락 (재전송 포함)
 	@ResponseBody
 	@RequestMapping(value = "/acceptRequest", method = RequestMethod.POST)
 	public ResponseEntity acceptRequest(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)

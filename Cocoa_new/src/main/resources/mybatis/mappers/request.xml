@@ -84,7 +84,7 @@
 		]]>
 	</delete>
 
-	<!-- 요청 수락 -->
+	<!-- 요청 수락 (재전송 포함) -->
 	<update id="updateAcceptInfo" parameterType="java.util.Map">
 		<![CDATA[
 			UPDATE requestTBL

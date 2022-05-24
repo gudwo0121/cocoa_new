@@ -54,7 +54,7 @@ public class RequestDAOImpl {
 		return isDeleted;
 	}
 
-	// 요청 수락
+	// 요청 수락 (재전송 포함)
 	public int updateAcceptInfo(Map acceptInfo) {
 		int isUpdated = 0;
 		isUpdated = sqlSession.update("mapper.request.updateAcceptInfo", acceptInfo);

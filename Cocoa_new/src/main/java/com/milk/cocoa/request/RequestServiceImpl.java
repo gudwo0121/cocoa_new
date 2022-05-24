@@ -51,7 +51,7 @@ public class RequestServiceImpl {
 		return isDeleted;
 	}
 
-	// 요청 수락
+	// 요청 수락 (재전송 포함)
 	public int updateAcceptInfoService(Map acceptInfo) {
 		int isUpdated = 0;
 		isUpdated = requestDAOImpl.updateAcceptInfo(acceptInfo);

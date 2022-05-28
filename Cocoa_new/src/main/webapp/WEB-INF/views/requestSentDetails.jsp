@@ -31,38 +31,24 @@
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script>
-	// js 파일 참조 방식으로 불러오기 실패
-	// 코드 직접 참조
-	// 창까지는 뜨지만 QR코드로 결제 후, 결제를 했다는 정보를 보낼 수가 없음
-	// rsp도 실패로 간주됌
+	// js 파일 참조 방식으로 불러오기 실패 -> jsp에 포함
+	// 이니시스 결제가 아닌 콘솔에서 카카오페이로 테스트 설정해야 되는거 였다... 100만원 기본 (리드미쓰기)
 	function requestPay() {
 		IMP.init("imp41685936");
 		IMP.request_pay({
-			pg : "kakaopay", // pg사
-			pay_method : "html5_inicis", // 결제수단
-			merchant_uid : "cocoa-001", // 결제 고유번호
 			name : "${requestInfo.res}'s coaching", // 코치명
 			amount : "${requestInfo.realPrice}", // 최종요금
 		}, function(rsp) {
 			if (rsp.success) {
-				alert(rsp + "결제성공");
-				/* jQuery.ajax({
-					url : "/cocoa/", // 가맹점 서버
-					method : "POST",
-					headers : {
-						"Content-Type" : "application/json"
-					},
-					data : {
-						imp_uid : rsp.imp_uid,
-						merchant_uid : rsp.merchant_uid
-					//기타 필요한 데이터가 있으면 추가 전달
-					}
-				}).done(function(data) {
-					// 가맹점 서버 결제 API 성공시 로직
-					alert("성공");
-				}) */
+				alert("결제성공");
+				var isPaid = 1;
+				// ajax로 DB에 결제여부 정보 담는 URI 실행
+				// 성공시 줄 수 있는 정보를 담거나 check 해줘야함
+				// DB에 결제자 정보를 줘야하는지 생각해봐야함 -> 나중에 결제내역 만들거니까
 			} else {
-				alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+				alert("결제실패");
+				var isPaid = 0;
+				// 실패시는 재시도가 가능하기 때문에 alert만 줘도 될듯
 			}
 		});
 	}

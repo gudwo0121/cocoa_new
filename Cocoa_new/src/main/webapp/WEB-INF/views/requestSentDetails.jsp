@@ -39,21 +39,14 @@
 			amount : "${requestInfo.realPrice}", // 최종요금
 		}, function(rsp) {
 			if (rsp.success) {
-				var _paid = 1;
-				var _reqNO = $
-				{
-					requestInfo.reqNO
-				}
-				;
-
+				
 				$.ajax({
 					type : "post",
 					async : true,
 					url : "/cocoa/payPrice",
 					dataType : "json",
 					data : {
-						"paid" : _paid,
-						"reqNO" : _reqNO
+						"reqNO" : ${requestInfo.reqNO}
 					},
 
 					success : function(data, textStatus) {
@@ -97,7 +90,7 @@
 						<h1 class="h3 mb-0 text-gray-800">Request Details</h1>
 					</div>
 
-					<!-- 대기, 수락, 거절, 완료 -->
+					<!-- 대기, 수락, 거절, 진행, 완료 -->
 					<!-- 각 상태별 보여지는 화면 구분 -->
 					<c:choose>
 						<c:when test="${requestInfo.status == 'status1'}">
@@ -282,7 +275,7 @@
 						</c:when>
 
 						<c:when test="${requestInfo.status == 'status4'}">
-							<!-- 4. 완료 상태 (후기작성 포함) -->
+							<!-- 4. 진행 상태 (후기작성 포함) -->
 
 							<!-- 정보 입력란 -->
 							<div class="card shadow mb-4"
@@ -301,20 +294,22 @@
 									<form method="post" id="reviewForm" action="/cocoa/reviewWrite"
 										enctype="multipart/form-data">
 
-										<!-- writer + target -->
+										<!-- writer + target + reqNO(상태변경을 위함) -->
 										<input type="hidden" id="writer" name="writer"
 											value="${requestInfo.req}"> <input type="hidden"
 											id="target" name="target" value="${requestInfo.res}">
+										<input type="hidden" id="reqNO" name="reqNO"
+											value="${requestInfo.reqNO}">
 
 										<!-- 평점 -->
 										<fieldset>
-											<input type="radio" name="rating" value="5" id="rate1"><label
-												for="rate1">⭐</label> <input type="radio" name="rating"
+											<input type="radio" name="rate" value="5" id="rate1"><label
+												for="rate1">⭐</label> <input type="radio" name="rate"
 												value="4" id="rate2"><label for="rate2">⭐</label> <input
-												type="radio" name="rating" value="3" id="rate3"><label
-												for="rate3">⭐</label> <input type="radio" name="rating"
+												type="radio" name="rate" value="3" id="rate3"><label
+												for="rate3">⭐</label> <input type="radio" name="rate"
 												value="2" id="rate4"><label for="rate4">⭐</label> <input
-												type="radio" name="rating" value="1" id="rate5"><label
+												type="radio" name="rate" value="1" id="rate5"><label
 												for="rate5">⭐</label>
 										</fieldset>
 										<hr>
@@ -334,7 +329,40 @@
 
 								</div>
 							</div>
+						</c:when>
 
+						<c:when test="${requestInfo.status == 'status5'}">
+							<!-- 5. 완료 상태 (철회 포함) -->
+
+							<!-- 정보 입력란 -->
+							<div class="card shadow mb-4"
+								style="margin: 0 auto; width: 700px;">
+
+								<!-- 소제목 -->
+								<div class="card-header">
+									<h6 class="m-0 font-weight-bold text-primary">
+										종료된 코칭<input type="button" id="delRequest"
+											style="float: right;" value="철 회">
+									</h6>
+								</div>
+
+								<!-- 철회 멘트 -->
+								<div class="cpWrite">
+									<!-- reqNO & req -->
+									<input type="hidden" id="reqNO" name="reqNO"
+										value="${requestInfo.reqNO}"> <input type="hidden"
+										id="req" name="req" value="${requestInfo.req}"> <br>종료된
+									코칭입니다. 철회를 원하시면 우측 상단의 철회버튼을 눌러주세요.
+									<hr>
+
+									<!-- 목록으로 -->
+									<div style="text-align: center; padding-bottom: 15px;">
+										<input type="button" class="btn btn-outline-dark"
+											onclick="location.href='/cocoa/request/sent'" value="목록으로">
+									</div>
+								</div>
+
+							</div>
 						</c:when>
 
 					</c:choose>

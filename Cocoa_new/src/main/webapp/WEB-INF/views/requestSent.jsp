@@ -82,7 +82,8 @@
 													<c:when test="${requestList.status == 'status1'}">대기</c:when>
 													<c:when test="${requestList.status == 'status2'}">수락</c:when>
 													<c:when test="${requestList.status == 'status3'}">거절</c:when>
-													<c:when test="${requestList.status == 'status4'}">완료</c:when>
+													<c:when test="${requestList.status == 'status4'}">진행</c:when>
+													<c:when test="${requestList.status == 'status5'}">완료</c:when>
 												</c:choose></td>
 										</tr>
 									</c:forEach>

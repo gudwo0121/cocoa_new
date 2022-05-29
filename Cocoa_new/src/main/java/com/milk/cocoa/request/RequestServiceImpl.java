@@ -65,10 +65,17 @@ public class RequestServiceImpl {
 		return isUpdated;
 	}
 
-	// 결제성공 및 완료상태
+	// 결제성공 = 완료상태
 	public int updatePayInfoService(RequestVO requestVO) {
 		int isUpdated = 0;
 		isUpdated = requestDAOImpl.updatePayInfo(requestVO);
+		return isUpdated;
+	}
+
+	// 후기작성완료 = 종료상태 = reviewController에 사용
+	public int updateRateInfoService(RequestVO requestVO) {
+		int isUpdated = 0;
+		isUpdated = requestDAOImpl.updateRateInfo(requestVO);
 		return isUpdated;
 	}
 }

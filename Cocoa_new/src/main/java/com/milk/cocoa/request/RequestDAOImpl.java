@@ -68,10 +68,17 @@ public class RequestDAOImpl {
 		return isUpdated;
 	}
 
-	// 결제성공 및 완료상태
+	// 결제성공 = 완료상태
 	public int updatePayInfo(RequestVO requestVO) {
 		int isUpdated = 0;
 		isUpdated = sqlSession.update("mapper.request.updatePayInfo", requestVO);
+		return isUpdated;
+	}
+
+	// 후기작성완료 = 종료상태
+	public int updateRateInfo(RequestVO requestVO) {
+		int isUpdated = 0;
+		isUpdated = sqlSession.update("mapper.request.updateRateInfo", requestVO);
 		return isUpdated;
 	}
 

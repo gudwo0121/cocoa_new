@@ -243,7 +243,7 @@ public class RequestControllerImpl {
 		return mav;
 	}
 
-	// 보낸 요청 상세 조회 (REST)
+	// 보낸 요청 상세 조회 (REST) = 상태별 조회
 	@GetMapping("/request/sent/{reqNO}")
 	public ModelAndView viewSentReqDetails(@PathVariable(value = "reqNO") int reqNO, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -331,7 +331,7 @@ public class RequestControllerImpl {
 		return isDeleted;
 	}
 
-	// 받은 요청 상세 조회 (REST)
+	// 받은 요청 상세 조회 (REST) = 상태별 조회
 	@GetMapping("/request/got/{reqNO}")
 	public ModelAndView viewGotReqDetails(@PathVariable(value = "reqNO") int reqNO, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -466,7 +466,7 @@ public class RequestControllerImpl {
 		return resEnt;
 	}
 
-	// 결제성공 및 완료상태
+	// 결제성공 = 완료상태
 	@ResponseBody
 	@RequestMapping(value = "/payPrice", method = RequestMethod.POST)
 	public int payPrice(RequestVO requestVO) {
@@ -474,4 +474,5 @@ public class RequestControllerImpl {
 		result = requestServiceImpl.updatePayInfoService(requestVO);
 		return result;
 	}
+
 }

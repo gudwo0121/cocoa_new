@@ -52,7 +52,7 @@
 						<h1 class="h3 mb-0 text-gray-800">Request Details</h1>
 					</div>
 
-					<!-- 대기, 수락, 거절, 완료 -->
+					<!-- 대기, 수락, 거절, 진행, 완료 -->
 					<!-- 각 상태별 보여지는 화면 구분 -->
 					<c:choose>
 
@@ -239,7 +239,9 @@
 							</div>
 						</c:when>
 
-						<%-- <!-- 4. 완료 상태 -->
+						<%-- <!-- 4. 진행 상태 -->
+						<c:when test="${requestInfo.status == 'status4'}">
+						</c:when> <!-- 5. 완료 상태 -->
 						<c:when test="${requestInfo.status == 'status4'}">
 						</c:when> --%>
 

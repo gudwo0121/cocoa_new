@@ -18,14 +18,13 @@ public class RequestVO {
 	private int realPrice;
 	private String contact;
 	private String notice;
-	private int paid;
 
 	public RequestVO() {
 
 	}
 
 	public RequestVO(int reqNO, String req, String res, String rTitle, String rContents, Timestamp rDate, String rImg,
-			String status, int realPrice, String contact, String notice, int paid) {
+			String status, int realPrice, String contact, String notice) {
 		this.reqNO = reqNO;
 		this.req = req;
 		this.res = res;
@@ -37,7 +36,6 @@ public class RequestVO {
 		this.realPrice = realPrice;
 		this.contact = contact;
 		this.notice = notice;
-		this.paid = paid;
 	}
 
 	public int getReqNO() {
@@ -128,11 +126,4 @@ public class RequestVO {
 		this.notice = notice;
 	}
 
-	public int getPaid() {
-		return paid;
-	}
-
-	public void setPaid(int paid) {
-		this.paid = paid;
-	}
 }

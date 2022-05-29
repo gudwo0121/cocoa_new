@@ -6,14 +6,27 @@
 <mapper namespace="mapper.review">
 	<resultMap id="reviewList" type="reviewVO">
 		<result property="revNO" column="revNO" />
+		<result property="writer" column="writer" />
+		<result property="target" column="target" />
+		<result property="rate" column="rate" />
+		<result property="review" column="review" />
+		<result property="reDate" column="reDate" />
 	</resultMap>
 
-
+	<!-- 후기작성 -->
+	<insert id="insertReview" parameterType="java.util.Map">
+		<![CDATA[
+			INSERT INTO reviewTBL
+			(revNO, writer, target, rate, review)
+			VALUES
+			(#{revNO}, #{writer}, #{target}, #{rate}, #{review})
+		]]>
+	</insert>
 
 	<!-- 후기 넘버링 -->
 	<select id="reviewNumbering" resultType="int">
 		<![CDATA[
-			SELECT ifnull(max(reqNO), 0) + 1
+			SELECT ifnull(max(revNO), 0) + 1
 			FROM reviewTBL
 		]]>
 	</select>

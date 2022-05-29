@@ -16,7 +16,6 @@
 		<result property="realPrice" column="realPrice" />
 		<result property="contact" column="contact" />
 		<result property="notice" column="notice" />
-		<result property="paid" column="paid" />
 	</resultMap>
 
 	<!-- 요청 작성 -->
@@ -104,11 +103,20 @@
 		]]>
 	</update>
 
-	<!-- 결제성공 및 완료상태 -->
+	<!-- 결제성공 = 완료상태 -->
 	<update id="updatePayInfo" parameterType="RequestVO">
 		<![CDATA[
 			UPDATE requestTBL
-			SET 	paid = #{paid}, status = "status4"
+			SET status = "status4"
+			WHERE reqNO = #{reqNO}
+		]]>
+	</update>
+	
+	<!-- 후기작성 = 종료상태 -->
+	<update id="updateRateInfo" parameterType="RequestVO">
+		<![CDATA[
+			UPDATE requestTBL
+			SET 	status = "status5"
 			WHERE reqNO = #{reqNO}
 		]]>
 	</update>

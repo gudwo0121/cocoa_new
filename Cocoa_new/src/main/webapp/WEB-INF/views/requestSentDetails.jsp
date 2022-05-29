@@ -32,7 +32,6 @@
 	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script>
 	// js 파일 참조 방식으로 불러오기 실패 -> jsp에 포함
-	// 이니시스 결제가 아닌 콘솔에서 카카오페이로 테스트 설정해야 되는거 였다... 100만원 기본 (리드미쓰기)
 	function requestPay() {
 		IMP.init("imp41685936");
 		IMP.request_pay({
@@ -40,15 +39,34 @@
 			amount : "${requestInfo.realPrice}", // 최종요금
 		}, function(rsp) {
 			if (rsp.success) {
-				alert("결제성공");
-				var isPaid = 1;
-				// ajax로 DB에 결제여부 정보 담는 URI 실행
-				// 성공시 줄 수 있는 정보를 담거나 check 해줘야함
-				// DB에 결제자 정보를 줘야하는지 생각해봐야함 -> 나중에 결제내역 만들거니까
+				var _paid = 1;
+				var _reqNO = $
+				{
+					requestInfo.reqNO
+				}
+				;
+
+				$.ajax({
+					type : "post",
+					async : true,
+					url : "/cocoa/payPrice",
+					dataType : "json",
+					data : {
+						"paid" : _paid,
+						"reqNO" : _reqNO
+					},
+
+					success : function(data, textStatus) {
+						alert("결제성공!");
+						location.href = "/cocoa/request/sent";
+					},
+
+					error : function(data) {
+						alert("결제실패.. 다시 시도해주세요.");
+					},
+				});
 			} else {
-				alert("결제실패");
-				var isPaid = 0;
-				// 실패시는 재시도가 가능하기 때문에 alert만 줘도 될듯
+				alert("결제가 취소되었습니다.");
 			}
 		});
 	}
@@ -263,9 +281,61 @@
 							</div>
 						</c:when>
 
-						<%-- <!-- 4. 완료 상태 -->
 						<c:when test="${requestInfo.status == 'status4'}">
-						</c:when> --%>
+							<!-- 4. 완료 상태 (후기작성 포함) -->
+
+							<!-- 정보 입력란 -->
+							<div class="card shadow mb-4"
+								style="margin: 0 auto; width: 700px;">
+
+								<!-- 소제목 -->
+								<div class="card-header">
+									<h6 class="m-0 font-weight-bold text-primary">${requestInfo.res}님의
+										코칭은 어떠셨나요?</h6>
+								</div>
+								<br>
+
+								<!-- 평점 + 한줄평 + 작성자 + 타겟 -->
+								<div class="cpWrite">
+
+									<form method="post" id="reviewForm" action="/cocoa/reviewWrite"
+										enctype="multipart/form-data">
+
+										<!-- writer + target -->
+										<input type="hidden" id="writer" name="writer"
+											value="${requestInfo.req}"> <input type="hidden"
+											id="target" name="target" value="${requestInfo.res}">
+
+										<!-- 평점 -->
+										<fieldset>
+											<input type="radio" name="rating" value="5" id="rate1"><label
+												for="rate1">⭐</label> <input type="radio" name="rating"
+												value="4" id="rate2"><label for="rate2">⭐</label> <input
+												type="radio" name="rating" value="3" id="rate3"><label
+												for="rate3">⭐</label> <input type="radio" name="rating"
+												value="2" id="rate4"><label for="rate4">⭐</label> <input
+												type="radio" name="rating" value="1" id="rate5"><label
+												for="rate5">⭐</label>
+										</fieldset>
+										<hr>
+
+										<!-- 한줄평 -->
+										한줄평 : <input name="review" type="text" id="review" value="한줄평"
+											style="border: 1px solid; width: 88%; margin-left: 25px; margin-top: 20px;">
+										<hr>
+
+										<!-- 확인 + 취소 -->
+										<div style="text-align: center; padding-bottom: 15px;">
+											<input type="submit" class="btn btn-outline-dark" value="확 인">
+											&nbsp; <input type="button" class="btn btn-outline-dark"
+												onclick="location.href='/cocoa/request/sent'" value="취 소">
+										</div>
+									</form>
+
+								</div>
+							</div>
+
+						</c:when>
 
 					</c:choose>
 				</div>

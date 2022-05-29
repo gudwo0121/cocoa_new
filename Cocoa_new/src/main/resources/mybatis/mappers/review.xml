@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.review">
+	<resultMap id="reviewList" type="reviewVO">
+		<result property="revNO" column="revNO" />
+	</resultMap>
+
+
+
+	<!-- 후기 넘버링 -->
+	<select id="reviewNumbering" resultType="int">
+		<![CDATA[
+			SELECT ifnull(max(reqNO), 0) + 1
+			FROM reviewTBL
+		]]>
+	</select>
+
+</mapper>

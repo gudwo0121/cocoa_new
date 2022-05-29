@@ -1,4 +1,4 @@
-package com.milk.cocoa.request;
+package com.milk.cocoa.review;
 
 import java.util.List;
 import java.util.Map;

@@ -315,7 +315,8 @@
 										<hr>
 
 										<!-- 한줄평 -->
-										한줄평 : <input name="review" type="text" id="review" value="한줄평"
+										한줄평 : <input name="review" type="text" id="review"
+											placeholder="Tip. 한번만 작성이 가능하니 신중하게 써주세요!"
 											style="border: 1px solid; width: 88%; margin-left: 25px; margin-top: 20px;">
 										<hr>
 

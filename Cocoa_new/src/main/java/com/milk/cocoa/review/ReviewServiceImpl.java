@@ -11,11 +11,18 @@ public class ReviewServiceImpl {
 	@Autowired
 	private ReviewDAOImpl reviewDAOImpl;
 
-	// 요청 추가
+	// 후기 작성
 	public int insertReviewService(Map reviewInfo) {
 		int isInserted = 0;
 		isInserted = reviewDAOImpl.insertReview(reviewInfo);
 		return isInserted;
+	}
+
+	// 후기 개수
+	public int reviewCountService(String target) {
+		int reviewCount = 0;
+		reviewCount = reviewDAOImpl.reviewCount(target);
+		return reviewCount;
 	}
 
 }

@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.milk.cocoa.member.MemberVO;
+import com.milk.cocoa.review.ReviewServiceImpl;
 
 @RestController("coachingController")
 public class CoachingControllerImpl {

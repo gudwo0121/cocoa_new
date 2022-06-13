@@ -153,6 +153,7 @@
 												<b style="font-size: 15px; float: left;">${coachingPost.coach}</b>
 
 												<!-- 후기 개수 (없을시 0개) -->
+												<!-- @@@@ 쿼리스트링으로 바로 보이게 해야할듯 -->
 												<a href="#" style="color: black;">
 													<div style="font-size: 13px; float: right;">
 														<b>0개의 후기</b>

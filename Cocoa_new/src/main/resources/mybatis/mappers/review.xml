@@ -23,7 +23,17 @@
 		]]>
 	</insert>
 
-	<!-- 후기 넘버링 -->
+	<!-- 후기 개수 -->
+	<select id="reviewCount" parameterType="String"
+		resultType="int">
+		<![CDATA[
+			SELECT COUNT(*)
+			FROM reviewTBL
+			WHERE target = #{target}
+		]]>
+	</select>
+
+	<!-- 후기 넘버링 -->@@@@@@@@@@@@@@@@@@@@
 	<select id="reviewNumbering" resultType="int">
 		<![CDATA[
 			SELECT ifnull(max(revNO), 0) + 1

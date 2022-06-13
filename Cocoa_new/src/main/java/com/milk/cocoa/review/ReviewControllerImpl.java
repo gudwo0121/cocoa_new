@@ -54,7 +54,7 @@ public class ReviewControllerImpl {
 
 		// 리다이렉트될 페이지 경로를 위한 요청 넘버
 		String reqNO = (String) reviewMap.get("reqNO");
-		
+
 		// 후기작성 여부를 삽입시키기 위한 RequestVO
 		requestVO.setReqNO(Integer.parseInt(reqNO));
 
@@ -87,4 +87,6 @@ public class ReviewControllerImpl {
 		return resEnt;
 	}
 
+	
+	
 }

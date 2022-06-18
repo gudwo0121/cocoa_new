@@ -156,7 +156,7 @@
 												<!-- @@@@ 쿼리스트링으로 바로 보이게 해야할듯 -->
 												<a href="#" style="color: black;">
 													<div style="font-size: 13px; float: right;">
-														<b>0개의 후기</b>
+														<b>${reviewCount}개의 후기</b>
 													</div> <!-- 평점 평균 (없을시 0.0) -->
 													<div style="font-size: 13px; float: right;">
 														<b

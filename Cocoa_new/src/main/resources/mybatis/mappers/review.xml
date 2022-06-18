@@ -33,7 +33,7 @@
 		]]>
 	</select>
 
-	<!-- 후기 넘버링 -->@@@@@@@@@@@@@@@@@@@@
+	<!-- 후기 넘버링 -->
 	<select id="reviewNumbering" resultType="int">
 		<![CDATA[
 			SELECT ifnull(max(revNO), 0) + 1

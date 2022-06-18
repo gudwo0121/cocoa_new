@@ -43,6 +43,8 @@ public class CoachingControllerImpl {
 	private CoachingVO coachingVO;
 	@Autowired
 	private CoachingServiceImpl coachingServiceImpl;
+	@Autowired
+	private ReviewServiceImpl reviewServiceImpl;
 
 	// 코칭 글 분야별 조회 (REST)
 	@GetMapping("/coaching/{cField}")
@@ -72,6 +74,12 @@ public class CoachingControllerImpl {
 		// 조회된 코칭 글 정보 전송
 		List<CoachingVO> coachingPost = coachingServiceImpl.selectCoachingPostByFieldService(cField);
 		mav.addObject("coachingPost", coachingPost);
+		System.out.println(coachingPost.get(0));
+		
+		// 후기 개수
+		String target = "admin";
+		int reviewCount = reviewServiceImpl.reviewCountService(target);
+		mav.addObject("reviewCount", reviewCount);
 
 		return mav;
 	}
